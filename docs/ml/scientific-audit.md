@@ -14,6 +14,7 @@ Audited against all five supplied PDFs and the master/protocol after M3. This do
 | HMM mechanism and trained comparison | known-optimum/unreachable/gap tests; real10trip x2facade runs; `results/hmm/hgb-hmm-v1` | Executed |
 | Accuracy, precision, recall,F1,conditional loss,miss rate,continuity,observed-sequence metrics | canonical records and per-trip JSON; denominators retained | Executed |
 | Confusion diagnostics without cross-trip ID pooling | `results/experiments/confusion-v1`; matrices reproduce all saved accuracies | Executed |
+| Distance/heading/geometry-motion block ablation | Same fixed HGB parameters, five trip folds and sampling; `results/experiments/feature-ablation-v1` | Executed; descriptive, no retuning |
 | Numerical graphs,per-model discussion,tuned/untuned,common-host timing,HMM regression case | `results/figures`, scientific report generator, selected-profile-v1 | Executed |
 | Isolated aggregate-only scorer integrated with actual HTTP | M3 combined review:HTTP52/07 exact observation/metric parity; private-key scan and schemas pass | Executed |
 | Development-only Folium handoff |10schema-valid exports;B generated10HTMLmaps, source/coordinate/piece review | Executed; complete map screenshot/PDF review withB |

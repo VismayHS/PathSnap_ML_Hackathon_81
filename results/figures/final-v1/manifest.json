@@ -1,0 +1,12 @@
+{
+  "inputs": {
+    "results/hpo/hgb-tpe-v1/summary.json": "758740631628862abaace27c154d29f72ac2d60e7586a13ff44d7e4eb59e1bb6",
+    "results/hmm/hgb-hmm-v1/summary.json": "d25bd4cfdd7b474d5ab03c34d940875df963d8d9af010586e0f2c4526d71f458"
+  },
+  "figures": {
+    "tuned-untuned.png": "4cef4f6ff518a1f1be1e833ed90ac207aecc6e628a5fbb49fc85b15a60262992",
+    "bayesian-trials.png": "8169ea46b16b6a238d2f4e0669b6ac113c3bf7ca71dd5649e687ad57ed090d25",
+    "classifier-hmm.png": "02f0484a71b7df354f7791311f2b9dfe944587639d2fb73d22077bbd0b07e055"
+  },
+  "notes": "Sequence score compares compressed observed-arc runs, not reconstructed full route; normalized relevance is not calibrated probability."
+}

@@ -1,0 +1,7 @@
+{
+  "gap_s": 30.0,
+  "max_speed_mps": 65.0,
+  "transition_scale_m": 25.0,
+  "gps_slack_m": 50.0,
+  "stationary_projection_noise_m": 15.0
+}

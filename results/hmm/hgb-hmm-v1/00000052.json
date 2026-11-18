@@ -1,0 +1,231 @@
+[
+  {
+    "trip_id": "00000052",
+    "decoder": "classifier_only",
+    "metrics": {
+      "top1_accuracy": 0.9580152671755725,
+      "macro_f1": 0.8748540412333516,
+      "precision_macro": 0.8888888888888887,
+      "recall_macro": 0.8817460317460317,
+      "candidate_miss_rate": 0.0,
+      "log_loss": 0.13654752052917868,
+      "sequence_arc_similarity": 0.9382716049382716,
+      "scored_match_fraction_original": 0.9580152671755725,
+      "route_continuity": 0.9846743295019157,
+      "scorable_observations": 262.0,
+      "unscorable_observations": 0.0,
+      "original_observations": 262.0,
+      "candidate_covered": 262.0,
+      "candidate_misses": 0.0
+    },
+    "counts": {
+      "top1_accuracy": {
+        "numerator": 251,
+        "denominator": 262,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "macro_f1": {
+        "numerator": null,
+        "denominator": 84,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "precision_macro": {
+        "numerator": null,
+        "denominator": 84,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "recall_macro": {
+        "numerator": null,
+        "denominator": 84,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "candidate_miss_rate": {
+        "numerator": 0,
+        "denominator": 262,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "log_loss": {
+        "numerator": null,
+        "denominator": 262,
+        "policy": "Scorable observations whose label arc occurs in the candidate set; normalized classifier relevance, not calibrated probability"
+      },
+      "sequence_arc_similarity": {
+        "numerator": null,
+        "denominator": 81,
+        "policy": "One minus normalized Levenshtein distance of compressed scorable observed-arc sequences; not full route accuracy"
+      },
+      "scored_match_fraction_original": {
+        "numerator": 251,
+        "denominator": 262,
+        "policy": "All original observation rows, including unscorable rows"
+      },
+      "route_continuity": {
+        "numerator": 257,
+        "denominator": 261,
+        "policy": "All consecutive valid observation pairs with 0 < time delta <=30s; unmatched or physically unreachable pairs fail"
+      },
+      "scorable_observations": {
+        "numerator": 262,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "unscorable_observations": {
+        "numerator": 0,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "original_observations": {
+        "numerator": 262,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_covered": {
+        "numerator": 262,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_misses": {
+        "numerator": 0,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      }
+    },
+    "timings_ms": {
+      "load_input": 3.0426209996221587,
+      "clean": 16.71796999835351,
+      "candidates": 29.835829000148806,
+      "features": 9.11077900127566,
+      "model": 16.83065900033398,
+      "decode": 10.126637998837396,
+      "geometry": 7.092410000041127,
+      "predict_total": 89.72831800019776
+    },
+    "scoring_ms": 43.051915999967605,
+    "wall_s": 0.13859221700113267,
+    "route_pieces": 5,
+    "warnings": [
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      }
+    ]
+  },
+  {
+    "trip_id": "00000052",
+    "decoder": "hmm_viterbi",
+    "metrics": {
+      "top1_accuracy": 0.9656488549618321,
+      "macro_f1": 0.9014587083968056,
+      "precision_macro": 0.9116465863453814,
+      "recall_macro": 0.9104417670682731,
+      "candidate_miss_rate": 0.0,
+      "log_loss": 0.13654752052917868,
+      "sequence_arc_similarity": 0.9506172839506173,
+      "scored_match_fraction_original": 0.9656488549618321,
+      "route_continuity": 1.0,
+      "scorable_observations": 262.0,
+      "unscorable_observations": 0.0,
+      "original_observations": 262.0,
+      "candidate_covered": 262.0,
+      "candidate_misses": 0.0
+    },
+    "counts": {
+      "top1_accuracy": {
+        "numerator": 253,
+        "denominator": 262,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "macro_f1": {
+        "numerator": null,
+        "denominator": 83,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "precision_macro": {
+        "numerator": null,
+        "denominator": 83,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "recall_macro": {
+        "numerator": null,
+        "denominator": 83,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "candidate_miss_rate": {
+        "numerator": 0,
+        "denominator": 262,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "log_loss": {
+        "numerator": null,
+        "denominator": 262,
+        "policy": "Scorable observations whose label arc occurs in the candidate set; normalized classifier relevance, not calibrated probability"
+      },
+      "sequence_arc_similarity": {
+        "numerator": null,
+        "denominator": 81,
+        "policy": "One minus normalized Levenshtein distance of compressed scorable observed-arc sequences; not full route accuracy"
+      },
+      "scored_match_fraction_original": {
+        "numerator": 253,
+        "denominator": 262,
+        "policy": "All original observation rows, including unscorable rows"
+      },
+      "route_continuity": {
+        "numerator": 261,
+        "denominator": 261,
+        "policy": "All consecutive valid observation pairs with 0 < time delta <=30s; unmatched or physically unreachable pairs fail"
+      },
+      "scorable_observations": {
+        "numerator": 262,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "unscorable_observations": {
+        "numerator": 0,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "original_observations": {
+        "numerator": 262,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_covered": {
+        "numerator": 262,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_misses": {
+        "numerator": 0,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      }
+    },
+    "timings_ms": {
+      "load_input": 3.0426209996221587,
+      "clean": 17.492801000116742,
+      "candidates": 30.82182400066813,
+      "features": 8.560458998545073,
+      "model": 16.727267999158357,
+      "decode": 90.925389999029,
+      "geometry": 7.638961000338895,
+      "predict_total": 172.1833499996137
+    },
+    "scoring_ms": 49.100025000370806,
+    "wall_s": 0.22184980500060192,
+    "route_pieces": 1,
+    "warnings": []
+  }
+]

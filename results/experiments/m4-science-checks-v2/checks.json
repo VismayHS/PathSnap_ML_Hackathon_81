@@ -1,0 +1,24 @@
+{
+  "source_git_sha": "e618e46b427b5f38192fbfec0fa0ee471685d70c",
+  "tests": "49passed,15 third-party deprecation warnings,2.85s",
+  "ablation": {
+    "elapsed_s": 45.05510925800081,
+    "records_schema_valid": 1460,
+    "fixed_coverage_denominators": "pass",
+    "parameters": "same tuned HGB, samefolds/sampling;descriptive no retuning"
+  },
+  "frozen_m3_asset_checksums": "allunchanged from A-M3-0001",
+  "report_sha256": "a8e19196996fbc0e39eec3b486ba1bda08574d22e4b21e5044825d02a9e7633a",
+  "report_images": 14,
+  "PDF_review": "Attempt01 actual22page system/sciencePDF audited; numericalsystemrows matchm3-predict-all; bothFoliumscreenshots inspected; stalegenerationpathsenttoB andfixed. Attempt02 revisedsciencePDF pending.",
+  "corrections": [
+    "Added missingrequiredfeatureblockablation",
+    "JSON/CSV evidencewording",
+    "Justified HPO searchranges"
+  ],
+  "limits": [
+    "Official alignment provisional",
+    "No evaluator/physicalLANproof",
+    "Teamnames/SRN/disclosure statement team-owned"
+  ]
+}

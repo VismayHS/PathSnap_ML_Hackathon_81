@@ -1,0 +1,18 @@
+{
+  "tests": "49 passed,15 third-party deprecation warnings,1.82s",
+  "source_git_sha": "cbd4cba7180d6fcfbebc26592394962f9a36d02d",
+  "science_preview": "15-page A4 PDF rendered in /tmp using the B report CSS; pages4and12 visually inspected; tables/plots readable",
+  "report_images": 13,
+  "missing_report_images": [],
+  "tracked_raw_or_key_files": [],
+  "confusion": "All five baselines +tuned classifier +tuned HMM reproduce saved student accuracy exactly",
+  "selected_profile": "same host/fourthreads,onewarmup+3passes; untuned502.738ms,tuned863.927ms median",
+  "M3_review": "Independent HTTP52/07 exactprediction/all14metricparity,privatekeyscan,schemas/requestIDs pass;48mergedtests pass",
+  "pdf_audit": "All five PDFs reread afterM3; requirement mappings in docs/ml/scientific-audit.md",
+  "remaining_external": [
+    "Official pointwise scoring clarification",
+    "Reserved evaluator data",
+    "Two physical laptop demonstration"
+  ],
+  "report_sha256": "6117e4474b7cfa19ef85d51913672ba05fd06db771e2c21979784740afa2ad7d"
+}

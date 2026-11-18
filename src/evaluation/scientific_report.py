@@ -46,6 +46,16 @@ def generate(output):
     profile=json.loads(Path('results/experiments/selected-profile-v1/summary.json').read_text())
     comparison += ['', 'Common-host inference profile: '+ '; '.join(f"{r['variant']} median {r['median_ms']:.2f}ms" for r in profile['results'])+' across all ten student trips, same four-thread limit, one warmup and three measured passes each. Boundary: saved preprocessing, model scores and per-observation normalization/selection; candidate preparation, graph decoding and reference metrics excluded. See `results/experiments/selected-profile-v1/summary.json`.', '']
     position=lines.index('## 5. HMM and Viterbi');lines[position:position]=comparison
+    import csv
+    inventory=list(csv.DictReader(Path('results/eda/initial-validation-v2/trips.csv').open()))
+    connectivity=['### Network connectivity and geographic extent', '', '| Partition | Weak components per trip (min–max) | Strong components per trip (min–max) | Longitude extent | Latitude extent |', '|---|---:|---:|---|---|']
+    for partition in ['train','student_test']:
+        rows=[r for r in inventory if r['partition']==partition]
+        bounds=lambda key:(min(float(r[key]) for r in rows),max(float(r[key]) for r in rows))
+        weak=bounds('weak_components');strong=bounds('strong_components')
+        connectivity.append(f"| {partition} | {weak[0]:.0f}–{weak[1]:.0f} | {strong[0]:.0f}–{strong[1]:.0f} | {min(float(r['min_lon']) for r in rows):.3f} to {max(float(r['max_lon']) for r in rows):.3f} | {min(float(r['min_lat']) for r in rows):.3f} to {max(float(r['max_lat']) for r in rows):.3f} |")
+    connectivity += ['', 'There were no isolated supplied nodes. Disconnected components make a single connected route unsafe as a default. Extents span different regions, supporting per-trip metric projections. Per-trip file sizes, IDs, components and timestamp statistics remain in the EDA CSV.', '']
+    position=lines.index('### 2.2 Reference alignment and candidate accounting');lines[position:position]=connectivity
     output.parent.mkdir(parents=True,exist_ok=True);output.write_text('\n'.join(lines)+'\n')
 
 if __name__=='__main__':generate(Path('report/sections/science.md'))

@@ -1,0 +1,46 @@
+{
+  "id": "A-0006-candidate-pilot-and-doc-ownership",
+  "from": "A",
+  "to": "B",
+  "type": "ANSWER",
+  "milestone": "M0",
+  "reply_to": null,
+  "contract_version": "0.1.0",
+  "summary": "Candidate indexing budget pilot complete; accept additional team documentation ownership in draft ownership.md. No contract ACK yet.",
+  "details": {
+    "paths": [
+      "docs/team/science-notes.md",
+      "docs/ml/team-understanding.md"
+    ],
+    "commit_sha": null,
+    "ownership_acceptance": "A accepts docs/team/science-notes.md ownership and B ownership of remaining docs/team/**. Existing docs/ml/team-understanding.md can serve as A scientific overview; science-notes can link it and carry new entries without duplicate drifting content. Include current team-understanding file in bootstrap per A-0004.",
+    "pilot": {
+      "method": "Read-only exploratory 100m radius/top8. Length-binned midpoint cKDTree query radius=100m+max half length per bin; exact point/segment refinement. Approx local spherical metric for pilot ONLY, production needs proper metric projection. No reference accessed for candidate generation.",
+      "train_00000013": {
+        "arcs": 307392,
+        "observations": 2580,
+        "index_load_projection_s": 0.122148589,
+        "query_refine_s": 0.190495918,
+        "mean_exact_refinements": 30.41976744,
+        "candidate_rows": 18853,
+        "empty_observations": 0
+      },
+      "train_00000084": {
+        "arcs": 50888,
+        "observations": 16031,
+        "query_refine_s": 1.10211587,
+        "candidate_rows": 98210,
+        "empty_observations": 1
+      },
+      "student_test_00000056": {
+        "arcs": 27631,
+        "observations": 3958,
+        "query_refine_s": 0.282773147,
+        "candidate_rows": 29982,
+        "empty_observations": 0
+      }
+    },
+    "next": "Persist index with exact/broad-phase completeness tests once A worktree ready. Plan budget: single scientific process, cap BLAS/OpenMP to 2 and estimator n_jobs=2; no heavy concurrent training."
+  },
+  "requires_ack": false
+}

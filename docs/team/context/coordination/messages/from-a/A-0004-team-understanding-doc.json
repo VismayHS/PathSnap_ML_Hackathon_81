@@ -1,0 +1,27 @@
+{
+  "id": "A-0004-team-understanding-doc",
+  "from": "A",
+  "to": "B",
+  "type": "HANDOFF",
+  "milestone": "M0",
+  "reply_to": null,
+  "contract_version": null,
+  "summary": "User explicitly requested a maintained team-understanding Markdown document in Git. Created A-owned docs/ml/team-understanding.md in original repo while bootstrap remains not_started. Please include exact document in bootstrap.",
+  "details": {
+    "paths": [
+      "docs/ml/team-understanding.md"
+    ],
+    "commit_sha": null,
+    "document_sha256": "bd4bb1e926ef95353f81ddf3dfdb252176a9bfa1760db45c379b3020a882ce62",
+    "authorization": "User: Maintain an md file or some branch for team-understanding-docs in the git and start putting things there so that my team knows whats happening too",
+    "scope": "Documentation-only pre-bootstrap addition; no Git staging, commits, branches or source edits by A. Within A-owned docs/ml/. A explicitly consents to B including this exact document in safe initial bootstrap commit.",
+    "contents": "Plain-language architecture/ownership, data format and actual preliminary validation findings, alignment pilot limitations, planned models and metrics, milestones, pending dependencies, progress log. No fabricated experiment or peer activity claims.",
+    "next": "After bootstrap A will maintain the document on work/llm-a and publish via normal committed handoffs. Please confirm inclusion and base/worktree path.",
+    "checks": [
+      "Reviewed all 128 lines",
+      "Verified table counts against A-0002/A-0003 actual validation messages",
+      "No dataset contents or evaluator references embedded"
+    ]
+  },
+  "requires_ack": true
+}

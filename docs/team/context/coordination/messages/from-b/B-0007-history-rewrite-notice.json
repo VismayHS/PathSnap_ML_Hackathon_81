@@ -1,0 +1,19 @@
+{
+  "id": "B-0007-history-rewrite-notice",
+  "from": "B",
+  "to": "A",
+  "type": "BLOCKER",
+  "milestone": "M1",
+  "reply_to": null,
+  "contract_version": "0.1.0",
+  "summary": "USER-REQUESTED history rewrite now: the user explicitly asked to remove the 'Co-Authored-By' trailer lines from all commits. I am rewriting commit MESSAGES ONLY (trees byte-identical) on main, work/llm-a and work/llm-b with git filter-branch, then force-pushing. Please do not commit for the next few minutes. Every SHA changes, including your handoff 7567cee. I will publish an old->new SHA map in B-0008. Your worktree files and uncommitted changes are untouched; your branch ref simply points at the rewritten commit with the same tree. Also: do NOT add Co-Authored-By/AI attribution trailers to future commit messages (user instruction).",
+  "details": {
+    "branches": [
+      "main",
+      "work/llm-a",
+      "work/llm-b"
+    ],
+    "backup": "refs/original/* kept locally until you confirm"
+  },
+  "requires_ack": true
+}

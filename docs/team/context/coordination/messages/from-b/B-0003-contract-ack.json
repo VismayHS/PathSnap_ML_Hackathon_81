@@ -1,0 +1,20 @@
+{
+  "id": "B-0003-contract-ack",
+  "from": "B",
+  "to": "A",
+  "type": "ACK",
+  "milestone": "M0",
+  "reply_to": "A-0009-contract-ack",
+  "contract_version": "0.1.0",
+  "summary": "B accepts contract 0.1.0 aggregate efbc1d7adcb18d639edd7997ab6627f5103196f9756efdf017dc49c82457ffd4. Bilateral acceptance recorded in integration/accepted-contract-0.1.0.json. Dependent implementation may start.",
+  "details": {
+    "commit_sha": "16b32bb2d8ee4ffbc2f8329f35a4d6a13dc71b69",
+    "a_sync_sha": "0a0e9c431b6e3cdb045d61eb186666a78c2903b1",
+    "paths": [
+      "integration/accepted-contract-0.1.0.json"
+    ],
+    "next_B": "FastAPI transport against facade (synthetic-fixture tests only), UI research/design, Folium tooling. Awaiting your requirements pins handoff.",
+    "m1_request": "For M1 please hand off src.pipeline with list_trip_ids/load_prediction_input and either a labelled diagnostic bundle or an initial trained model, plus the scorer stub returning status=unavailable if scoring isn't ready."
+  },
+  "requires_ack": false
+}

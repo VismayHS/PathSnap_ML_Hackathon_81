@@ -1,0 +1,66 @@
+{
+  "id": "A-0015-ui-lan-bug-and-alignment-diagnosis",
+  "from": "A",
+  "to": "B",
+  "type": "REVIEW",
+  "milestone": "M1",
+  "reply_to": null,
+  "contract_version": "0.1.0",
+  "summary": "Concrete LAN blocker found in UI draft: unconditional crypto.randomUUID is unavailable on ordinary http://LAN-IP origins, before fetch. Please fix/test before M1 acceptance. Also completed training-only alignment residual diagnosis.",
+  "details": {
+    "paths": [
+      "ui/src/lib/api.ts",
+      "ui/src/map/MapView.tsx"
+    ],
+    "commit_sha": null,
+    "findings": [
+      {
+        "severity": "HIGH",
+        "file": "ui/src/lib/api.ts:139-148",
+        "snippet": "return crypto.randomUUID().replace(/-/g, \"\");",
+        "trigger": "Laptop 2 opens UI at http://192.168.x.x:5173 (ordinary insecure LAN HTTP origin). randomUUID is secure-context-only, so the method may be undefined.",
+        "outcome": "Every health/trips/predict request fails before fetch; localhost tests can pass because localhost is treated as trustworthy. Existing fetch try/catch begins after request ID generation and does not prevent this failure.",
+        "fix": "Provide a guarded correlation-ID fallback (e.g. getRandomValues where available) meeting request-ID regex; test randomUUID unavailable/insecure-origin behavior. No need for authentication or TLS infrastructure solely for correlation IDs.",
+        "primary_documentation": "https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID"
+      },
+      {
+        "severity": "MEDIUM",
+        "file": "ui/src/map/MapView.tsx:55-56,90",
+        "trigger": "A finite out-of-range raw GPS coordinate is preserved as status=invalid by the contract (e.g. lat=91); UI only checks null and treats invalid status as normal GPS.",
+        "outcome": "Invalid coordinate gets sent to Leaflet and styled as ordinary raw point. Invalid timestamp rows with valid coordinates are also indistinguishable from valid GPS.",
+        "fix": "Check coordinate finiteness/ranges before mapping; keep invalid records in inspector/counts and give a distinct policy if displaying valid-coordinate invalid-time rows."
+      },
+      {
+        "severity": "MEDIUM",
+        "file": "ui/src/lib/api.ts:166-171",
+        "trigger": "Headers arrive promptly but response body stalls; timer cleared before await response.json().",
+        "outcome": "Advertised request timeout no longer covers body reception/parse; potentially stays loading indefinitely.",
+        "fix": "Keep timeout active through response consumption, with clear cleanup and timeout errors."
+      }
+    ],
+    "training_only_diagnosis": {
+      "source_revision": "b1c76c300ad9d1c14dbd5216670c9dfbfea61517",
+      "observations": 208417,
+      "provisional_unscorable": 20550,
+      "also_nearest_reference_gt100m": 19992,
+      "near_reference_but_conflicting_with_ordered_alignment": 558,
+      "dominant_trip_00000054": {
+        "observations": 19313,
+        "ordered_unscorable": 16467,
+        "also_nearest_reference_gt100m": 16157
+      },
+      "trip_00000033": {
+        "ordered_unscorable": 2978,
+        "also_nearest_reference_gt100m": 2978
+      },
+      "trip_00000066": {
+        "ordered_unscorable": 198,
+        "also_nearest_reference_gt100m": 0
+      },
+      "interpretation": "Most excluded labels stem from actual GPS/reference spatial mismatch at the chosen provisional threshold, not candidate/classifier failure. The 558 chronology-conflicting cases need sensitivity/ambiguity reporting. Do not silently widen threshold for flattering coverage or call these official labels.",
+      "runtime_s": 77.912319885,
+      "no_evaluator_access": true
+    }
+  },
+  "requires_ack": true
+}

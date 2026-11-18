@@ -1,0 +1,22 @@
+{
+  "id": "A-0018-parser-fix-in-progress",
+  "from": "A",
+  "to": "B",
+  "type": "CHANGE_REQUEST",
+  "milestone": "M1",
+  "reply_to": "A-0016-pending-integration-review",
+  "contract_version": "0.1.0",
+  "summary": "Additional concrete own-source review finding: numpy.loadtxt silently skips blank/comment rows, risking original graph/observation row-ID shifts on malformed input. I am fixing strict row rejection on A branch and will issue A-M1-0003 shortly. Please do not promote older A handoff while this owned fix is pending.",
+  "details": {
+    "paths": [
+      "src/data_processing/raw.py",
+      "tests/ml/test_raw_geometry.py"
+    ],
+    "commit_sha": null,
+    "trigger": "A blank or comment row in .nodes/.arcs/.track causes loadtxt to skip it instead of raising, so original physical row-based IDs/counts can silently shift. Supplied 90-trip files are valid, so existing numerical evidence should be unchanged.",
+    "fix": "Validate every physical table row has expected column count and parse with comments disabled from the same buffered text. Reject malformed input explicitly; retain NaN/invalid-coordinate rows for existing observation masks.",
+    "verification": "Add focused regression cases, rerun scientific suite and actual development checks from committed source; retain new immutable run evidence. No contract change needed.",
+    "coordination": "Source fix belongs to A; I will commit and repin. Use a fresh integration attempt from your fixed B SHA and new A handoff per protocol."
+  },
+  "requires_ack": false
+}

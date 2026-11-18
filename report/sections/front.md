@@ -1,17 +1,21 @@
 # PathSnap: Map-Matching and Route Reconstruction
 
-**UE24CS352A Machine Learning Hackathon · PES University (RR Campus) · Technical Report**
+**Technical Report**
 
-**Team PT-081, Section F (AIML 2024)**
+**Course:** UE24CS352A Machine Learning, PES University (RR Campus)  
+**Team:** PT-081, Section F (AIML 2024)  
+**GitHub repository:** <https://github.com/VismayHS/PathSnap_ML_Hackathon_81>
 
-| Name | SRN |
-|---|---|
-| Vismay H S | PES1UG24AM325 |
-| Vismaya G | PES1UG24AM326 |
-| Vudutha Kundhan | PES1UG24AM327 |
-| Y B Halli Viswanathareddy Bhavana | PES1UG24AM328 |
+**Team members**
 
-**Repository:** <https://github.com/VismayHS/PathSnap_ML_Hackathon_81>
+| # | Name | SRN |
+|---|---|---|
+| 1 | VISMAY H S | PES1UG24AM325 |
+| 2 | VISMAYA.G | PES1UG24AM326 |
+| 3 | VUDUTHA KUNDHAN | PES1UG24AM327 |
+| 4 | Y B HALLI VISWANATHAREDDY BHAVANA | PES1UG24AM328 |
+
+The repository contains all source code (data processing, features, the five models, Bayesian tuning, HMM/Viterbi, API and UI), the trained model, every experiment record and figure, and the interactive Folium maps. Every result in this report can be checked against it.
 
 ### Summary
 

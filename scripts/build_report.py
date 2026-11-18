@@ -15,7 +15,6 @@ import re
 import shutil
 import subprocess
 import sys
-from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -82,7 +81,7 @@ def main() -> int:
             problems.append(f"required heading not found: {h}")
     doc = (f"<!doctype html><html><head><meta charset='utf-8'><title>PathSnap technical report</title>"
            f"<style>{CSS}</style></head><body>{body}"
-           f"<p class='caption'>Built {date.today().isoformat()} from repository sources.</p></body></html>")
+           "</body></html>")
     html_path = REPORT / "build" / "report.html"
     html_path.parent.mkdir(parents=True, exist_ok=True)
     html_path.write_text(doc, "utf-8")

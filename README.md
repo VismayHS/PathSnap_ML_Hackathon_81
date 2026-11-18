@@ -2,7 +2,7 @@
 
 **UE24CS352A Machine Learning hackathon, PES University (RR Campus).**
 
-**Team PT-081 (Section F):** Vismay H S (PES1UG24AM325), Vismaya G (PES1UG24AM326), Vudutha Kundhan (PES1UG24AM327), Y B Halli Viswanathareddy Bhavana (PES1UG24AM328).
+**Team PT-081 (Section F):** VISMAY H S (PES1UG24AM325), VISMAYA.G (PES1UG24AM326), VUDUTHA KUNDHAN (PES1UG24AM327), Y B HALLI VISWANATHAREDDY BHAVANA (PES1UG24AM328).
 
 **Technical report (PDF):** [PathSnap_Technical_Report.pdf](report/PathSnap_Technical_Report.pdf) ([download](https://github.com/VismayHS/PathSnap_ML_Hackathon_81/raw/main/report/PathSnap_Technical_Report.pdf)).
 

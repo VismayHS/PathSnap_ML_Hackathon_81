@@ -16,9 +16,9 @@ Each connected piece of a predicted route is drawn as its own line. Where the de
 <p class="caption">Figure S1. Folium development map of student-test trip 00000091 (model hgb-hmm-v1). The classifier + HMM route (blue) follows the reference route (green) along the road network. Captured from <code>maps/hgb-hmm-v1/</code> served over HTTP.</p>
 
 ![Folium map, student-test trip 00000007](report/figures/system/folium-00000007.png)
-<p class="caption">Figure S2. Student-test trip 00000007, the trip where HMM decoding lowered Top-1 accuracy (see the HMM section). The classifier-only (dashed purple) and HMM (blue) layers can be compared with the reference.</p>
+<p class="caption">Figure S2. Student-test trip 00000007, the trip where HMM decoding lowered Top-1 accuracy (see the HMM section). At this zoom the map shows the overall route, not individual arc assignments or direction errors; the quantitative counterexample in the HMM section is the evidence, and the overlap seen here does not prove every assignment is correct.</p>
 
-Interactive HTML maps: `maps/<run_id>/trip_<id>_<partition>.html`. Regenerate them with `python -m src.visualisation.folium.make_maps --input results/hmm/visualisation/<run_id> --output maps/<run_id>`.
+Interactive HTML maps: `maps/<run_id>/trip_<id>_<partition>.html`. Regenerate them with `python -m src.visualisation.folium.make_maps --input results/hmm/<run_id>/visualisation --output maps/<run_id>` (for the final model: `results/hmm/hgb-hmm-v1/visualisation`). View them over HTTP (`python3 -m http.server 8001 --directory maps/<run_id>`), because OpenStreetMap blocks tiles for `file://`.
 
 Evaluator trips are never mapped. The generator rejects any partition other than train or student-test, and the evaluator UI never receives reference geometry.
 

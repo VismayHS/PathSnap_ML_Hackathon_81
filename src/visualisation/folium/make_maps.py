@@ -1,11 +1,11 @@
 """Development-only Folium maps (mandatory deliverable). Owner: B.
 
-Reads A's DevVisualisation handoff files (contracts/artifacts.schema.json#/$defs/DevVisualisation),
+Reads A's DevVisualisation export files (contracts/artifacts.schema.json#/$defs/DevVisualisation),
 which hold train/student_test trips only, and writes one interactive HTML map per trip, with layers:
 raw GPS, nearby road network, reference route (development data only) and each predicted
 decoder variant. Each route piece is its own line; gaps are never bridged.
 
-    python -m src.visualisation.folium.make_maps --input results/hmm/visualisation/<run_id> --output maps/<run_id>
+    python -m src.visualisation.folium.make_maps --input results/hmm/<run_id>/visualisation --output maps/<run_id>
 
 View the maps over HTTP so the OpenStreetMap tile servers accept the requests (they block file://):
 

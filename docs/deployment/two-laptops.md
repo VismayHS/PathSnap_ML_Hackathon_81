@@ -30,7 +30,7 @@ hostname -I            # Linux;  macOS: ipconfig getifaddr en0;  Windows: ipconf
 export PATHSNAP_MODE=development            # 'evaluator' only once the reserved trips are provided
 export PATHSNAP_DATA_ROOT=/absolute/path/to/Student_folder
 export PATHSNAP_BUNDLE_ROOT=$PWD/artifacts/final         # the bundle A publishes (diagnostic-v1 during M1)
-export PATHSNAP_CORS_ORIGINS=http://<LAPTOP2-IP>:4173,http://<LAPTOP2-IP>:5173
+export PATHSNAP_CORS_ORIGINS="http://<LAPTOP2-IP>:4173,http://<LAPTOP2-IP>:5173"
 # evaluator mode only:
 # export PATHSNAP_MODE=evaluator
 # export PATHSNAP_EVALUATOR_ROOT=/absolute/path/to/reserved_trips

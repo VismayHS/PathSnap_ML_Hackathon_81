@@ -2,7 +2,7 @@
 
 **UE24CS352A Machine Learning hackathon, PES University (RR Campus).**
 
-PathSnap takes a vehicle's noisy GPS trace and works out which road segments it actually drove on. For each GPS point it finds nearby road segments, scores them with a trained classifier, and then uses an HMM with Viterbi decoding to choose one connected, drivable route. Laptop 1 runs the model behind a FastAPI service. Laptop 2 runs a React interface where an evaluator picks a trip and sees the reconstructed route and its accuracy.
+PathSnap takes a vehicle's noisy GPS trace and works out which road segments it actually drove on. For each GPS point it finds nearby road segments, scores them with a trained classifier, and then uses an HMM with Viterbi decoding to choose the most plausible sequence of road segments, as feasible route pieces on the supplied directed road graph. The final model leaves 28 pieces across the 10 student-test trips. Turn restrictions and traffic rules are not available in the data. Laptop 1 runs the model behind a FastAPI service. Laptop 2 runs a React interface where an evaluator picks a trip and sees the reconstructed route and its accuracy.
 
 ![PathSnap evaluator UI showing a reconstructed route](report/figures/system/ui-result-1440.png)
 
@@ -30,7 +30,7 @@ PathSnap takes a vehicle's noisy GPS trace and works out which road segments it 
 
 Every model was trained on the same candidate features and evaluated with 5-fold **grouped** cross-validation over the 80 training trips: a trip's points never appear in both training and validation. Each model was then refit on all training trips and run on the 10 student-test trips. Source: [`results/experiments/baselines-local-v1/summary.json`](results/experiments/baselines-local-v1/summary.json).
 
-| Model | Family | CV Macro F1 (80 train trips, 5 grouped folds) | Student-test Top-1 accuracy | Student-test Macro F1 | Student-test log loss | Route continuity (student test) | Train+CV time |
+| Model | Family | CV Macro F1 (80 train trips, 5 grouped folds) | Student-test Top-1 accuracy | Student-test Macro F1 | Student-test log loss | Route continuity (student test) | Total experiment time |
 |---|---|---|---|---|---|---|---|
 | Logistic Regression | regularized linear | 0.635 ± 0.017 | 81.7% | 0.650 | 0.573 | 93.6% | 24 s |
 | Distance-weighted KNN | instance based | 0.666 ± 0.016 | 83.8% | 0.706 | 0.866 | 94.1% | 303 s |
@@ -38,17 +38,19 @@ Every model was trained on the same candidate features and evaluated with 5-fold
 | Extra Trees | extremely randomized trees | 0.703 ± 0.016 | 85.3% | 0.736 | 0.415 | 95.0% | 41 s |
 | **HistGradientBoosting (selected)** | histogram gradient boosting | **0.725 ± 0.017** | 85.8% | 0.767 | **0.361** | 95.1% | 26 s |
 
-HistGradientBoosting was **selected** because it had the best cross-validated Macro F1 and the best probability quality (log loss), and it is fast. The reasoning is in [`docs/ml/model-selection.md`](docs/ml/model-selection.md).
+HistGradientBoosting was **selected on training cross-validation Macro F1** (the primary criterion), together with its low compute cost. It also had the lowest observed conditional log loss on the student-test trips, but that observation is descriptive only: the scores are not calibrated probabilities. The reasoning is in [`docs/ml/model-selection.md`](docs/ml/model-selection.md).
+
+"Total experiment time" covers grouped CV, the refit, student-test scoring and the reference metrics, at 2 threads. Model fitting uses at most 400 scorable observations per training trip; validation and student-test scoring use every observation.
 
 ### Bayesian tuning (Optuna TPE)
 
-There were 12 trials, each a full 5-fold grouped cross-validation. The CV Macro F1 went from **0.7252 (untuned) to 0.7297 (tuned)**. One trial was interrupted by an external stop and was completed from its recorded parameters. This is documented, not hidden. Source: [`results/hpo/hgb-tpe-v1/`](results/hpo/hgb-tpe-v1/).
+There were 12 trials, each a full 5-fold grouped cross-validation. The CV Macro F1 went from **0.7252 (untuned) to 0.7297 (tuned)**. The tuning process ended unexpectedly with exit code 143 after 11 trials; the cause was not verified. The 12th trial was then completed from its recorded parameters. This is documented, not hidden. Source: [`results/hpo/hgb-tpe-v1/`](results/hpo/hgb-tpe-v1/).
 
 ### Final system: tuned classifier with and without HMM/Viterbi
 
 Source: [`results/hmm/hgb-hmm-v1/summary.json`](results/hmm/hgb-hmm-v1/summary.json).
 
-| Student-test (10 trips, 19,160 GPS points) | Tuned classifier only | **Tuned classifier + HMM/Viterbi (final)** |
+| Student-test (10 trips: 19,160 GPS rows, 19,143 scorable, 17 unscorable) | Tuned classifier only | **Tuned classifier + HMM/Viterbi (final)** |
 |---|---|---|
 | Top-1 accuracy | 86.0% | **88.5%** |
 | Macro F1 (per trip, averaged) | 77.1% | **85.1%** |
@@ -59,8 +61,9 @@ Source: [`results/hmm/hgb-hmm-v1/summary.json`](results/hmm/hgb-hmm-v1/summary.j
 | Log loss (classifier emissions) | 0.352 | 0.352 |
 | Disconnected route pieces (all 10 trips) | 974 | **28** |
 
+- Accuracy is computed over the 19,143 scorable points. The 84 scorable points whose true road was not among the candidates count as errors; they are not dropped.
 - The HMM turns a fragmented route into an almost fully connected one and improves accuracy overall.
-- **It does not help on every trip.** On trip `00000007`, Top-1 accuracy fell from 94.8% to 88.3%, and the report analyses why.
+- **It does not help on every trip.** On trip `00000007`, Top-1 accuracy fell from 94.8% to 88.3%. The report documents this regression; its specific cause has not been established.
 - Log loss is identical because it measures the classifier's probabilities, which the HMM does not change.
 - The student-test trips were looked at while choosing the model, so these are development results, not an unbiased final test.
 
@@ -135,7 +138,7 @@ python3 -m venv .venv && .venv/bin/python -m pip install -r requirements.lock.tx
 export PATHSNAP_MODE=development                       # 'evaluator' once the reserved trips are provided
 export PATHSNAP_DATA_ROOT=/absolute/path/to/Student_folder
 export PATHSNAP_BUNDLE_ROOT=$PWD/artifacts/hgb-hmm-v1  # the final trained model
-export PATHSNAP_CORS_ORIGINS=http://<LAPTOP2-IP>:4173  # Laptop 2's UI address
+export PATHSNAP_CORS_ORIGINS="http://<LAPTOP2-IP>:4173"  # Laptop 2's UI address (keep the quotes)
 .venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000
 ```
 
@@ -182,6 +185,8 @@ Every response carries an `X-Request-ID` that also appears in the Laptop 1 log. 
 .venv/bin/python -m src.hpo.search --cache data/processed/candidate-v1 --output results/hpo/my-tpe --trials 12 --threads 4
 
 # 5. classifier-only vs HMM on the 10 student-test trips, then export the final bundle
+#    (to regenerate everything from your own fresh runs, point --baseline/--hpo at my-baselines and my-tpe;
+#     the paths below reuse the recorded runs that produced the committed results)
 .venv/bin/python -m src.hmm.compare --data-root $PATHSNAP_DATA_ROOT \
     --baseline results/experiments/baselines-local-v1/summary.json --hpo results/hpo/hgb-tpe-v1/summary.json \
     --bundle-output artifacts/my-bundle --output results/hmm/my-comparison
@@ -189,7 +194,7 @@ Every response carries an `X-Request-ID` that also appears in the Laptop 1 log. 
 # 6. Folium maps, then the report PDF
 .venv/bin/python -m src.visualisation.folium.make_maps --input results/hmm/hgb-hmm-v1/visualisation --output maps/my-maps
 .venv/bin/python -m src.evaluation.scientific_report       # regenerates report/sections/science.md from saved results
-python3 scripts/build_report.py                            # -> report/PathSnap_Technical_Report.pdf
+.venv/bin/python scripts/build_report.py                   # -> report/PathSnap_Technical_Report.pdf
 ```
 
 The full command list with the exact run IDs used is in [`docs/ml/reproduce.md`](docs/ml/reproduce.md). Every result folder records the source commit, data fingerprint, seed, configuration and timings.
@@ -262,5 +267,5 @@ The full command list with the exact run IDs used is in [`docs/ml/reproduce.md`]
 
 - **Independent work.** This project was built for this team only and shares no code, weights or results with other teams.
 - **Evidence.** Every number in this README and the report is produced by code in this repository and recorded with its source commit.
-- **Evaluator data.** The reserved evaluator trips are never used for training or tuning, and reference routes never leave the server.
+- **Evaluator data.** The reserved evaluator trips are never used for training or tuning. Evaluator reference routes never leave the server's scoring step. The development Folium maps in `maps/` do show development (train/student-test) reference routes, but they are kept separate from the API and UI.
 - **AI assistance.** AI coding assistance was used to build this project. The instructions given to it and the coordination log are in [`docs/team/context/`](docs/team/context/). The team's own disclosure statement goes in the report, as the event policy requires.

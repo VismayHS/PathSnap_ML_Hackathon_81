@@ -9,3 +9,9 @@ Transitions use a negative absolute difference between directed travel distance 
 Final emissions will come from the selected trained candidate classifier, clipped and normalized within each observation. This is a normalized relevance distribution, not calibrated confidence. The M1 diagnostic uses geometric relevance and classifier-only selection; it does not demonstrate the final trained-classifier HMM.
 
 `viterbi.py` evaluates the recurrence in log space with per-step offsets, backpointers and termination. Empty candidates, large gaps and all-unreachable transitions end the current block and restart separately. Returned route pieces are built from actual graph arcs and legal connectors. Tiny-graph tests passed, including a known optimum and unreachable restart. No real-data HMM accuracy improvement is claimed yet.
+
+## Executed trained comparison
+
+The final fixed decoder was evaluated on all ten student-testing trips in `results/hmm/hgb-hmm-v1/summary.json`. Tuned HGB classifier-only accuracy was 0.860367 and HMM accuracy 0.885493; mean trip Macro F1 was 0.770553 versus 0.851054. Legal continuity rose from 0.949760 to 0.999164 and observed-arc sequence similarity from 0.638746 to 0.855911. These are provisional alignment scores, not official evaluator results. No decoder parameters were selected using student-test performance.
+
+Conditional log loss stays identical between modes because it measures the same normalized classifier emission distribution. The Viterbi path is not an HMM posterior distribution. Connected route pieces dropped from 974 to 28; remaining gaps are preserved. Actual full-facade inference totals were about 5.06s classifier-only and 10.70s HMM across the ten trips on this host; these include graph/candidate/features/geometry stages and exclude separate scoring. They are measured local timings, not a deployment guarantee.

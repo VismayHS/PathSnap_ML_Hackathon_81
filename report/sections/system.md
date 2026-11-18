@@ -96,7 +96,7 @@ The slowest trip (00000056, 3,958 points) takes 5.8 s. The UI allows up to 180 s
 
 ### Final evaluation on the reserved trips
 
-After freezing the system (`main` `603b42f`, bundle `hgb-hmm-v1`), the 10 reserved evaluator trips were run once through the API in evaluator mode. Scoring happened only on the server, after prediction. Nothing was explored, trained, tuned or selected using these trips. Source: `results/system/evaluator-run-01-aggregate.json`. Provisional scoring policy `pathsnap-scoring-v0`.
+The 10 reserved evaluator trips were run once on the frozen accepted M3 system (`main` `603b42f`, bundle `hgb-hmm-v1`), before the M4 documentation was promoted, through the API in evaluator mode. Scoring happened only on the server, after prediction. Nothing was explored, trained, tuned or selected using these trips. A re-verified every trip independently, read-only. The later UI metric-layout fix was cosmetic only. Source: `results/system/evaluator-run-01-aggregate.json`. Provisional scoring policy `pathsnap-scoring-v0`.
 
 | Trip | Points | Top-1 accuracy | Macro F1 | Route continuity | Route pieces | Server time |
 |---|---|---|---|---|---|---|
@@ -110,7 +110,7 @@ After freezing the system (`main` `603b42f`, bundle `hgb-hmm-v1`), the 10 reserv
 | 00000073 | 1,144 | 95.8% | 0.896 | 100.00% | 6 | 1.1 s |
 | 00000087 | 1,399 | 98.1% | 0.960 | 100.00% | 1 | 2.7 s |
 | 00000094 | 3,230 | 88.5% | 0.794 | 99.94% | 3 | 3.6 s |
-| **All 10** | **19,674** | **87.8%** (pooled) | **0.786** (mean) | **99.98%** | **23** | |
+| **All 10** | **19,674** | **87.8%** (pooled) | **0.786** (mean) | **99.96%** (pooled) | **23** | |
 
 ![Evaluator mode](report/figures/system/ui-evaluator-result.png)
 <p class="caption">Figure S5. The UI in evaluator mode: exactly the ten reserved trips, with trip 00000049 reconstructed and scored on the server. Only the prediction and raw GPS are drawn; no evaluator reference geometry reaches the browser.</p>

@@ -1,13 +1,12 @@
 {
  "run": "evaluator-run-01",
- "system": "main 603b42f (frozen M3), bundle artifacts/hgb-hmm-v1 manifest sha256 a3a8028d...",
+ "system": "frozen accepted M3, main 603b42f1a95c80c4558d1a42fbdb7f111de9aade; bundle hgb-hmm-v1 manifest sha256 a3a8028deb70fc313594997d0636c5c5fb930027c441d02fe98e3e627235ce30. The run happened before M4 (docs/report) was promoted.",
  "mode": "evaluator",
  "scoring_policy": "pathsnap-scoring-v0 (provisional)",
  "pooled_top1_accuracy": 0.8783165599268069,
  "top1_correct": 17280,
  "scorable_observations": 19674,
  "mean_trip_macro_f1": 0.7861083289571573,
- "mean_route_continuity": 0.9997674788339344,
  "route_pieces_total": 23,
  "candidate_misses_total": 128,
  "unscorable_total": 0,
@@ -95,5 +94,9 @@
   }
  ],
  "checks": "all 10: HTTP 200, schema-valid, scored, no reference/label/private keys, X-Request-ID == body request_id",
- "note": "Aggregate metrics only. No evaluator reference geometry, per-observation labels, raw payloads or evaluator data are stored in this repository. Nothing was tuned or selected using these results."
+ "note": "Aggregate metrics only. No evaluator reference geometry, per-observation labels, raw payloads or evaluator data are stored in this repository. Nothing was tuned or selected using these results.",
+ "pooled_route_continuity": 0.9995930617020194,
+ "mean_trip_route_continuity": 0.9997674788339344,
+ "continuity_note": "pooled = sum(connected pairs)/sum(eligible pairs) over all 10 trips, the same policy as the development continuity figures; independently computed by A (A-0047). mean_trip_route_continuity is the unweighted mean of the per-trip values.",
+ "independent_verification": "A-0047: all 10 trips re-queried read-only; accuracy 17280/19674 and mean trip Macro F1 confirmed; all request IDs found in the server log"
 }

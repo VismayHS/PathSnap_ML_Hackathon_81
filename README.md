@@ -48,7 +48,7 @@ There were 12 trials, each a full 5-fold grouped cross-validation. The CV Macro 
 
 ### Final evaluation: the 10 reserved evaluator trips
 
-After the system was frozen (`main` at `603b42f`, model `hgb-hmm-v1`), the organisers' reserved evaluator trips were run **once**, through the API in evaluator mode, with server-side scoring only. Nothing was explored, trained, tuned or re-selected using them. Only aggregate metrics are kept: [`results/system/evaluator-run-01-aggregate.json`](results/system/evaluator-run-01-aggregate.json).
+The organisers' reserved evaluator trips were run **once** on the frozen accepted M3 system (`main` `603b42f`, model `hgb-hmm-v1`), before the M4 documentation was promoted, through the API in evaluator mode, with server-side scoring only. Nothing was explored, trained, tuned or re-selected using them. Only aggregate metrics are kept: [`results/system/evaluator-run-01-aggregate.json`](results/system/evaluator-run-01-aggregate.json).
 
 | Trip | Points | Top-1 accuracy | Macro F1 | Route continuity | Route pieces | Server time |
 |---|---|---|---|---|---|---|
@@ -62,7 +62,7 @@ After the system was frozen (`main` at `603b42f`, model `hgb-hmm-v1`), the organ
 | 00000073 | 1,144 | 95.8% | 0.896 | 100.00% | 6 | 1.1 s |
 | 00000087 | 1,399 | 98.1% | 0.960 | 100.00% | 1 | 2.7 s |
 | 00000094 | 3,230 | 88.5% | 0.794 | 99.94% | 3 | 3.6 s |
-| **All 10** | **19,674** | **87.8%** (pooled) | **0.786** (mean) | **99.98%** | **23** | |
+| **All 10** | **19,674** | **87.8%** (pooled) | **0.786** (mean) | **99.96%** (pooled) | **23** | |
 
 - **Overall:** 87.8% Top-1 accuracy on unseen trips, close to the 88.5% on the student-test trips.
 - **Macro F1 is lower** (0.786 against 0.851), mostly because of trip `00000015`: a long trip where common roads are right but many rarely visited segments are missed.

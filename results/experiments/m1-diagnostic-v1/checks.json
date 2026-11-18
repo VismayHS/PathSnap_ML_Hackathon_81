@@ -1,0 +1,41 @@
+{
+  "source_git_sha": "9540ae6004a91d402bf24f35bbc3564cf2d0be7a",
+  "checks": [
+    {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/ml",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "...........                                                              [100%]\n11 passed in 0.46s\n",
+      "stderr": "",
+      "elapsed_s": 0.6891590419991189
+    },
+    {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "No broken requirements found.\n",
+      "stderr": "",
+      "elapsed_s": 0.5953344750005272
+    },
+    {
+      "command": [
+        ".venv/bin/python",
+        "scripts/contract_hash.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"aggregate_sha256\": \"efbc1d7adcb18d639edd7997ab6627f5103196f9756efdf017dc49c82457ffd4\",\n  \"files\": {\n    \"contracts/artifacts.schema.json\": \"4baafc6057e5130f9377fb03b649ab7fad90413133ca0ca2c0db7ca7b1a42cb9\",\n    \"contracts/fixtures/predict_response.synthetic.v0.1.0.json\": \"77784a1d42109f618bdd14ee5d2c5720c41543b18f8e25a2049d5b87c1af51f3\",\n    \"contracts/http.schema.json\": \"ddeac91490f893217708c3e2dfab83278d6a8ef7daa4bfbd97c36f233bf07e04\",\n    \"contracts/interfaces.md\": \"f41c3f19e323e9456d7a6298255b878b21553c850d1b79692db711d79fb481e3\",\n    \"src/contracts.py\": \"da2d0e9e389c654e0c65b1450e9e60a42b0d6c20f1b53f289ca3523db9061634\"\n  },\n  \"version\": \"0.1.0\"\n}\n",
+      "stderr": "",
+      "elapsed_s": 0.026637244000085047
+    }
+  ]
+}

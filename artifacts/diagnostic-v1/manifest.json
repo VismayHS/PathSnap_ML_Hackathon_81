@@ -1,0 +1,97 @@
+{
+  "manifest_version": 1,
+  "contract_version": "0.1.0",
+  "model_version": "diagnostic-v1",
+  "model_kind": "diagnostic",
+  "model_family": "geometric_diagnostic",
+  "decoder": "classifier_only",
+  "run_id": "diagnostic-v1",
+  "source_git_sha": "e40733568bc39c41f771940469420d50b58e2929",
+  "config_sha256": "997df5b9e8eba3bd72686213ba61ef5239f5416245e7693d4d99a13b0f1045d0",
+  "data_fingerprint": "no-fitted-data-reference-free-diagnostic",
+  "features": [
+    {
+      "name": "distance_m",
+      "dtype": "float32"
+    },
+    {
+      "name": "log_distance",
+      "dtype": "float32"
+    },
+    {
+      "name": "heading_cosine",
+      "dtype": "float32"
+    },
+    {
+      "name": "heading_valid",
+      "dtype": "float32"
+    },
+    {
+      "name": "log_length",
+      "dtype": "float32"
+    },
+    {
+      "name": "projection_fraction",
+      "dtype": "float32"
+    },
+    {
+      "name": "speed_mps",
+      "dtype": "float32"
+    },
+    {
+      "name": "delta_t_s",
+      "dtype": "float32"
+    },
+    {
+      "name": "distance_excess_over_nearest_m",
+      "dtype": "float32"
+    }
+  ],
+  "score_kind": "normalized_score",
+  "score_normalization": "Clip binary relevance to 1e-12; divide by observation candidate sum; not calibrated confidence",
+  "crs": {
+    "input": "EPSG:4326",
+    "coordinate_order": "lon,lat",
+    "metric": "WGS84 local azimuthal-equidistant centered on median valid GPS; always_xy"
+  },
+  "graph_assumptions": {
+    "directed": true,
+    "reverse_edges_added": false,
+    "arc_ids": "original trip-local zero-based rows",
+    "zero_length_arcs": "retained for topology, excluded from geometric candidates",
+    "geometry": "straight node-to-node segments"
+  },
+  "candidate_policy": {
+    "radius_m": 100.0,
+    "top_k": 8,
+    "index": "length-binned midpoint cKDTree with exact projection refinement"
+  },
+  "decoder_config": {
+    "gap_s": 30.0,
+    "max_speed_mps": 65.0,
+    "transition_scale_m": 25.0,
+    "gps_slack_m": 50.0,
+    "stationary_projection_noise_m": 15.0
+  },
+  "dependencies": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "pyproj": "3.7.1",
+    "scikit-learn": "1.6.1",
+    "joblib": "1.5.1"
+  },
+  "files": [
+    {
+      "role": "feature_schema",
+      "path": "feature-schema.json",
+      "bytes": 278,
+      "sha256": "ac184b3d95e059495ad5ba8722ef33a281e32ef9b8b3282e6ddd7445e92a3a5f"
+    },
+    {
+      "role": "hmm_config",
+      "path": "decoder-config.json",
+      "bytes": 139,
+      "sha256": "c32ffe5e9aa5d47192e6288e1a1435e3f56e768dd542e1eb54221d590754dc04"
+    }
+  ]
+}

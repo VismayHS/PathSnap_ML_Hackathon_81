@@ -256,6 +256,7 @@ The full command list with the exact run IDs used is in [`docs/ml/reproduce.md`]
 
 | If you want to… | Read |
 |---|---|
+| Read the technical report (PDF, sections 2–7) | [`report/PathSnap_Technical_Report.pdf`](report/PathSnap_Technical_Report.pdf); sources in [`report/sections/`](report/sections/) |
 | Get a plain-language overview and see progress | [`docs/team/README.md`](docs/team/README.md), [`docs/team/progress-log.md`](docs/team/progress-log.md), [`docs/team/glossary.md`](docs/team/glossary.md) |
 | Prepare for the viva | [`docs/ml/viva-notes.md`](docs/ml/viva-notes.md), [`docs/ml/team-understanding.md`](docs/ml/team-understanding.md) |
 | Understand the data and labels | [`docs/ml/scoring-policy.md`](docs/ml/scoring-policy.md), [`data/README.md`](data/README.md) |

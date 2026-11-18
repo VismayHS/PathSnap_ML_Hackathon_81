@@ -2,6 +2,13 @@
 
 Newest first. Each entry: what happened, why, what's next. Times are local (IST).
 
+## 2026-11-18, about 13:30: M4 accepted; the report PDF is on `main`
+
+- **M4 (`499c5ef`)** is on `main`: the feature ablation, the final science wording (evaluator data was not used during development; the final run is reported separately in the system section), pooled continuity 99.96%, and the evaluation-panel layout fix.
+- **Final checks before promotion:** 49 Python tests, contract hash unchanged, UI type check, lint and build, 14/14 browser tests against the live API, all 10 trips returning 200, a 24-page PDF with no rows split across pages, and no broken links. A reviewed it independently and gave its ACK.
+- **The built report** is committed at `report/PathSnap_Technical_Report.pdf`. Rebuild it after the team fills in its fields: `.venv/bin/python scripts/build_report.py`.
+- **Team still needs to:** fill in names and SRNs (`report/sections/front.md`), the final commit SHA, and the AI-assistance statement (`report/sections/integrity.md`); run the two-laptop rehearsal and add the real terminal screenshot (`report/sections/system.md`); then rebuild the PDF.
+
 ## 2026-11-18, about 13:00: final evaluation on the reserved trips, then M4
 
 - **Evaluator data arrived** (`evaluator_test.zip`). It was extracted outside the repo, its 10 trip IDs were checked for overlap with the development trips (none), and **nobody explored it**.

@@ -9,7 +9,7 @@ Sources (PDF section numbers):
 - **DL** = Deliverables
 - **AP** = Assessment and Plagiarism Policy
 
-Last updated: 2026-11-18, after M3 (M4 in progress).
+Last updated: 2026-11-18, after M4 (`main` `499c5ef`).
 
 ## Mandatory: system and architecture
 
@@ -48,12 +48,12 @@ Last updated: 2026-11-18, after M3 (M4 in progress).
 
 | # | Requirement | Source | Implementation | Evidence | Owner | Status |
 |---|---|---|---|---|---|---|
-| R1 | Public GitHub repository with all code, organised folders, README with install/run/deploy | DL §1 | repository, `README.md`, `docs/deployment/two-laptops.md` | the repo is public and pushed | B | Partial: README run section to finish |
+| R1 | Public GitHub repository with all code, organised folders, README with install/run/deploy | DL §1 | repository, `README.md`, `docs/deployment/two-laptops.md` | the repo is public and pushed | B | Done |
 | R2 | Saved model weights and configs (within size limits) | DL §1 | `artifacts/hgb-hmm-v1` | checksummed manifest, verified at API startup | A | Done |
 | R3 | No secrets committed | DL §1 | `.gitignore`, pre-push scans | scan before each push | B | Done |
-| R4 | One consolidated PDF report following DL §2–7 | DL §1–2 | `report/`, `scripts/build_report.py` | 22-page combined PDF built (M4 attempt) | B (A science) | Partial: team items and final audit pending |
+| R4 | One consolidated PDF report following DL §2–7 | DL §1–2 | `report/`, `scripts/build_report.py` | `report/PathSnap_Technical_Report.pdf` (24 pages), reviewed by A and B at M4 | B (A science) | Partial: only team-owned fields (names/SRN, final SHA, AI statement) and the LAN screenshot remain |
 | R5 | EDA in report: preprocessing, patterns, features, missing values, trajectory and network plots, ≥1 Folium map, partition named | DL §2.2 | A plots + B Folium | report section 2, figures S1–S2 | A/B | Done |
-| R6 | Comparison table, a subsection per model, required plots | DL §3 | A | report section 3, confusion matrices | A | Done (ablation being added) |
+| R6 | Comparison table, a subsection per model, required plots | DL §3 | A | report section 3, confusion matrices | A | Done (incl. feature ablation) |
 | R7 | HPO section | DL §4 | A | report section 4 | A | Done |
 | R8 | HMM section with classifier vs HMM | DL §5 | A | report section 5 | A | Done |
 | R9 | Folium maps: GPS, network, reference, predicted; legend, layers, extent; HTML or code committed | DL §6 | `src/visualisation/folium/make_maps.py` | `maps/hgb-hmm-v1/` (10 trips), report figures S1–S2 | B | Done |

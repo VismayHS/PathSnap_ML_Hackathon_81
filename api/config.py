@@ -30,7 +30,15 @@ class ApiConfig:
         mode = os.environ.get("PATHSNAP_MODE", "development")
         if mode not in ("development", "evaluator"):
             raise SystemExit(f"PATHSNAP_MODE must be 'development' or 'evaluator', got {mode!r}")
-        data_root = _path("PATHSNAP_DATA_ROOT", (REPO_ROOT.parent / "Student_folder").resolve())
+        # Default only works from the original checkout (sibling Student_folder). Worktrees
+        # sit one level deeper, so a missing default is a hard error instead of a silent miss.
+        default_root = (REPO_ROOT.parent / "Student_folder").resolve()
+        data_root = _path("PATHSNAP_DATA_ROOT", default_root if default_root.is_dir() else None)
+        if data_root is None:
+            raise SystemExit(
+                "PATHSNAP_DATA_ROOT is not set and ../Student_folder does not exist. "
+                "Set PATHSNAP_DATA_ROOT to the absolute path of the dataset folder."
+            )
         bundle_root = _path("PATHSNAP_BUNDLE_ROOT", REPO_ROOT / "artifacts" / "final")
         evaluator_root = _path("PATHSNAP_EVALUATOR_ROOT", None)
         origins = tuple(

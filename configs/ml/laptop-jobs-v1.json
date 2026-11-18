@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "identity": {
+    "data_fingerprint": "1a27fe44527456ceacfb9f060f3d833a60ef7cdbf2eae44fbf030712e99a4ec1",
+    "feature_version": "candidate-geometry-v1",
+    "feature_names": [
+      "distance_m",
+      "log_distance",
+      "heading_cosine",
+      "heading_valid",
+      "log_length",
+      "projection_fraction",
+      "speed_mps",
+      "delta_t_s",
+      "distance_excess_over_nearest_m"
+    ],
+    "config_sha256": "27f645c79cc5e9ddb55e0c245694ccf0432fd688181d1f139be77cfead778480",
+    "split_sha256": "e0f02c93f555bfd042f8b9ddf5ce4c4b2d32eff2761fcd72d72986edc7cc14cf",
+    "sampling_sha256": "c528eb4c7aebf7148c9d49ed40d97645d26d37d5dbc47a62d7110e70fa1b5bcf",
+    "cache_content_sha256": "251a6b88949895ea219d7322ad8af492d6d5f7cc81ff3cb419d9a60d00f63833"
+  },
+  "tasks": [
+    {
+      "task_id": "extra_trees-cv-0",
+      "model": "extra_trees",
+      "kind": "cv",
+      "fold": 0,
+      "estimated_work_ms": 5555.687292001494,
+      "laptop": "laptop-3"
+    },
+    {
+      "task_id": "extra_trees-cv-1",
+      "model": "extra_trees",
+      "kind": "cv",
+      "fold": 1,
+      "estimated_work_ms": 6311.776223999914,
+      "laptop": "laptop-1"
+    },
+    {
+      "task_id": "extra_trees-cv-2",
+      "model": "extra_trees",
+      "kind": "cv",
+      "fold": 2,
+      "estimated_work_ms": 6780.683683001371,
+      "laptop": "laptop-2"
+    },
+    {
+      "task_id": "extra_trees-cv-3",
+      "model": "extra_trees",
+      "kind": "cv",
+      "fold": 3,
+      "estimated_work_ms": 6205.019585998343,
+      "laptop": "laptop-4"
+    },
+    {
+      "task_id": "extra_trees-cv-4",
+      "model": "extra_trees",
+      "kind": "cv",
+      "fold": 4,
+      "estimated_work_ms": 7691.357916000925,
+      "laptop": "laptop-4"
+    },
+    {
+      "task_id": "extra_trees-refit",
+      "model": "extra_trees",
+      "kind": "refit",
+      "fold": null,
+      "estimated_work_ms": 8859.296038997854,
+      "laptop": "laptop-3"
+    },
+    {
+      "task_id": "hist_gradient_boosting-cv-0",
+      "model": "hist_gradient_boosting",
+      "kind": "cv",
+      "fold": 0,
+      "estimated_work_ms": 3313.244299998587,
+      "laptop": "laptop-1"
+    },
+    {
+      "task_id": "hist_gradient_boosting-cv-1",
+      "model": "hist_gradient_boosting",
+      "kind": "cv",
+      "fold": 1,
+      "estimated_work_ms": 4952.69146299961,
+      "laptop": "laptop-3"
+    },
+    {
+      "task_id": "hist_gradient_boosting-cv-2",
+      "model": "hist_gradient_boosting",
+      "kind": "cv",
+      "fold": 2,
+      "estimated_work_ms": 5064.724022000519,
+      "laptop": "laptop-4"
+    },
+    {
+      "task_id": "hist_gradient_boosting-cv-3",
+      "model": "hist_gradient_boosting",
+      "kind": "cv",
+      "fold": 3,
+      "estimated_work_ms": 4238.784558000589,
+      "laptop": "laptop-4"
+    },
+    {
+      "task_id": "hist_gradient_boosting-cv-4",
+      "model": "hist_gradient_boosting",
+      "kind": "cv",
+      "fold": 4,
+      "estimated_work_ms": 4495.345281000482,
+      "laptop": "laptop-2"
+    },
+    {
+      "task_id": "hist_gradient_boosting-refit",
+      "model": "hist_gradient_boosting",
+      "kind": "refit",
+      "fold": null,
+      "estimated_work_ms": 3500.814667000668,
+      "laptop": "laptop-2"
+    },
+    {
+      "task_id": "knn-cv-0",
+      "model": "knn",
+      "kind": "cv",
+      "fold": 0,
+      "estimated_work_ms": 53808.49877100354,
+      "laptop": "laptop-3"
+    },
+    {
+      "task_id": "knn-cv-1",
+      "model": "knn",
+      "kind": "cv",
+      "fold": 1,
+      "estimated_work_ms": 35513.609961998554,
+      "laptop": "laptop-4"
+    },
+    {
+      "task_id": "knn-cv-2",
+      "model": "knn",
+      "kind": "cv",
+      "fold": 2,
+      "estimated_work_ms": 32044.73812100332,
+      "laptop": "laptop-2"
+    },
+    {
+      "task_id": "knn-cv-3",
+      "model": "knn",
+      "kind": "cv",
+      "fold": 3,
+      "estimated_work_ms": 52284.501215998716,
+      "laptop": "laptop-4"
+    },
+    {
+      "task_id": "knn-cv-4",
+      "model": "knn",
+      "kind": "cv",
+      "fold": 4,
+      "estimated_work_ms": 67570.89554500181,
+      "laptop": "laptop-1"
+    },
+    {
+      "task_id": "knn-refit",
+      "model": "knn",
+      "kind": "refit",
+      "fold": null,
+      "estimated_work_ms": 61505.29884599472,
+      "laptop": "laptop-2"
+    },
+    {
+      "task_id": "logistic_regression-cv-0",
+      "model": "logistic_regression",
+      "kind": "cv",
+      "fold": 0,
+      "estimated_work_ms": 2103.287920002913,
+      "laptop": "laptop-4"
+    },
+    {
+      "task_id": "logistic_regression-cv-1",
+      "model": "logistic_regression",
+      "kind": "cv",
+      "fold": 1,
+      "estimated_work_ms": 4885.416504997011,
+      "laptop": "laptop-1"
+    },
+    {
+      "task_id": "logistic_regression-cv-2",
+      "model": "logistic_regression",
+      "kind": "cv",
+      "fold": 2,
+      "estimated_work_ms": 5181.9468479989155,
+      "laptop": "laptop-2"
+    },
+    {
+      "task_id": "logistic_regression-cv-3",
+      "model": "logistic_regression",
+      "kind": "cv",
+      "fold": 3,
+      "estimated_work_ms": 3823.6424169999736,
+      "laptop": "laptop-3"
+    },
+    {
+      "task_id": "logistic_regression-cv-4",
+      "model": "logistic_regression",
+      "kind": "cv",
+      "fold": 4,
+      "estimated_work_ms": 5343.228049002391,
+      "laptop": "laptop-1"
+    },
+    {
+      "task_id": "logistic_regression-refit",
+      "model": "logistic_regression",
+      "kind": "refit",
+      "fold": null,
+      "estimated_work_ms": 2738.4358939989397,
+      "laptop": "laptop-3"
+    },
+    {
+      "task_id": "random_forest-cv-0",
+      "model": "random_forest",
+      "kind": "cv",
+      "fold": 0,
+      "estimated_work_ms": 24468.0726150018,
+      "laptop": "laptop-1"
+    },
+    {
+      "task_id": "random_forest-cv-1",
+      "model": "random_forest",
+      "kind": "cv",
+      "fold": 1,
+      "estimated_work_ms": 26396.806783999637,
+      "laptop": "laptop-1"
+    },
+    {
+      "task_id": "random_forest-cv-2",
+      "model": "random_forest",
+      "kind": "cv",
+      "fold": 2,
+      "estimated_work_ms": 26164.4855880013,
+      "laptop": "laptop-3"
+    },
+    {
+      "task_id": "random_forest-cv-3",
+      "model": "random_forest",
+      "kind": "cv",
+      "fold": 3,
+      "estimated_work_ms": 25715.039023000827,
+      "laptop": "laptop-4"
+    },
+    {
+      "task_id": "random_forest-cv-4",
+      "model": "random_forest",
+      "kind": "cv",
+      "fold": 4,
+      "estimated_work_ms": 24767.139526000392,
+      "laptop": "laptop-2"
+    },
+    {
+      "task_id": "random_forest-refit",
+      "model": "random_forest",
+      "kind": "refit",
+      "fold": null,
+      "estimated_work_ms": 33388.05782399596,
+      "laptop": "laptop-3"
+    }
+  ],
+  "queue_estimated_work_ms": {
+    "laptop-1": 138289.44002200116,
+    "laptop-2": 138275.96697199988,
+    "laptop-3": 139290.79528799868,
+    "laptop-4": 138816.3242030014
+  },
+  "assignment_policy": "Longest measured full-run task first across four equal reference-speed queues; actual hardware speed may differ",
+  "pilot_source_sha": "623a20253e03fa16c1dbecd782b4abd85352789a",
+  "baseline_profile_source_sha": "623a20253e03fa16c1dbecd782b4abd85352789a",
+  "cost_basis": "measured complete local baseline task costs",
+  "models": [
+    "logistic_regression",
+    "knn",
+    "random_forest",
+    "extra_trees",
+    "hist_gradient_boosting"
+  ]
+}

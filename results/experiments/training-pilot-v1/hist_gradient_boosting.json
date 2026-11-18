@@ -1,0 +1,114 @@
+{
+  "model_name": "hist_gradient_boosting",
+  "family": "histogram gradient boosting",
+  "objective": "binary log loss with L2 leaf regularization",
+  "configuration": {
+    "max_iter": 100,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 30,
+    "learning_rate": 0.1,
+    "l2_regularization": 1.0,
+    "early_stopping": false,
+    "random_state": 81
+  },
+  "pilot_train_trips": [
+    "00000001",
+    "00000002",
+    "00000003",
+    "00000004",
+    "00000005",
+    "00000006",
+    "00000008",
+    "00000012"
+  ],
+  "pilot_validation_trips": [
+    "00000010",
+    "00000011"
+  ],
+  "fit": {
+    "fit_ms": 234.43376700015506,
+    "fit_rows": 21500,
+    "positive_rows": 3166,
+    "warnings": []
+  },
+  "validation": {
+    "top1_accuracy": 0.7860624661491243,
+    "macro_f1": 0.6775298886266305,
+    "precision_macro": 0.7071775211150209,
+    "recall_macro": 0.6742782300071124,
+    "candidate_miss_rate": 0.007040982126737678,
+    "log_loss": 0.5169073475093771,
+    "sequence_arc_similarity": 0.552118061720358,
+    "scored_match_fraction_original": 0.7860624661491243,
+    "candidate_scoring_ms": 121.96764800046367,
+    "trips": 2,
+    "scorable_observations": 5539,
+    "original_observations": 5539,
+    "unscorable_observations": 0,
+    "candidate_covered": 5500
+  },
+  "per_trip": [
+    {
+      "values": {
+        "top1_accuracy": 0.5872371818517153,
+        "macro_f1": 0.430234340736636,
+        "precision_macro": 0.48221114008613963,
+        "recall_macro": 0.41899819324543197,
+        "candidate_miss_rate": 0.014016967908520842,
+        "log_loss": 0.9828706530270911,
+        "sequence_arc_similarity": 0.14936247723132967,
+        "scored_match_fraction_original": 0.5872371818517153
+      },
+      "counts": {
+        "original_observations": 2711,
+        "scorable_observations": 2711,
+        "unscorable_observations": 0,
+        "correct": 1592,
+        "candidate_covered": 2673,
+        "candidate_misses": 38,
+        "road_classes": 308,
+        "sequence_length": 1098
+      },
+      "loss_sum": 2627.2132555414146,
+      "unavailable_reasons": {
+        "log_loss": null,
+        "sequence_arc_similarity": null
+      },
+      "candidate_scoring_ms": 68.70748700021068,
+      "metric_elapsed_ms": 6.707149000249046,
+      "trip_id": "00000010"
+    },
+    {
+      "values": {
+        "top1_accuracy": 0.9766619519094767,
+        "macro_f1": 0.9248254365166251,
+        "precision_macro": 0.9321439021439021,
+        "recall_macro": 0.9295582667687929,
+        "candidate_miss_rate": 0.0003536067892503536,
+        "log_loss": 0.07632725707823107,
+        "sequence_arc_similarity": 0.9548736462093863,
+        "scored_match_fraction_original": 0.9766619519094767
+      },
+      "counts": {
+        "original_observations": 2828,
+        "scorable_observations": 2828,
+        "unscorable_observations": 0,
+        "correct": 2762,
+        "candidate_covered": 2827,
+        "candidate_misses": 1,
+        "road_classes": 555,
+        "sequence_length": 554
+      },
+      "loss_sum": 215.77715576015925,
+      "unavailable_reasons": {
+        "log_loss": null,
+        "sequence_arc_similarity": null
+      },
+      "candidate_scoring_ms": 53.26016100025299,
+      "metric_elapsed_ms": 11.07457299985981,
+      "trip_id": "00000011"
+    }
+  ],
+  "status": "complete",
+  "elapsed_s": 0.37604331500006083
+}

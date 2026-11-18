@@ -50,3 +50,9 @@ def test_empty_and_long_gap_reset_and_score_edges():
     cs[1] = candidate([0], [.2])
     result = decode(trip, geometry, cs, [[1], [1], [1]], graph)
     assert result.breaks == [(2, 'gps_gap')]
+
+
+def test_same_arc_forward_travel_respects_physical_bound():
+    graph = RoadGraph(np.array([[0, 1]]), np.array([1000.]))
+    assert np.isinf(graph.between(0, .1, 0, .9, 115)[0])
+    assert graph.between(0, .1, 0, .2, 115)[0] == pytest.approx(100)

@@ -250,6 +250,7 @@ The exact run IDs behind every committed result are in [`docs/ml/reproduce.md`](
 | HMM and Viterbi | [`docs/ml/hmm-method.md`](docs/ml/hmm-method.md) |
 | Two-laptop deployment | [`docs/deployment/two-laptops.md`](docs/deployment/two-laptops.md) |
 | Each requirement and where it is met | [`docs/requirements-traceability.md`](docs/requirements-traceability.md) |
+| Plain-language presentation guide (PDF) | [`docs/team/PathSnap_Presentation_Guide.pdf`](docs/team/PathSnap_Presentation_Guide.pdf) |
 | Plain-language guide and viva prep | [`docs/team/`](docs/team/) |
 
 ---

@@ -4,6 +4,7 @@ This folder is for the human team. It explains, in plain language, how the proje
 
 | File | What it is |
 |---|---|
+| [PathSnap_Presentation_Guide.pdf](PathSnap_Presentation_Guide.pdf) | **Presentation guide (10-page PDF).** The five models, tuning, testing, final accuracy, proof and the "why" questions, in plain language. Source: [presentation-guide.md](presentation-guide.md); rebuild with `python3 scripts/build_guide.py`. |
 | [demo-prep.md](demo-prep.md) | **Demo and viva prep, start here.** The project in plain language, numbers to know, the demo script, likely questions. |
 | [progress-log.md](progress-log.md) | Dated log of what was done, what is next, what is blocked. Read this first. |
 | [glossary.md](glossary.md) | Terms used in code and messages (candidate, emission, Viterbi, partition, ...). |

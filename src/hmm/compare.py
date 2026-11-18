@@ -16,6 +16,12 @@ from src.evaluation.reference import read_reference
 
 
 def reference_pieces(raw,reference):
+    """Turn the true route (a list of arc IDs) into map lines for the Folium maps.
+
+    Consecutive arcs that join end-to-start are merged into one line of coordinates;
+    wherever the true route jumps to an unconnected arc, a new line is started.
+    Used only for the development maps, never for prediction.
+    """
     pieces=[];current=[];previous=None
     for arc in reference:
         u,v=raw.arcs[arc];coords=raw.nodes[[u,v]].tolist()
@@ -29,6 +35,15 @@ def reference_pieces(raw,reference):
 
 
 def run(data_root,baseline_path,hpo_path,bundle_output,output):
+    """The classifier-only vs classifier + HMM experiment on the 10 student-test trips.
+
+    1. Picks the HGB classifier: the tuned one if tuning improved CV Macro F1, else the untuned one.
+    2. Exports it, with the decoder settings, as the final model bundle (artifacts/hgb-hmm-v1).
+    3. For every student-test trip, predicts twice through the real pipeline: once with
+       the classifier alone and once with HMM/Viterbi, then scores both on the server side.
+    4. Saves per-trip records, map data for Folium, and summary.json with the pooled
+       results (accuracy, Macro F1, continuity, route pieces, timings) for each decoder.
+    """
     if output.exists():raise FileExistsError('Use fresh immutable comparison output')
     baseline=json.loads(baseline_path.read_text());hpo=json.loads(hpo_path.read_text())
     base=next(r for r in baseline['results'] if r['model_name']=='hist_gradient_boosting')
@@ -79,6 +94,7 @@ def run(data_root,baseline_path,hpo_path,bundle_output,output):
 
 
 def main():
+    """Command-line entry point: read the paths and run the comparison with 4 threads."""
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--data-root',type=Path,required=True);p.add_argument('--baseline',type=Path,required=True);p.add_argument('--hpo',type=Path,required=True);p.add_argument('--bundle-output',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
     with threadpool_limits(limits=4):run(a.data_root,a.baseline,a.hpo,a.bundle_output,a.output)
 

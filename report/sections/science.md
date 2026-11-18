@@ -1,6 +1,6 @@
 ## 2. Dataset Understanding
 
-This scientific section uses only the supplied 80 training and ten student-testing trips. Reserved evaluator data were not available and were never inspected. Every number below is generated from saved JSON records by `src/evaluation/scientific_report.py`. Pointwise scores use the explicit **provisional** alignment policy `pathsnap-scoring-v0`; organizer clarification remains necessary.
+This scientific section uses only the supplied 80 training and ten student-testing trips. Reserved evaluator data were not available and were never inspected. Numerical tables below are generated from saved development JSON/CSV records by `src/evaluation/scientific_report.py`. Pointwise scores use the explicit **provisional** alignment policy `pathsnap-scoring-v0`; organizer clarification remains necessary.
 
 ### 2.1 Inventory, geometry and cleaning
 
@@ -155,6 +155,20 @@ Fit-sample accuracy 0.857506; held-out CV accuracy 0.843671; student accuracy 0.
 
 Per-model confusion matrices preserve original trip-local arc IDs and unmatched=-1 in the separate `results/experiments/confusion-v1` supplement. Each PNG shows the complete matrix for student trip 00000052; class-order JSON maps matrix indices back to original IDs. Counts are not pooled across different road networks. This visualization is diagnostic and does not determine the selected model.
 
+### Controlled feature-block ablation
+
+The final prompt audit added a small feature ablation using the same HGB parameters, five training-trip folds, fit sampling and unsampled validation/student testing. Distance-only uses distance, log distance and excess over the nearest candidate. The next block adds heading cosine/validity. Full features additionally include arc length, projection fraction, speed and elapsed time. All candidates are unchanged and references remain excluded from features.
+
+| Feature block | CV trip Macro F1 | Student accuracy | Student trip Macro F1 | Conditional log loss |
+|---|---:|---:|---:|---:|
+| distance only | 0.345099 | 0.510578 | 0.338318 | 0.929764 |
+| distance heading | 0.652364 | 0.829128 | 0.666377 | 0.481082 |
+| full features | 0.729680 | 0.860367 | 0.770553 | 0.352425 |
+
+![Measured feature ablation](results/experiments/feature-ablation-v1/feature-ablation.png)
+
+The fixed-parameter results support adding orientation and the remaining geometry/motion block over distance alone. Pure geometric distance cannot distinguish co-located reverse-direction arcs. This is a descriptive ablation, not a separately tuned competition: parameters were previously selected for full features. The final increment bundles geometry and motion, so it does not isolate their individual causal effects. The two new variants took 45.06 s in total, including CV, refits and evaluation. They do not count as extra distinct algorithms and did not trigger any final model or decoder retuning. Source and complete per-fold/trip records: `results/experiments/feature-ablation-v1`.
+
 ## 4. Bayesian Hyperparameter Optimisation
 
 Optuna4.3.0 TPESampler(seed81) executed12 real sequential trials: four random startup trials followed by eight adaptive TPE trials. The objective is mean held-out-trip Macro F1 over the exact same five training-group folds, sampling and features. No student-test or evaluator metric enters the objective. Search space: iterations60–180; leaves7–31; minimum samples per leaf15–80; learning rate0.03–0.2 logarithmic; L2 regularization0.01–10 logarithmic. There was no random-search substitution for Bayesian tuning and no pruning of difficult folds.
@@ -170,6 +184,8 @@ Completed trial compute sums 166.75 s at four threads. The original process ende
 ![Tuned versus untuned](results/figures/final-v1/tuned-untuned.png)
 
 *Figure 7. Same training folds and objective; the improvement is modest. CV used for tuning is selection evidence, not an unbiased nested-CV estimate.*
+
+The search ranges balance measured laptop cost with capacity: iteration count and learning rate govern boosting fit; leaf count and minimum leaf support control local complexity; L2 regularizes uncertain leaf estimates. Log scales cover learning-rate/regularization orders of magnitude with a limited12-trial budget. Early stopping remains disabled to avoid an internal observation-level holdout crossing trip-group boundaries.
 
 ### Tuned and untuned results under the same definitions
 

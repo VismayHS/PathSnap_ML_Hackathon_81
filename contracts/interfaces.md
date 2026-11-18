@@ -85,7 +85,7 @@ Every `MetricValue` carries `numerator`, `denominator`, `denominator_policy` tex
 
 - `<bundle_root>/manifest.json` follows `BundleManifest`. All file paths relative to `bundle_root`; SHA-256 verified at startup.
 - Result records (`ResultRecord`) live under `results/{experiments,hpo,hmm}/<run_id>/`; B's report tooling reads them verbatim and never recomputes metrics.
-- Development Folium handoff (`DevVisualisation`): train/student_test trips only, written by A to `results/hmm/visualisation/<run_id>/<trip_id>.json`. Read only by `src/visualisation/folium/**`. Not reachable from the API or `ui/`.
+- Development Folium handoff (`DevVisualisation`): train/student_test trips only, written by A to `results/hmm/<run_id>/visualisation/<trip_id>.json`. Read only by `src/visualisation/folium/**`. Not reachable from the API or `ui/`.
 
 ## 6. Ports and processes
 

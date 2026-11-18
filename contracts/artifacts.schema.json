@@ -74,7 +74,7 @@
       }
     },
     "DevVisualisation": {
-      "description": "Development-only Folium handoff (train/student_test ONLY). Written by A to results/hmm/visualisation/<run_id>/<trip_id>.json (or agreed path). Never served by the API or copied into ui/.",
+      "description": "Development-only Folium handoff (train/student_test ONLY). Written by A to results/hmm/<run_id>/visualisation/<trip_id>.json (or agreed path). Never served by the API or copied into ui/.",
       "type": "object",
       "additionalProperties": false,
       "required": ["schema", "partition", "trip_id", "run_id", "source_git_sha", "model_version", "gps", "network", "reference", "predictions"],

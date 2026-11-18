@@ -21,3 +21,7 @@ The nearest-geometric diagnostic has many direction/connectivity breaks: trip `0
 B offered optional Kaggle compute via the user. Local candidate memory/profile looks feasible; A will profile model fitting locally before deciding if remote compute is warranted. No data has been uploaded or external login requested.
 
 The user requested commit-message metadata cleanup. Public revision references above use the new history; original immutable run/manifest source IDs are resolved by `results/experiments/source-revision-map.json`, which verifies byte-identical source trees. Numerical evidence is unchanged.
+
+## Parser review correction
+
+The initial numeric loader could silently skip blank/comment rows because that is NumPy's default behavior. That would risk changing row-based IDs for malformed files. The parser now rejects malformed physical rows explicitly and disables comment skipping; invalid numeric GPS coordinates such as NaN still retain their original observation row and validity mask. The scientific suite now passes 14 tests, including three new malformed-row regression cases. Real development checks are being rerun from the correction's committed source before a replacement handoff.

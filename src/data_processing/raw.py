@@ -1,6 +1,7 @@
 """Strict reference-free parsing with original row IDs and explicit cleaning masks."""
 from dataclasses import dataclass
 from pathlib import Path
+from io import StringIO
 import numpy as np
 
 
@@ -16,7 +17,12 @@ class RawTrip:
 
 
 def table(path: Path, columns: int) -> np.ndarray:
-    values = np.loadtxt(path, ndmin=2)
+    text = path.read_text()
+    lines = text.splitlines()
+    if not lines or any(len(line.split()) != columns for line in lines):
+        raise ValueError(f"Malformed or empty row in {path.suffix} table")
+    # Parse the same validated bytes; comment/blank rows must not silently shift IDs.
+    values = np.loadtxt(StringIO(text), ndmin=2, comments=None)
     if not len(values) or values.shape[1] != columns:
         raise ValueError(f"Expected nonempty {columns}-column {path.suffix} table")
     return values

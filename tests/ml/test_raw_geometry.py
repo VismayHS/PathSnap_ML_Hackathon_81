@@ -33,3 +33,15 @@ def test_fractional_graph_ids_rejected(tmp_path):
     (p / "00000001.arcs").write_text("0.5 1\n")
     with pytest.raises(ValueError, match="integers"):
         load_raw_trip(p, "train")
+
+
+@pytest.mark.parametrize('suffix,contents', [
+    ('track', '10 50 1\n\n10.0001 50 2\n'),
+    ('nodes', '10 50\n# silently-skipped\n10.001 50\n'),
+    ('arcs', '0 1\n\n1 0\n'),
+])
+def test_malformed_rows_cannot_silently_shift_original_ids(tmp_path, suffix, contents):
+    p = make_trip(tmp_path)
+    (p / f'00000001.{suffix}').write_text(contents)
+    with pytest.raises(ValueError):
+        load_raw_trip(p, 'train')

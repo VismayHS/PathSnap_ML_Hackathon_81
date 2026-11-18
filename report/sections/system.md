@@ -12,7 +12,11 @@ The Folium maps are made by `src/visualisation/folium/make_maps.py` from develop
 
 Each connected piece of a predicted route is drawn as its own line. Where the decoder breaks the route (no legal connection on the directed road graph), the map shows a gap instead of a straight line across buildings. The map fits its bounds to the trip's GPS extent. The basemap is OpenStreetMap, credited on the map.
 
-PENDING: representative map screenshot(s) for a student-test trip, with the classifier-only and HMM layers (needs A's development visualisation export of the final model).
+![Folium map, student-test trip 00000091](report/figures/system/folium-00000091.png)
+<p class="caption">Figure S1. Folium development map of student-test trip 00000091 (model hgb-hmm-v1). The classifier + HMM route (blue) follows the reference route (green) along the road network. Captured from <code>maps/hgb-hmm-v1/</code> served over HTTP.</p>
+
+![Folium map, student-test trip 00000007](report/figures/system/folium-00000007.png)
+<p class="caption">Figure S2. Student-test trip 00000007, the trip where HMM decoding lowered Top-1 accuracy (see the HMM section). The classifier-only (dashed purple) and HMM (blue) layers can be compared with the reference.</p>
 
 Interactive HTML maps: `maps/<run_id>/trip_<id>_<partition>.html`. Regenerate them with `python -m src.visualisation.folium.make_maps --input results/hmm/visualisation/<run_id> --output maps/<run_id>`.
 
@@ -57,16 +61,38 @@ How it works:
 - All states are designed: connecting, unreachable, not ready, evaluator data not configured, running, failed (with the request ID) and diagnostic model.
 - The design research and decisions are in `docs/ui-research.md` and `DESIGN.md`.
 
-PENDING: UI screenshots from the final trained model (selection, result, inspector).
+![UI result at 1440 px](report/figures/system/ui-result-1440.png)
+<p class="caption">Figure S3. Evaluator UI after reconstructing student-test trip 00000052 with the trained model (hgb-hmm-v1, development mode). Real run on one machine (API at 127.0.0.1:8000); scoring policy provisional.</p>
+
+![UI on a 390 px screen](report/figures/system/ui-result-390.png){: style="max-width:45%"}
+![UI error state](report/figures/system/ui-error.png){: style="max-width:52%"}
+<p class="caption">Figure S4. Left: the same workflow at phone width. Right: a failed request (a mocked server error in the browser test) showing the message, the request ID and a retry.</p>
 
 ### Verification
 
 | Check | Result | Evidence |
 |---|---|---|
-| API contract, errors, leakage, readiness (pytest) | PENDING: final count at M4 | `tests/api` |
-| Browser workflows (Playwright: keyboard, small screens, errors, stale responses, LAN origin) | PENDING: final count at M4 | `ui/tests/workflow.spec.ts` |
-| All ten development trips through HTTP | PENDING: final run | integration manifest |
-| End-to-end latency per trip | PENDING: profiled with the final model | `results/system/` |
+| API contract, errors, leakage, readiness, Folium generator (pytest) | 22 passed, within 48 combined Python tests at M3 | `tests/api`, `tests/integration` |
+| Browser workflows (Playwright: keyboard, 1440/1366/390 px, errors, stale responses, server change, plain-HTTP LAN origin, playback, keyboard inspection) | 13 passed against the live trained API | `ui/tests/workflow.spec.ts` |
+| All ten student-test trips through HTTP with the trained bundle | 10/10: HTTP 200, schema-valid, scored, no reference or label fields | `results/system/m3-predict-all.json` |
+| HTTP and offline pipeline agree | Per-trip metrics for trips 00000077 and 00000091 equal A's offline comparison; A checked every observation for trips 00000052 and 00000007 | M3 integration record |
+
+Server-side time per request, trained model, development mode, one machine:
+
+| Trip | HTTP | Scored | Route pieces | Server time (ms) |
+|---|---|---|---|---|
+| 00000000 | 200 | scored | 3 | 1,541 |
+| 00000007 | 200 | scored | 1 | 849 |
+| 00000009 | 200 | scored | 5 | 1,275 |
+| 00000040 | 200 | scored | 2 | 2,035 |
+| 00000052 | 200 | scored | 1 | 215 |
+| 00000056 | 200 | scored | 6 | 5,828 |
+| 00000065 | 200 | scored | 4 | 899 |
+| 00000076 | 200 | scored | 2 | 2,076 |
+| 00000077 | 200 | scored | 3 | 3,644 |
+| 00000091 | 200 | scored | 1 | 987 |
+
+The slowest trip (00000056, 3,958 points) takes 5.8 s. The UI allows up to 180 s and shows no fake progress while waiting.
 
 ### Two-laptop deployment
 
@@ -75,4 +101,13 @@ The step-by-step guide is `docs/deployment/two-laptops.md`. In short:
 - **Laptop 1** runs `uvicorn api.main:app --host 0.0.0.0 --port 8000` with `PATHSNAP_DATA_ROOT`, `PATHSNAP_BUNDLE_ROOT`, `PATHSNAP_MODE` and `PATHSNAP_CORS_ORIGINS` set.
 - **Laptop 2** builds the UI with `VITE_PATHSNAP_API_URL=http://<Laptop-1-IP>:8000` and serves it with `npm run preview`.
 
-PENDING: screenshot of a successful API response in Laptop 1's terminal while Laptop 2 makes requests (Deliverables §7). This must be a real capture from the two-laptop setup.
+Excerpt of the receiving-end API log from the single-machine run above. Each request ID appears in the UI:
+
+```
+INFO pathsnap.api predict_start request_id=612076a8a4404356b4eb822e3e7bf131 trip_id=00000000 mode=development model_version=hgb-hmm-v1
+INFO pathsnap.api predict_done  request_id=612076a8a4404356b4eb822e3e7bf131 trip_id=00000000 observations=2503 matched=2503 pieces=3 ...
+INFO pathsnap.api scoring_done  request_id=612076a8a4404356b4eb822e3e7bf131 trip_id=00000000 status=scored scoring_ms=484.7
+INFO pathsnap.api request       request_id=612076a8a4404356b4eb822e3e7bf131 client=127.0.0.1 method=POST path=/predict status=200 ms=1660.0
+```
+
+PENDING: screenshot of Laptop 1's terminal while Laptop 2 makes requests over the LAN (Deliverables §7). This must be a real capture from the two-laptop setup; the excerpt above is from a single machine.

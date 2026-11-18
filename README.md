@@ -2,6 +2,8 @@
 
 **UE24CS352A Machine Learning hackathon, PES University (RR Campus).**
 
+**Team PT-081 (Section F):** Vismay H S (PES1UG24AM325), Vismaya G (PES1UG24AM326), Vudutha Kundhan (PES1UG24AM327), Y B Halli Viswanathareddy Bhavana (PES1UG24AM328).
+
 PathSnap takes a vehicle's noisy GPS trace and works out which road segments it actually drove on. For each GPS point it finds nearby road segments, scores them with a trained classifier, and then uses an HMM with Viterbi decoding to choose the most plausible sequence of road segments, as feasible route pieces on the supplied directed road graph. The final model leaves 28 pieces across the 10 student-test trips. Turn restrictions and traffic rules are not available in the data. Laptop 1 runs the model behind a FastAPI service. Laptop 2 runs a React interface where an evaluator picks a trip and sees the reconstructed route and its accuracy.
 
 ![PathSnap evaluator UI showing a reconstructed route](report/figures/system/ui-result-1440.png)
@@ -288,7 +290,8 @@ The full command list with the exact run IDs used is in [`docs/ml/reproduce.md`]
 - [ ] Official pointwise scoring definition from the organisers (our metrics are provisional until then).
 - [x] The 10 reserved evaluator trips: received and run. For the demo, set `PATHSNAP_MODE=evaluator` and `PATHSNAP_EVALUATOR_ROOT=/path/to/evaluator_test`; the data stays outside the repository.
 - [ ] A rehearsal on two physical laptops, and real terminal screenshots for the report.
-- [ ] Team names and SRNs, plus the team's AI-assistance statement in the report.
+- [x] Team names and SRNs in the report (team PT-081).
+- [ ] The team's AI-assistance statement in the report (`report/sections/integrity.md`).
 
 ---
 

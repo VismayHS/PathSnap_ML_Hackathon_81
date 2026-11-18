@@ -51,7 +51,7 @@ Last updated: 2026-11-18, after M4 (`main` `499c5ef`).
 | R1 | Public GitHub repository with all code, organised folders, README with install/run/deploy | DL §1 | repository, `README.md`, `docs/deployment/two-laptops.md` | the repo is public and pushed | B | Done |
 | R2 | Saved model weights and configs (within size limits) | DL §1 | `artifacts/hgb-hmm-v1` | checksummed manifest, verified at API startup | A | Done |
 | R3 | No secrets committed | DL §1 | `.gitignore`, pre-push scans | scan before each push | B | Done |
-| R4 | One consolidated PDF report following DL §2–7 | DL §1–2 | `report/`, `scripts/build_report.py` | `report/PathSnap_Technical_Report.pdf` (24 pages), reviewed by A and B at M4 | B (A science) | Partial: only team-owned fields (names/SRN, final SHA, AI statement) and the LAN screenshot remain |
+| R4 | One consolidated PDF report following DL §2–7 | DL §1–2 | `report/`, `scripts/build_report.py` | `report/PathSnap_Technical_Report.pdf` (24 pages), reviewed by A and B at M4 | B (A science) | Partial: team names/SRN and release SHA filled; the team's AI statement and the LAN screenshot remain |
 | R5 | EDA in report: preprocessing, patterns, features, missing values, trajectory and network plots, ≥1 Folium map, partition named | DL §2.2 | A plots + B Folium | report section 2, figures S1–S2 | A/B | Done |
 | R6 | Comparison table, a subsection per model, required plots | DL §3 | A | report section 3, confusion matrices | A | Done (incl. feature ablation) |
 | R7 | HPO section | DL §4 | A | report section 4 | A | Done |

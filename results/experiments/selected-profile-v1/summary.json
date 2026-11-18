@@ -1,0 +1,41 @@
+{
+  "source_git_sha": "48a6a28eea087903d0b79b0bccebd44b3eb5a0cc",
+  "hardware": {
+    "platform": "Linux-7.0.0-43-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "logical_cpus": 12,
+    "threads": 4,
+    "packages": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.6.1",
+      "pyproj": "3.7.1",
+      "joblib": "1.5.1"
+    }
+  },
+  "partition": "student_test",
+  "observations": 19160,
+  "boundary": "Saved preprocessing+model relevance+observation normalization/selection; excludes cached feature/candidate construction, graph decoding and separately computed reference metrics; one warmup then3 measured passes each",
+  "results": [
+    {
+      "variant": "untuned",
+      "repeats_ms": [
+        487.6271670036658,
+        555.7193559943698,
+        502.7380009996705
+      ],
+      "median_ms": 502.7380009996705
+    },
+    {
+      "variant": "tuned",
+      "repeats_ms": [
+        863.9268389997596,
+        777.1788590016513,
+        1109.5778350027103
+      ],
+      "median_ms": 863.9268389997596
+    }
+  ]
+}

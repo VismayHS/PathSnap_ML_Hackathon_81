@@ -56,6 +56,11 @@ def generate(output):
         connectivity.append(f"| {partition} | {weak[0]:.0f}–{weak[1]:.0f} | {strong[0]:.0f}–{strong[1]:.0f} | {min(float(r['min_lon']) for r in rows):.3f} to {max(float(r['max_lon']) for r in rows):.3f} | {min(float(r['min_lat']) for r in rows):.3f} to {max(float(r['max_lat']) for r in rows):.3f} |")
     connectivity += ['', 'There were no isolated supplied nodes. Disconnected components make a single connected route unsafe as a default. Extents span different regions, supporting per-trip metric projections. Per-trip file sizes, IDs, components and timestamp statistics remain in the EDA CSV.', '']
     position=lines.index('### 2.2 Reference alignment and candidate accounting');lines[position:position]=connectivity
-    output.parent.mkdir(parents=True,exist_ok=True);output.write_text('\n'.join(lines)+'\n')
+    import re
+    text='\n'.join(lines)+'\n'
+    for old,new in [('the80','the 80'),('all80','all 80'),('at400','at 400'),('at most100','at most 100'),('at most100','at most 100'),('within30','within 30'),('section5','section 5'),('trip000000','trip 000000'),('with143','with 143'),('after11','after 11'),('12trial','12 trial'),('three-thread','three-thread'),('across all80','across all 80'),('A65','A 65'),('plus50','plus 50'),('above30','above 30'),('by25','by 25'),('to15','to 15'),('remain19','remain 19'),('retain19','retain 19'),('both modes retain19','both modes retain 19')]:text=text.replace(old,new)
+    text=re.sub(r'(?<=\d)(ms|m|s)\b',r' \1',text)
+    output.parent.mkdir(parents=True,exist_ok=True);output.write_text(text)
+
 
 if __name__=='__main__':generate(Path('report/sections/science.md'))

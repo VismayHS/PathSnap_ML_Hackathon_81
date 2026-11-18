@@ -9,7 +9,7 @@ export type LayerVisibility = Record<LayerKey, boolean>;
 
 // Values mirror DESIGN.md tokens; Leaflet canvas styles cannot read CSS variables.
 const C = { route: '#1F4FD1', gps: '#C2410C', network: '#7D8891', alert: '#B42318', ink: '#20262B' };
-const DEFAULT_VIEW: L.LatLngExpression = [49.87, 8.65];
+const DEFAULT_VIEW: L.LatLngExpression = [25, 0]; // neutral world view until a route is loaded
 
 const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -169,7 +169,7 @@ export function MapView(props: {
   const [tilesFailed, setTilesFailed] = useState(false);
   return (
     <div className="map-shell">
-      <MapContainer center={DEFAULT_VIEW} zoom={12} className="map" preferCanvas zoomControl attributionControl>
+      <MapContainer center={DEFAULT_VIEW} zoom={2} className="map" preferCanvas zoomControl attributionControl>
         <TileStatus onError={() => setTilesFailed(true)} />
         <PredictionLayers {...props} />
       </MapContainer>

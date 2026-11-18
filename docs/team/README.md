@@ -4,6 +4,7 @@ This folder is for the human team. It explains, in plain language, how the proje
 
 | File | What it is |
 |---|---|
+| [demo-prep.md](demo-prep.md) | **Demo and viva prep, start here.** The project in plain language, numbers to know, the demo script, likely questions. |
 | [progress-log.md](progress-log.md) | Dated log of what was done, what is next, what is blocked. Read this first. |
 | [glossary.md](glossary.md) | Terms used in code and messages (candidate, emission, Viterbi, partition, ...). |
 | [science-notes.md](science-notes.md) | Running ML-side notes (written by A). |

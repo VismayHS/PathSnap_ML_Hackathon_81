@@ -1,0 +1,11 @@
+{
+  "source": "results/experiments/baselines-local-v1/summary.json",
+  "input_sha256": "42cede135bf75e0c50280c8ed9677a6dc23492b6b30303157528a2e37a1b27bb",
+  "experiment_source_sha": "623a20253e03fa16c1dbecd782b4abd85352789a",
+  "figures": {
+    "student-test-conditional-log-loss.png": "0e50d389d37065420e863657265b7022d492cd39cf5e8bdad389a7fd3f043bb8",
+    "student-test-accuracy-f1.png": "4f8fcdd657e1411cd3e5e0849575f99249f601aede168117a03aef1153dcbe4c",
+    "training-cv-macro-f1.png": "bd21247d29bf4340931c9909d7569eeb5c212b86f787562adad2002b286b43e3"
+  },
+  "note": "No training epoch/loss curve is invented for estimators without such history."
+}

@@ -19,12 +19,14 @@ function PredictionLayers({
   selected,
   onSelect,
   fitToken,
+  playhead,
 }: {
   prediction: Prediction | null;
   visible: LayerVisibility;
   selected: number | null;
   onSelect: (index: number | null) => void;
   fitToken: number;
+  playhead: number | null;
 }) {
   const map = useMap();
   // One pane + canvas per layer so stacking is explicit: the route sits above the GPS points
@@ -117,6 +119,23 @@ function PredictionLayers({
     selectedRef.current = group;
   }, [selected, prediction, map, r]);
 
+  // Playback marker: moves between observed positions only (no interpolation across gaps).
+  const headRef = useRef<L.CircleMarker | null>(null);
+  useEffect(() => {
+    const o = prediction && playhead !== null ? prediction.observations[playhead] : null;
+    if (!o || !isPlottable(o)) {
+      headRef.current?.remove();
+      headRef.current = null;
+      return;
+    }
+    const at: L.LatLngExpression = o.snapped ? toLatLng(o.snapped) : [o.lat!, o.lon!];
+    if (!headRef.current) {
+      headRef.current = L.circleMarker(at, {
+        renderer: r.selected, radius: 7, color: '#ffffff', weight: 2.5, fillColor: C.route, fillOpacity: 1, interactive: false,
+      }).addTo(map);
+    } else headRef.current.setLatLng(at);
+  }, [playhead, prediction, map, r]);
+
   // Leaflet needs a size recalculation when the panel layout changes.
   useEffect(() => {
     const ro = new ResizeObserver(() => map.invalidateSize({ animate: false }));
@@ -144,6 +163,7 @@ export function MapView(props: {
   selected: number | null;
   onSelect: (index: number | null) => void;
   fitToken: number;
+  playhead: number | null;
   children?: React.ReactNode;
 }) {
   const [tilesFailed, setTilesFailed] = useState(false);

@@ -4,6 +4,7 @@ import {
   DECODER_LABEL, metricLabel, metricValue, ms, SCORE_KIND_LABEL, STAGE_LABELS, summariseWarnings, WARNING_LABELS,
 } from './lib/format';
 import { MapView, observationAt, type LayerKey, type LayerVisibility } from './map/MapView';
+import { RATES, usePlayback, type Rate } from './map/usePlayback';
 
 type Conn =
   | { state: 'checking' }
@@ -97,6 +98,7 @@ export default function App() {
   const trips = conn.state === 'connected' ? conn.trips : null;
   const canRun = !!health?.ready && !!tripId && run.state !== 'running';
   const obs = observationAt(prediction, selected);
+  const playback = usePlayback(prediction);
 
   return (
     <div className="app">
@@ -187,8 +189,27 @@ export default function App() {
       </aside>
 
       <main className="stage">
-        <MapView prediction={prediction} visible={visible} selected={selected} onSelect={onSelect} fitToken={fitToken}>
+        <MapView prediction={prediction} visible={visible} selected={selected} onSelect={onSelect} fitToken={fitToken} playhead={playback.frame?.index ?? null}>
           <div className="map-tools">
+            {playback.available && (
+              <div className="playback" role="group" aria-label="Route playback">
+                <button className="btn btn-map" onClick={playback.toggle} aria-pressed={playback.playing}>
+                  {playback.playing ? 'Pause' : 'Play route'}
+                </button>
+                <button className="btn btn-map" onClick={playback.reset} disabled={!playback.frame}>Reset</button>
+                <label className="rate">
+                  <span className="visually-hidden">Playback speed</span>
+                  <select value={playback.rate} onChange={(e) => playback.setRate(Number(e.target.value) as Rate)}>
+                    {RATES.map((r) => <option key={r} value={r}>{r}× speed</option>)}
+                  </select>
+                </label>
+                {playback.frame && (
+                  <span className="play-status" aria-live="off">
+                    {Math.round(playback.elapsed)} / {Math.round(playback.duration)} s, point #{playback.frame.index}
+                  </span>
+                )}
+              </div>
+            )}
             <button className="btn btn-map" onClick={() => setFitToken((n) => n + 1)} disabled={!prediction}>Fit route</button>
           </div>
           <fieldset className={`layers ${layersOpen ? '' : 'is-collapsed'}`}>

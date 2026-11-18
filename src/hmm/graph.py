@@ -55,7 +55,8 @@ class RoadGraph:
         if arc_a == arc_b:
             progress = (fraction_b-fraction_a)*self.lengths[arc_a]
             if progress >= -noise_m:
-                return max(0., float(progress)), ()
+                travel = max(0., float(progress))
+                return (travel, ()) if travel <= limit else (math.inf, ())
         remainder = (1-fraction_a)*self.lengths[arc_a] + fraction_b*self.lengths[arc_b]
         if remainder > limit:
             return math.inf, ()

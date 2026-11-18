@@ -1,0 +1,8 @@
+{
+  "raw_schema_version": 1,
+  "coordinate_order": "longitude,latitude",
+  "metric_projection": "WGS84 local azimuthal-equidistant centered at median valid GPS; always_xy",
+  "cleaning": "Preserve every observation row; mark invalid coordinates/time and nonincreasing valid timestamps; never synthesize coordinates",
+  "zero_length_arcs": "Retain original IDs and graph topology; exclude from candidate geometry",
+  "development_partitions": ["train", "student_test"]
+}

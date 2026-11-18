@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "reason": "User-requested commit-message metadata cleanup; repository file trees unchanged",
+  "policy": "Original immutable experiment records and bundle manifests retain their actual original source revision. Resolve that revision through this verified mapping to the public source tree. No metrics, predictions or model assets were recomputed or altered by this mapping.",
+  "source_revisions": {
+    "0a0e9c431b6e3cdb045d61eb186666a78c2903b1": {
+      "public_source_sha": "e4bb044a138918d737d89992a2c25ee7245a9dbb",
+      "identical_tree_sha": "872d9369252bfe61d494508ca9006915ccd85e4a"
+    },
+    "16b32bb2d8ee4ffbc2f8329f35a4d6a13dc71b69": {
+      "public_source_sha": "4cf5f49b0e7c58fa2343160fe7596e816a3efad9",
+      "identical_tree_sha": "872d9369252bfe61d494508ca9006915ccd85e4a"
+    },
+    "16b447acd72e5a35be068dca1c044de7f7d50e73": {
+      "public_source_sha": "c8ad49ad74db8e284124a3f803e8c9121bf90f41",
+      "identical_tree_sha": "8d62100821308c0d52d3d65d86c4a6e48e73c80a"
+    },
+    "20427ddb6e05416377a8393eaf4b5b4ad17d2feb": {
+      "public_source_sha": "7518fca5d877bd255f374e0c6a24e8bdc7f25926",
+      "identical_tree_sha": "a1667063c2734b6091fa07b287b447ff0578fc01"
+    },
+    "7567cee0acfc1f1e8e04c8d684c824747a4c4633": {
+      "public_source_sha": "c9b376d995bdab59916934255c2f3a2ae7658737",
+      "identical_tree_sha": "2536e76c4a450f441d159e92f2547513f7e7bb31"
+    },
+    "9540ae6004a91d402bf24f35bbc3564cf2d0be7a": {
+      "public_source_sha": "0f9e760af40667d1faabe796dd4bfec3dd8d8887",
+      "identical_tree_sha": "e8818ac975da9e24363f0987a67155531154db00"
+    },
+    "cea374cbdedb1ac1028c7ab85d41a1f55a4e51e6": {
+      "public_source_sha": "8a5307299143f3d6a93156ce8489c269fddb869e",
+      "identical_tree_sha": "d89376351f6f230c63195ba60cb56ec66c1a4939"
+    },
+    "e40733568bc39c41f771940469420d50b58e2929": {
+      "public_source_sha": "c470ce804805c6f9ab4e197a6a4bb38b4585e2e3",
+      "identical_tree_sha": "e19354c8e2c2102355a1182ccf6bc91a52a21dad"
+    }
+  }
+}

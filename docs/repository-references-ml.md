@@ -16,3 +16,9 @@ Accessed 18 November 2026. These are method/library references, not other teams'
 | https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.cKDTree.query_ball_point.html | Exact midpoint-tree broad-phase queries (`eps=0`, bounded worker count) with independent physical segment refinement. |
 
 The task-specific parsing, candidate-index completeness bound, features, reference alignment, graph routing and decoder source are independently implemented here. Their correctness and measured results require the retained test/experiment evidence; reading documentation alone is not an experiment.
+
+## Additional workflow and HMM references
+
+- [affaan-m/ECC](https://github.com/affaan-m/ECC), inspected revision `3f14a103a8694e51c1df9a806217a6d0b5f7a6f7`, MIT. Manually applied research-first, verification-loop and concrete code-review guidance; see [the exact scope and results](ml/ecc-review.md). No installer/global configuration or runtime library added.
+- Newson and Krumm (2009), [official paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/map-matching-ACM-GIS-camera-ready.pdf), sections 3–4: primary HMM map-matching reference for graph-distance discrepancy and Viterbi. See [our implementation notes and differences](ml/hmm-method.md). No paper code, data, fitted parameters or reported accuracy was adopted as our own.
+- User-provided Uber Maps talk summary: secondary background only, no URL supplied; no video inspection claimed.

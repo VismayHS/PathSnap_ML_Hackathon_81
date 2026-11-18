@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/affaan-m/ECC",
+  "revision": "3f14a103a8694e51c1df9a806217a6d0b5f7a6f7",
+  "access_date": "2026-11-18",
+  "license": "MIT",
+  "application": "Manual research, review and verification guidance; no installer or source copying",
+  "sha256": {
+    "README.md": "dba95f5534ea8e852e37e971b683644097d26c1821f6f7841ad9cf5a497d67f3",
+    "LICENSE": "326146379f01bb137c0a5d3c54770c1aa31076705c8b88a7f6b26a460f6221b2",
+    "skills/verification-loop/SKILL.md": "9ee288d426660b0c785f534a003a4960fb4d8083a21302d8a4fd9b035b2edbb1",
+    "skills/search-first/SKILL.md": "76835db48dd910061d2e4271b1151793d2fddbabeb2d2866eed068b3580c55d5",
+    "agents/code-reviewer.md": "9dd23be23d65f18126e10f7680fc1eb2576ec54a427d076ff2f870bd0bafd5d2"
+  }
+}

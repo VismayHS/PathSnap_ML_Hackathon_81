@@ -9,14 +9,14 @@ Sources (PDF section numbers):
 - **DL** = Deliverables
 - **AP** = Assessment and Plagiarism Policy
 
-Last updated: 2026-11-18, after M4 (`main` `499c5ef`).
+Last updated: 2026-11-18, after M4 (`main` `e74b2ac`).
 
 ## Mandatory: system and architecture
 
 | # | Requirement | Source | Implementation | Evidence / check | Owner | Status |
 |---|---|---|---|---|---|---|
 | S1 | Laptop 1 hosts the classifier, HMM/Viterbi, road network and server-side evaluation | MG §3 | `api/`, `src/pipeline.py`, `src/evaluation/service.py` | `tests/api`, M1 integration record | B/A | Done: trained hgb-hmm-v1 bundle served (M3) |
-| S2 | Laptop 2 UI shows ten trip options, sends the selected trip, shows route and results | MG §3, §6 | `ui/` | Playwright `ui/tests/workflow.spec.ts` | B | Done for development data; evaluator trips are External/pending |
+| S2 | Laptop 2 UI shows ten trip options, sends the selected trip, shows route and results | MG §3, §6 | `ui/` | Playwright `ui/tests/workflow.spec.ts` | B | Done for development and evaluator data (evaluator run on one machine) |
 | S3 | FastAPI backend | MG §4.9, MT §5 | `api/main.py` | `tests/api` (20) | B | Done |
 | S4 | API computes accuracy with internal reference data | MG §6.8 | `src/evaluation/service.py`, called after prediction | `tests/api` call order | A/B | Done: isolated aggregate scorer, all 10 student-test trips scored via HTTP (M3) |
 | S5 | Ground truth stays server-side, never in the model or UI | MG §6, AP §7 | explicit serializer `api/serialize.py`, schema `additionalProperties:false` | leakage tests and live scan of 10 trips | B | Done (re-check at M3) |
@@ -51,7 +51,7 @@ Last updated: 2026-11-18, after M4 (`main` `499c5ef`).
 | R1 | Public GitHub repository with all code, organised folders, README with install/run/deploy | DL §1 | repository, `README.md`, `docs/deployment/two-laptops.md` | the repo is public and pushed | B | Done |
 | R2 | Saved model weights and configs (within size limits) | DL §1 | `artifacts/hgb-hmm-v1` | checksummed manifest, verified at API startup | A | Done |
 | R3 | No secrets committed | DL §1 | `.gitignore`, pre-push scans | scan before each push | B | Done |
-| R4 | One consolidated PDF report following DL §2–7 | DL §1–2 | `report/`, `scripts/build_report.py` | `report/PathSnap_Technical_Report.pdf` (24 pages), reviewed by A and B at M4 | B (A science) | Partial: only the physical two-laptop terminal screenshot remains |
+| R4 | One consolidated PDF report following DL §2–7 | DL §1–2 | `report/`, `scripts/build_report.py` | `report/PathSnap_Technical_Report.pdf` (25 pages), reviewed by A and B at M4 | B (A science) | Partial: only the physical two-laptop terminal screenshot remains |
 | R5 | EDA in report: preprocessing, patterns, features, missing values, trajectory and network plots, ≥1 Folium map, partition named | DL §2.2 | A plots + B Folium | report section 2, figures S1–S2 | A/B | Done |
 | R6 | Comparison table, a subsection per model, required plots | DL §3 | A | report section 3, confusion matrices | A | Done (incl. feature ablation) |
 | R7 | HPO section | DL §4 | A | report section 4 | A | Done |

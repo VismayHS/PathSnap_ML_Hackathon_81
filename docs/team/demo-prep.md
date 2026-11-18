@@ -15,6 +15,8 @@ The assessment policy says marks cover "correctness, completeness, technical und
 | Live two-laptop demo | [`docs/deployment/two-laptops.md`](../deployment/two-laptops.md) | **We must rehearse it** |
 | Viva: questions to each of us | This file, then [`docs/ml/viva-notes.md`](../ml/viva-notes.md) | **We must prepare** |
 
+Section 8 at the end goes through every expected stage: what was asked, what we did, and what to open if asked.
+
 **Still to do before evaluation:**
 1. Rehearse the two-laptop demo once (section 4).
 2. During that rehearsal, take a screenshot of Laptop 1's terminal showing the request logs. It is the only missing item in the report (the PENDING line in `report/sections/system.md`). Add it, rebuild the PDF, push.
@@ -254,3 +256,40 @@ Run the system yourselves before the evaluation, so nothing on screen surprises 
 2. Open one Folium map from `maps/hgb-hmm-v1/` and toggle its layers.
 3. Open the PDF and find the five-model table, the tuning plot and the HMM comparison table.
 4. Run the tests once: `.venv/bin/python -m pytest tests -q` (all should pass).
+
+---
+
+## 8. Every expected stage: what we did and what to open
+
+The Main Guidelines list 12 stages. The Deliverables PDF also asks for specific report sections and repo contents. For each stage: what was expected, what we did, and **what to open on screen** if an evaluator asks. Every file below is in the repo.
+
+| # | Expected | What we did | Show this |
+|---|---|---|---|
+| 1 | Understand the problem | Map matching: noisy GPS to the road actually driven, on a directed road graph per trip | README intro; report §2 opening |
+| 2 | Explore the raw data | Validated all 90 permitted trips: counts, missing values, timestamps, gaps, extents, graph connectivity, zero-length arcs, repeated roads in references | `results/figures/data-quality-v1/` plots; report §2.1 tables; `src/data_processing/inspect.py` |
+| 3 | Own processing and features | Local metre projection per trip; KD-tree candidate search (100 m, top 8); 7 kinds of feature per (GPS point, road) pair; feature ablation proves they help | `src/data_processing/`, `src/features/candidate.py`; report §2.2 and the ablation table in §3 |
+| 4 | Train and compare ≥ 5 models | LR, KNN, Random Forest, Extra Trees, HGB; same 5 trip-grouped CV folds; all on student test; precision, recall, F1, log loss, continuity, timings | `src/models/experiments.py`; `results/experiments/baselines-local-v1/`; report §3 table, Figures 3–5, confusion matrices |
+| 5 | Pick the best model on evidence | HGB: best training-CV Macro F1 and fast. Chosen on CV, not on the test set | `docs/ml/model-selection.md`; report §3.5 |
+| 6 | Bayesian hyperparameter optimisation | Optuna TPE, 12 trials (4 random + 8 guided), same folds; full search record kept; tuned vs untuned compared | `src/hpo/search.py`; `results/hpo/hgb-tpe-v1/` (SQLite study + every trial); report §4, Figures 6–7 |
+| 7 | HMM + Viterbi | States = candidate roads; emissions = classifier scores; transitions = driving distance vs GPS distance; route split at gaps; compared with classifier-only | `src/hmm/viterbi.py`, `src/hmm/graph.py`; report §5 table and Figure 8; trip 00000007 counterexample |
+| 8 | Export the model | Trained classifier + decoder settings + feature list, with checksums the API checks at startup | `artifacts/hgb-hmm-v1/` (`manifest.json`) |
+| 9 | FastAPI backend | `/health`, `/trips`, `/predict`; scoring only on the server after prediction; every request logged with an ID | `api/main.py`, `api/service.py`; Laptop 1 terminal during the demo |
+| 10 | Evaluator UI | React page: connection status, 10 trips, map of GPS and predicted route, metrics, error handling | `ui/src/App.tsx`; the live UI; report Figures S3–S5 |
+| 11 | Integrate and test | 49 Python tests and browser tests; every milestone merged and checked before `main` | `.venv/bin/python -m pytest tests -q`; `ui/tests/`; progress log |
+| 12 | Technical report | One 25-page PDF following the required sections 2–7, plus the integrity statement | `report/PathSnap_Technical_Report.pdf` |
+
+**The extra requirements and where each is met:**
+
+| Requirement | Where |
+|---|---|
+| Folium maps (mandatory): GPS, roads, reference, prediction, legend, layers | `maps/hgb-hmm-v1/` (10 HTML maps); code in `src/visualisation/folium/`; report Figures S1–S2 |
+| Final run on the 10 reserved evaluator trips | Report system section table; `results/system/evaluator-run-01-aggregate.json` |
+| The true route never reaches the browser; no hardcoded predictions | `api/serialize.py`; leakage tests in `tests/api/` |
+| README with install, run and deploy steps | `README.md`, `docs/deployment/two-laptops.md` |
+| Model weights and configs committed; no secrets | `artifacts/hgb-hmm-v1/`; nothing secret in the repo |
+| Every number traceable | Each results folder stores its source commit, seed and timings |
+| AI-assistance disclosure | `report/sections/integrity.md` |
+
+**Not yet done:**
+- The physical two-laptop run, and the screenshot of Laptop 1's terminal from it (section 4).
+- Organiser confirmation of the official accuracy definition. Until then the report calls the scores provisional; say this if asked.

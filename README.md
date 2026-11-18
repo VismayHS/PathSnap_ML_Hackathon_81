@@ -1,4 +1,4 @@
-# PathSnap: map-matching and route reconstruction
+# PathSnap: map-matching and route reconstruction  
 
 **UE24CS352A Machine Learning hackathon, PES University (RR Campus).**
 

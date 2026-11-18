@@ -1,10 +1,10 @@
 {
-  "aggregate_sha256": "4a1e87d45a3f432f52fa362fa5798b3792f6d8e44b44435ebf9547e32d9e2239",
+  "aggregate_sha256": "efbc1d7adcb18d639edd7997ab6627f5103196f9756efdf017dc49c82457ffd4",
   "files": {
     "contracts/artifacts.schema.json": "4baafc6057e5130f9377fb03b649ab7fad90413133ca0ca2c0db7ca7b1a42cb9",
     "contracts/fixtures/predict_response.synthetic.v0.1.0.json": "77784a1d42109f618bdd14ee5d2c5720c41543b18f8e25a2049d5b87c1af51f3",
     "contracts/http.schema.json": "ddeac91490f893217708c3e2dfab83278d6a8ef7daa4bfbd97c36f233bf07e04",
-    "contracts/interfaces.md": "cc454523ee76fe3e9be6f28dc092a02cea3b875596d51b57344a4d935b1e7cf0",
+    "contracts/interfaces.md": "f41c3f19e323e9456d7a6298255b878b21553c850d1b79692db711d79fb481e3",
     "src/contracts.py": "da2d0e9e389c654e0c65b1450e9e60a42b0d6c20f1b53f289ca3523db9061634"
   },
   "version": "0.1.0"

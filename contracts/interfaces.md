@@ -35,7 +35,7 @@ evaluate_completed_prediction(prediction: PredictionResult, scoring_settings: Sc
 - **No valid observations.** A trip with zero valid observations raises `TripDataUnavailableError` (503); no sentinel/non-finite bounds are produced.
 - `list_trip_ids` is owned/implemented by A (single place for partition resolution); B only calls it.
 - `ModelBundle.info` exposes `model_version, model_kind, model_family, decoder, run_id, manifest_sha256` (see `BundleInfo`). Everything else is A-private.
-- The scorer is the **only** code path that reads `.route`. It returns `status="unavailable"` with a reason (never zeros) when the reference is missing or the policy cannot score. Scoring failure never turns a successful prediction into an HTTP error.
+- **Reference isolation.** In the runtime prediction/service path, A's scorer is the **only** code that reads `.route`, and only after `predict_trip` has returned. Outside the service, permitted development consumers (EDA, target construction, training/CV evaluation, development visualisation export) also read `.route`, always through A's central reference loader under `src/evaluation/`. Inference, candidate generation, features and the decoder never import or call that loader. The scorer returns `status="unavailable"` with a reason (never zeros) when the reference is missing or the policy cannot score. Scoring failure never turns a successful prediction into an HTTP error.
 - B's API runs `predict_trip` in a worker thread (bounded to 1 concurrent prediction by default; extra requests get `429 busy`), then calls the scorer, then serialises.
 
 ### `PredictionResult` semantics (A to confirm)

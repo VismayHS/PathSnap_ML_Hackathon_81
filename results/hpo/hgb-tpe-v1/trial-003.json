@@ -1,0 +1,2565 @@
+{
+  "number": 3,
+  "status": "complete",
+  "params": {
+    "max_iter": 125,
+    "max_leaf_nodes": 10,
+    "min_samples_leaf": 44,
+    "learning_rate": 0.07253911578946609,
+    "l2_regularization": 1.4206022474096942
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "fit": {
+        "fit_ms": 1182.8159420001612,
+        "fit_rows": 185684,
+        "positive_rows": 25186,
+        "warnings": []
+      },
+      "aggregate": {
+        "top1_accuracy": 0.8294199443782281,
+        "macro_f1": 0.7352701518624742,
+        "precision_macro": 0.7592106348331117,
+        "recall_macro": 0.735917485469591,
+        "candidate_miss_rate": 0.023818037346046882,
+        "log_loss": 0.3935300509027752,
+        "sequence_arc_similarity": 0.5795746770802694,
+        "scored_match_fraction_original": 0.7789738805970149,
+        "candidate_scoring_ms": 1425.7146260006266,
+        "trips": 16,
+        "scorable_observations": 50340,
+        "original_observations": 53600,
+        "unscorable_observations": 3260,
+        "candidate_covered": 49141
+      },
+      "trips": [
+        {
+          "values": {
+            "top1_accuracy": 0.5861305791220952,
+            "macro_f1": 0.422142633966663,
+            "precision_macro": 0.47923240389794936,
+            "recall_macro": 0.40757854442724645,
+            "candidate_miss_rate": 0.014016967908520842,
+            "log_loss": 0.9753183800863132,
+            "sequence_arc_similarity": 0.15708812260536398,
+            "scored_match_fraction_original": 0.5861305791220952
+          },
+          "counts": {
+            "original_observations": 2711,
+            "scorable_observations": 2711,
+            "unscorable_observations": 0,
+            "correct": 1589,
+            "candidate_covered": 2673,
+            "candidate_misses": 38,
+            "road_classes": 314,
+            "sequence_length": 1044
+          },
+          "loss_sum": 2607.026029970715,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 89.88557600059721,
+          "metric_elapsed_ms": 8.458123998934752,
+          "trip_id": "00000010"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9773691654879774,
+            "macro_f1": 0.9296362138250769,
+            "precision_macro": 0.93643388300428,
+            "recall_macro": 0.9340762649008897,
+            "candidate_miss_rate": 0.0003536067892503536,
+            "log_loss": 0.07210705901996996,
+            "sequence_arc_similarity": 0.9566787003610109,
+            "scored_match_fraction_original": 0.9773691654879774
+          },
+          "counts": {
+            "original_observations": 2828,
+            "scorable_observations": 2828,
+            "unscorable_observations": 0,
+            "correct": 2764,
+            "candidate_covered": 2827,
+            "candidate_misses": 1,
+            "road_classes": 554,
+            "sequence_length": 554
+          },
+          "loss_sum": 203.84665584945506,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 70.23486300022341,
+          "metric_elapsed_ms": 14.176589998896816,
+          "trip_id": "00000011"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8319759965709387,
+            "macro_f1": 0.7281337658271718,
+            "precision_macro": 0.761671272397916,
+            "recall_macro": 0.7156521968181109,
+            "candidate_miss_rate": 0.017145306472353194,
+            "log_loss": 0.41167068616202945,
+            "sequence_arc_similarity": 0.5801435406698565,
+            "scored_match_fraction_original": 0.824553950722175
+          },
+          "counts": {
+            "original_observations": 2354,
+            "scorable_observations": 2333,
+            "unscorable_observations": 21,
+            "correct": 1941,
+            "candidate_covered": 2293,
+            "candidate_misses": 40,
+            "road_classes": 629,
+            "sequence_length": 836
+          },
+          "loss_sum": 943.9608833695336,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 68.78777600104513,
+          "metric_elapsed_ms": 15.282779999324703,
+          "trip_id": "00000019"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8691630235063043,
+            "macro_f1": 0.6017670309741832,
+            "precision_macro": 0.6205276295306856,
+            "recall_macro": 0.592945327529781,
+            "candidate_miss_rate": 6.335931065070012e-05,
+            "log_loss": 0.33706587217382517,
+            "sequence_arc_similarity": 0.11498547114985469,
+            "scored_match_fraction_original": 0.8691630235063043
+          },
+          "counts": {
+            "original_observations": 15783,
+            "scorable_observations": 15783,
+            "unscorable_observations": 0,
+            "correct": 13718,
+            "candidate_covered": 15782,
+            "candidate_misses": 1,
+            "road_classes": 422,
+            "sequence_length": 2409
+          },
+          "loss_sum": 5319.573594647309,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 307.1360989997629,
+          "metric_elapsed_ms": 17.827314000896877,
+          "trip_id": "00000021"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.7953586497890295,
+            "macro_f1": 0.6974836935604461,
+            "precision_macro": 0.7280821917808219,
+            "recall_macro": 0.6958496412263535,
+            "candidate_miss_rate": 0.027426160337552744,
+            "log_loss": 0.5448746799906938,
+            "sequence_arc_similarity": 0.754325259515571,
+            "scored_match_fraction_original": 0.7953586497890295
+          },
+          "counts": {
+            "original_observations": 474,
+            "scorable_observations": 474,
+            "unscorable_observations": 0,
+            "correct": 377,
+            "candidate_covered": 461,
+            "candidate_misses": 13,
+            "road_classes": 292,
+            "sequence_length": 289
+          },
+          "loss_sum": 251.18722747570988,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 18.931438999061356,
+          "metric_elapsed_ms": 7.669020000321325,
+          "trip_id": "00000022"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9662921348314607,
+            "macro_f1": 0.8999927066343105,
+            "precision_macro": 0.9113756613756615,
+            "recall_macro": 0.8967622655122656,
+            "candidate_miss_rate": 0.0,
+            "log_loss": 0.13312111288907638,
+            "sequence_arc_similarity": 0.9176470588235294,
+            "scored_match_fraction_original": 0.9662921348314607
+          },
+          "counts": {
+            "original_observations": 801,
+            "scorable_observations": 801,
+            "unscorable_observations": 0,
+            "correct": 774,
+            "candidate_covered": 801,
+            "candidate_misses": 0,
+            "road_classes": 252,
+            "sequence_length": 255
+          },
+          "loss_sum": 106.63001142415018,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 26.744263001091895,
+          "metric_elapsed_ms": 6.9002059990452835,
+          "trip_id": "00000024"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.395324494068388,
+            "macro_f1": 0.5234224497221412,
+            "precision_macro": 0.5581250161226987,
+            "recall_macro": 0.5179343045153262,
+            "candidate_miss_rate": 0.31123517096999304,
+            "log_loss": 1.0654712833053264,
+            "sequence_arc_similarity": 0.09615384615384615,
+            "scored_match_fraction_original": 0.19387405886379191
+          },
+          "counts": {
+            "original_observations": 5844,
+            "scorable_observations": 2866,
+            "unscorable_observations": 2978,
+            "correct": 1133,
+            "candidate_covered": 1974,
+            "candidate_misses": 892,
+            "road_classes": 197,
+            "sequence_length": 1196
+          },
+          "loss_sum": 2103.2403132447143,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 182.37117899843724,
+          "metric_elapsed_ms": 6.935003000762663,
+          "trip_id": "00000033"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8980716253443526,
+            "macro_f1": 0.8406832796832797,
+            "precision_macro": 0.8599841269841271,
+            "recall_macro": 0.8458809523809524,
+            "candidate_miss_rate": 0.0027548209366391185,
+            "log_loss": 0.24836780246517604,
+            "sequence_arc_similarity": 0.9078947368421053,
+            "scored_match_fraction_original": 0.8980716253443526
+          },
+          "counts": {
+            "original_observations": 363,
+            "scorable_observations": 363,
+            "unscorable_observations": 0,
+            "correct": 326,
+            "candidate_covered": 362,
+            "candidate_misses": 1,
+            "road_classes": 150,
+            "sequence_length": 152
+          },
+          "loss_sum": 89.90914449239372,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 14.152652000120725,
+          "metric_elapsed_ms": 7.3993610003526555,
+          "trip_id": "00000039"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8058252427184466,
+            "macro_f1": 0.7835222096326783,
+            "precision_macro": 0.8093011184541832,
+            "recall_macro": 0.7932436348334779,
+            "candidate_miss_rate": 0.0010787486515641855,
+            "log_loss": 0.44588226486495586,
+            "sequence_arc_similarity": 0.5947556615017878,
+            "scored_match_fraction_original": 0.8058252427184466
+          },
+          "counts": {
+            "original_observations": 2781,
+            "scorable_observations": 2781,
+            "unscorable_observations": 0,
+            "correct": 2241,
+            "candidate_covered": 2778,
+            "candidate_misses": 3,
+            "road_classes": 572,
+            "sequence_length": 839
+          },
+          "loss_sum": 1238.6609317948473,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 81.1399939993862,
+          "metric_elapsed_ms": 15.18073999977787,
+          "trip_id": "00000063"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9282771989338503,
+            "macro_f1": 0.9500778130545051,
+            "precision_macro": 0.9567357975229948,
+            "recall_macro": 0.9493146055037415,
+            "candidate_miss_rate": 0.0,
+            "log_loss": 0.20859376381559405,
+            "sequence_arc_similarity": 0.6510791366906474,
+            "scored_match_fraction_original": 0.8857803468208092
+          },
+          "counts": {
+            "original_observations": 4325,
+            "scorable_observations": 4127,
+            "unscorable_observations": 198,
+            "correct": 3831,
+            "candidate_covered": 4127,
+            "candidate_misses": 0,
+            "road_classes": 374,
+            "sequence_length": 556
+          },
+          "loss_sum": 860.8664632669567,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 86.9119729995873,
+          "metric_elapsed_ms": 10.839218000910478,
+          "trip_id": "00000066"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8888888888888888,
+            "macro_f1": 0.8103070777648467,
+            "precision_macro": 0.8319369473690461,
+            "recall_macro": 0.8182459516719403,
+            "candidate_miss_rate": 0.004016064257028112,
+            "log_loss": 0.30370440530995596,
+            "sequence_arc_similarity": 0.8699186991869918,
+            "scored_match_fraction_original": 0.8888888888888888
+          },
+          "counts": {
+            "original_observations": 747,
+            "scorable_observations": 747,
+            "unscorable_observations": 0,
+            "correct": 664,
+            "candidate_covered": 744,
+            "candidate_misses": 3,
+            "road_classes": 243,
+            "sequence_length": 246
+          },
+          "loss_sum": 225.95607755060723,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 26.334432999647106,
+          "metric_elapsed_ms": 6.182327999340487,
+          "trip_id": "00000068"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.6873065015479877,
+            "macro_f1": 0.6873607717590746,
+            "precision_macro": 0.7051080610577922,
+            "recall_macro": 0.6928824417241743,
+            "candidate_miss_rate": 0.1568627450980392,
+            "log_loss": 0.4492554375776085,
+            "sequence_arc_similarity": 0.292191435768262,
+            "scored_match_fraction_original": 0.6873065015479877
+          },
+          "counts": {
+            "original_observations": 969,
+            "scorable_observations": 969,
+            "unscorable_observations": 0,
+            "correct": 666,
+            "candidate_covered": 817,
+            "candidate_misses": 152,
+            "road_classes": 159,
+            "sequence_length": 397
+          },
+          "loss_sum": 367.04169250090615,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 33.780240000851336,
+          "metric_elapsed_ms": 5.230364999079029,
+          "trip_id": "00000072"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8765356265356266,
+            "macro_f1": 0.6228634236609666,
+            "precision_macro": 0.6463079257820172,
+            "recall_macro": 0.6207912586392322,
+            "candidate_miss_rate": 0.0042997542997543,
+            "log_loss": 0.43234202328505283,
+            "sequence_arc_similarity": 0.3453237410071942,
+            "scored_match_fraction_original": 0.8765356265356266
+          },
+          "counts": {
+            "original_observations": 1628,
+            "scorable_observations": 1628,
+            "unscorable_observations": 0,
+            "correct": 1427,
+            "candidate_covered": 1621,
+            "candidate_misses": 7,
+            "road_classes": 127,
+            "sequence_length": 278
+          },
+          "loss_sum": 700.8264197450707,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 52.02519699923869,
+          "metric_elapsed_ms": 4.388850000395905,
+          "trip_id": "00000075"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8253717178108194,
+            "macro_f1": 0.7314583686237297,
+            "precision_macro": 0.7510004850451344,
+            "recall_macro": 0.7547569887023876,
+            "candidate_miss_rate": 0.006327111673521037,
+            "log_loss": 0.46047939944584093,
+            "sequence_arc_similarity": 0.6275303643724697,
+            "scored_match_fraction_original": 0.80924317617866
+          },
+          "counts": {
+            "original_observations": 3224,
+            "scorable_observations": 3161,
+            "unscorable_observations": 63,
+            "correct": 2609,
+            "candidate_covered": 3141,
+            "candidate_misses": 20,
+            "road_classes": 737,
+            "sequence_length": 988
+          },
+          "loss_sum": 1446.3657936593863,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 95.74600099949748,
+          "metric_elapsed_ms": 19.291038001028937,
+          "trip_id": "00000081"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8789954337899544,
+            "macro_f1": 0.7126668206327682,
+            "precision_macro": 0.7498337433842753,
+            "recall_macro": 0.7056499103389126,
+            "candidate_miss_rate": 0.00228310502283105,
+            "log_loss": 0.40648729419000185,
+            "sequence_arc_similarity": 0.6391304347826087,
+            "scored_match_fraction_original": 0.8789954337899544
+          },
+          "counts": {
+            "original_observations": 876,
+            "scorable_observations": 876,
+            "unscorable_observations": 0,
+            "correct": 770,
+            "candidate_covered": 874,
+            "candidate_misses": 2,
+            "road_classes": 188,
+            "sequence_length": 230
+          },
+          "loss_sum": 355.2698951220616,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 31.076466000740766,
+          "metric_elapsed_ms": 5.175029999008984,
+          "trip_id": "00000088"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8772174353775976,
+            "macro_f1": 0.8228041704777451,
+            "precision_macro": 0.8417138936202037,
+            "recall_macro": 0.833115478788664,
+            "candidate_miss_rate": 0.003294475418144957,
+            "log_loss": 0.32012447206959804,
+            "sequence_arc_similarity": 0.768348623853211,
+            "scored_match_fraction_original": 0.8772174353775976
+          },
+          "counts": {
+            "original_observations": 7892,
+            "scorable_observations": 7892,
+            "unscorable_observations": 0,
+            "correct": 6923,
+            "candidate_covered": 7866,
+            "candidate_misses": 26,
+            "road_classes": 2233,
+            "sequence_length": 2616
+          },
+          "loss_sum": 2518.099097299458,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 240.45647500133782,
+          "metric_elapsed_ms": 90.64043699981994,
+          "trip_id": "00000092"
+        }
+      ]
+    },
+    {
+      "fold": 1,
+      "fit": {
+        "fit_ms": 1361.4776750000601,
+        "fit_rows": 184715,
+        "positive_rows": 24987,
+        "warnings": []
+      },
+      "aggregate": {
+        "top1_accuracy": 0.8947166788562672,
+        "macro_f1": 0.724181369849358,
+        "precision_macro": 0.7500259794022455,
+        "recall_macro": 0.7206839500465123,
+        "candidate_miss_rate": 0.006373419705359941,
+        "log_loss": 0.2853674410308624,
+        "sequence_arc_similarity": 0.6602263777036774,
+        "scored_match_fraction_original": 0.8924787215563662,
+        "candidate_scoring_ms": 833.6980250060151,
+        "trips": 16,
+        "scorable_observations": 28713,
+        "original_observations": 28785,
+        "unscorable_observations": 72,
+        "candidate_covered": 28530
+      },
+      "trips": [
+        {
+          "values": {
+            "top1_accuracy": 0.8827586206896552,
+            "macro_f1": 0.6953437783626385,
+            "precision_macro": 0.7196502587617569,
+            "recall_macro": 0.7047293624368846,
+            "candidate_miss_rate": 0.0034482758620689655,
+            "log_loss": 0.3091899272724418,
+            "sequence_arc_similarity": 0.6482558139534884,
+            "scored_match_fraction_original": 0.8827586206896552
+          },
+          "counts": {
+            "original_observations": 1450,
+            "scorable_observations": 1450,
+            "unscorable_observations": 0,
+            "correct": 1280,
+            "candidate_covered": 1445,
+            "candidate_misses": 5,
+            "road_classes": 287,
+            "sequence_length": 344
+          },
+          "loss_sum": 446.77944490867844,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 48.227975001282175,
+          "metric_elapsed_ms": 8.079933999397326,
+          "trip_id": "00000006"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.859375,
+            "macro_f1": 0.6331952243362591,
+            "precision_macro": 0.6633797093134443,
+            "recall_macro": 0.6259798936003755,
+            "candidate_miss_rate": 0.013392857142857142,
+            "log_loss": 0.38360938508247727,
+            "sequence_arc_similarity": 0.7006369426751593,
+            "scored_match_fraction_original": 0.859375
+          },
+          "counts": {
+            "original_observations": 448,
+            "scorable_observations": 448,
+            "unscorable_observations": 0,
+            "correct": 385,
+            "candidate_covered": 442,
+            "candidate_misses": 6,
+            "road_classes": 166,
+            "sequence_length": 157
+          },
+          "loss_sum": 169.55534820645497,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 17.9373230002966,
+          "metric_elapsed_ms": 5.0344539995421655,
+          "trip_id": "00000014"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8746397694524496,
+            "macro_f1": 0.8182553202091586,
+            "precision_macro": 0.8408099016359342,
+            "recall_macro": 0.8284101614448759,
+            "candidate_miss_rate": 0.0,
+            "log_loss": 0.3646032221299236,
+            "sequence_arc_similarity": 0.8048780487804879,
+            "scored_match_fraction_original": 0.8746397694524496
+          },
+          "counts": {
+            "original_observations": 694,
+            "scorable_observations": 694,
+            "unscorable_observations": 0,
+            "correct": 607,
+            "candidate_covered": 694,
+            "candidate_misses": 0,
+            "road_classes": 141,
+            "sequence_length": 164
+          },
+          "loss_sum": 253.03463615816696,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 25.250613000025623,
+          "metric_elapsed_ms": 6.0027639992767945,
+          "trip_id": "00000027"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.945116802701942,
+            "macro_f1": 0.7994696702451408,
+            "precision_macro": 0.8191643267404619,
+            "recall_macro": 0.7942115865384104,
+            "candidate_miss_rate": 0.0030959752321981426,
+            "log_loss": 0.1565425692855999,
+            "sequence_arc_similarity": 0.8026706231454006,
+            "scored_match_fraction_original": 0.9419354838709677
+          },
+          "counts": {
+            "original_observations": 3565,
+            "scorable_observations": 3553,
+            "unscorable_observations": 12,
+            "correct": 3358,
+            "candidate_covered": 3542,
+            "candidate_misses": 11,
+            "road_classes": 649,
+            "sequence_length": 674
+          },
+          "loss_sum": 554.4737804095948,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 100.09600200100977,
+          "metric_elapsed_ms": 17.388509999364032,
+          "trip_id": "00000028"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8321964529331515,
+            "macro_f1": 0.6623712923332571,
+            "precision_macro": 0.7081287202380953,
+            "recall_macro": 0.6430201631540058,
+            "candidate_miss_rate": 0.005457025920873124,
+            "log_loss": 0.4200651170481725,
+            "sequence_arc_similarity": 0.5863309352517986,
+            "scored_match_fraction_original": 0.8321964529331515
+          },
+          "counts": {
+            "original_observations": 733,
+            "scorable_observations": 733,
+            "unscorable_observations": 0,
+            "correct": 610,
+            "candidate_covered": 729,
+            "candidate_misses": 4,
+            "road_classes": 224,
+            "sequence_length": 278
+          },
+          "loss_sum": 306.22747032811776,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 27.74238700112619,
+          "metric_elapsed_ms": 5.6706909999775235,
+          "trip_id": "00000029"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.901060070671378,
+            "macro_f1": 0.7812392777146767,
+            "precision_macro": 0.8042124667540612,
+            "recall_macro": 0.7741711267969691,
+            "candidate_miss_rate": 0.001884570082449941,
+            "log_loss": 0.25662116654140943,
+            "sequence_arc_similarity": 0.5075000000000001,
+            "scored_match_fraction_original": 0.901060070671378
+          },
+          "counts": {
+            "original_observations": 4245,
+            "scorable_observations": 4245,
+            "unscorable_observations": 0,
+            "correct": 3825,
+            "candidate_covered": 4237,
+            "candidate_misses": 8,
+            "road_classes": 494,
+            "sequence_length": 800
+          },
+          "loss_sum": 1087.3038826359518,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 116.05562600016128,
+          "metric_elapsed_ms": 12.738426001305925,
+          "trip_id": "00000031"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.7630415561450045,
+            "macro_f1": 0.5658694267942848,
+            "precision_macro": 0.5996320346320346,
+            "recall_macro": 0.5544414361911846,
+            "candidate_miss_rate": 0.02564102564102564,
+            "log_loss": 0.6265596508091718,
+            "sequence_arc_similarity": 0.47982708933717577,
+            "scored_match_fraction_original": 0.7433247200689062
+          },
+          "counts": {
+            "original_observations": 2322,
+            "scorable_observations": 2262,
+            "unscorable_observations": 60,
+            "correct": 1726,
+            "candidate_covered": 2204,
+            "candidate_misses": 58,
+            "road_classes": 550,
+            "sequence_length": 694
+          },
+          "loss_sum": 1380.9374703834146,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 67.4303450014122,
+          "metric_elapsed_ms": 11.36258699989412,
+          "trip_id": "00000043"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9304029304029304,
+            "macro_f1": 0.8300119041999318,
+            "precision_macro": 0.8493434873949581,
+            "recall_macro": 0.8282097888174879,
+            "candidate_miss_rate": 0.0,
+            "log_loss": 0.21829131684865033,
+            "sequence_arc_similarity": 0.8251748251748252,
+            "scored_match_fraction_original": 0.9304029304029304
+          },
+          "counts": {
+            "original_observations": 546,
+            "scorable_observations": 546,
+            "unscorable_observations": 0,
+            "correct": 508,
+            "candidate_covered": 546,
+            "candidate_misses": 0,
+            "road_classes": 136,
+            "sequence_length": 143
+          },
+          "loss_sum": 119.18705899936307,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 19.94584199928795,
+          "metric_elapsed_ms": 4.182933000265621,
+          "trip_id": "00000044"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8822269807280514,
+            "macro_f1": 0.5569383864578059,
+            "precision_macro": 0.5820710630231415,
+            "recall_macro": 0.559045326037553,
+            "candidate_miss_rate": 0.0,
+            "log_loss": 0.42449914081259604,
+            "sequence_arc_similarity": 0.2885572139303483,
+            "scored_match_fraction_original": 0.8822269807280514
+          },
+          "counts": {
+            "original_observations": 1401,
+            "scorable_observations": 1401,
+            "unscorable_observations": 0,
+            "correct": 1236,
+            "candidate_covered": 1401,
+            "candidate_misses": 0,
+            "road_classes": 89,
+            "sequence_length": 201
+          },
+          "loss_sum": 594.723296278447,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 37.477339999895776,
+          "metric_elapsed_ms": 3.419356000449625,
+          "trip_id": "00000046"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8887096774193548,
+            "macro_f1": 0.6973215517668506,
+            "precision_macro": 0.7274533280522062,
+            "recall_macro": 0.6954442138197603,
+            "candidate_miss_rate": 0.0016129032258064516,
+            "log_loss": 0.35817959430475727,
+            "sequence_arc_similarity": 0.49586776859504134,
+            "scored_match_fraction_original": 0.8887096774193548
+          },
+          "counts": {
+            "original_observations": 1240,
+            "scorable_observations": 1240,
+            "unscorable_observations": 0,
+            "correct": 1102,
+            "candidate_covered": 1238,
+            "candidate_misses": 2,
+            "road_classes": 154,
+            "sequence_length": 242
+          },
+          "loss_sum": 443.4263377492895,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 35.46673799974087,
+          "metric_elapsed_ms": 4.561622001347132,
+          "trip_id": "00000048"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9324324324324325,
+            "macro_f1": 0.8347092146722378,
+            "precision_macro": 0.8518075396825399,
+            "recall_macro": 0.8393932748538012,
+            "candidate_miss_rate": 0.0019305019305019305,
+            "log_loss": 0.21360106410124266,
+            "sequence_arc_similarity": 0.8411214953271028,
+            "scored_match_fraction_original": 0.9324324324324325
+          },
+          "counts": {
+            "original_observations": 518,
+            "scorable_observations": 518,
+            "unscorable_observations": 0,
+            "correct": 483,
+            "candidate_covered": 517,
+            "candidate_misses": 1,
+            "road_classes": 100,
+            "sequence_length": 107
+          },
+          "loss_sum": 110.43175014034246,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 16.56410500072525,
+          "metric_elapsed_ms": 3.365335000125924,
+          "trip_id": "00000050"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9235294117647059,
+            "macro_f1": 0.799760387683981,
+            "precision_macro": 0.8294962386136948,
+            "recall_macro": 0.7903162757640371,
+            "candidate_miss_rate": 0.002352941176470588,
+            "log_loss": 0.1948647271050404,
+            "sequence_arc_similarity": 0.8104265402843602,
+            "scored_match_fraction_original": 0.9235294117647059
+          },
+          "counts": {
+            "original_observations": 850,
+            "scorable_observations": 850,
+            "unscorable_observations": 0,
+            "correct": 785,
+            "candidate_covered": 848,
+            "candidate_misses": 2,
+            "road_classes": 201,
+            "sequence_length": 211
+          },
+          "loss_sum": 165.24528858507426,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 27.054722999309888,
+          "metric_elapsed_ms": 5.790727000203333,
+          "trip_id": "00000071"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8982468202131316,
+            "macro_f1": 0.8337869850741757,
+            "precision_macro": 0.8491376859985275,
+            "recall_macro": 0.8435813054259657,
+            "candidate_miss_rate": 0.0030938466827088347,
+            "log_loss": 0.2500117723626017,
+            "sequence_arc_similarity": 0.9046666666666666,
+            "scored_match_fraction_original": 0.8982468202131316
+          },
+          "counts": {
+            "original_observations": 2909,
+            "scorable_observations": 2909,
+            "unscorable_observations": 0,
+            "correct": 2613,
+            "candidate_covered": 2900,
+            "candidate_misses": 9,
+            "road_classes": 1545,
+            "sequence_length": 1500
+          },
+          "loss_sum": 725.0341398515449,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 87.24445200095943,
+          "metric_elapsed_ms": 41.68761499931861,
+          "trip_id": "00000078"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8709163346613545,
+            "macro_f1": 0.5741904178104315,
+            "precision_macro": 0.610810393993362,
+            "recall_macro": 0.553613584478522,
+            "candidate_miss_rate": 0.004780876494023904,
+            "log_loss": 0.387011208497183,
+            "sequence_arc_similarity": 0.3384615384615385,
+            "scored_match_fraction_original": 0.8709163346613545
+          },
+          "counts": {
+            "original_observations": 2510,
+            "scorable_observations": 2510,
+            "unscorable_observations": 0,
+            "correct": 2186,
+            "candidate_covered": 2498,
+            "candidate_misses": 12,
+            "road_classes": 209,
+            "sequence_length": 390
+          },
+          "loss_sum": 966.7539988259632,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 69.17728799999168,
+          "metric_elapsed_ms": 5.501076999280485,
+          "trip_id": "00000080"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9775524981897176,
+            "macro_f1": 0.9152342184200446,
+            "precision_macro": 0.9258153948937694,
+            "recall_macro": 0.9148775301642791,
+            "candidate_miss_rate": 0.000724112961622013,
+            "log_loss": 0.0738421793243964,
+            "sequence_arc_similarity": 0.9219858156028369,
+            "scored_match_fraction_original": 0.9775524981897176
+          },
+          "counts": {
+            "original_observations": 4143,
+            "scorable_observations": 4143,
+            "unscorable_observations": 0,
+            "correct": 4050,
+            "candidate_covered": 4140,
+            "candidate_misses": 3,
+            "road_classes": 689,
+            "sequence_length": 705
+          },
+          "loss_sum": 305.7066224030011,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 91.95762899980764,
+          "metric_elapsed_ms": 17.76714500010712,
+          "trip_id": "00000086"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.772914946325351,
+            "macro_f1": 0.5892048615088518,
+            "precision_macro": 0.61950312070794,
+            "recall_macro": 0.5814981712200861,
+            "candidate_miss_rate": 0.05119735755573906,
+            "log_loss": 0.4462250363334201,
+            "sequence_arc_similarity": 0.6072607260726073,
+            "scored_match_fraction_original": 0.772914946325351
+          },
+          "counts": {
+            "original_observations": 1211,
+            "scorable_observations": 1211,
+            "unscorable_observations": 0,
+            "correct": 936,
+            "candidate_covered": 1149,
+            "candidate_misses": 62,
+            "road_classes": 581,
+            "sequence_length": 606
+          },
+          "loss_sum": 512.7125667470997,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 46.069637000982766,
+          "metric_elapsed_ms": 12.381966000248212,
+          "trip_id": "00000093"
+        }
+      ]
+    },
+    {
+      "fold": 2,
+      "fit": {
+        "fit_ms": 1141.9596770010685,
+        "fit_rows": 184904,
+        "positive_rows": 25020,
+        "warnings": []
+      },
+      "aggregate": {
+        "top1_accuracy": 0.8678356019907056,
+        "macro_f1": 0.7236525487855242,
+        "precision_macro": 0.7483260894290232,
+        "recall_macro": 0.7203798862170888,
+        "candidate_miss_rate": 0.004844929303582611,
+        "log_loss": 0.3605518085975024,
+        "sequence_arc_similarity": 0.6249730794914722,
+        "scored_match_fraction_original": 0.867521085925145,
+        "candidate_scoring_ms": 830.47573499789,
+        "trips": 16,
+        "scorable_observations": 30341,
+        "original_observations": 30352,
+        "unscorable_observations": 11,
+        "candidate_covered": 30194
+      },
+      "trips": [
+        {
+          "values": {
+            "top1_accuracy": 0.9467680608365019,
+            "macro_f1": 0.8393921957512359,
+            "precision_macro": 0.8543602356227608,
+            "recall_macro": 0.835141495111435,
+            "candidate_miss_rate": 0.001520912547528517,
+            "log_loss": 0.19108704781131347,
+            "sequence_arc_similarity": 0.8786008230452675,
+            "scored_match_fraction_original": 0.9467680608365019
+          },
+          "counts": {
+            "original_observations": 1315,
+            "scorable_observations": 1315,
+            "unscorable_observations": 0,
+            "correct": 1245,
+            "candidate_covered": 1313,
+            "candidate_misses": 2,
+            "road_classes": 499,
+            "sequence_length": 486
+          },
+          "loss_sum": 250.89729377625457,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 42.58984700027213,
+          "metric_elapsed_ms": 11.081700000431738,
+          "trip_id": "00000001"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.7917174177831913,
+            "macro_f1": 0.5653707190650166,
+            "precision_macro": 0.5978668261562998,
+            "recall_macro": 0.561371155159388,
+            "candidate_miss_rate": 0.010962241169305725,
+            "log_loss": 0.5150872583449527,
+            "sequence_arc_similarity": 0.3063063063063063,
+            "scored_match_fraction_original": 0.7917174177831913
+          },
+          "counts": {
+            "original_observations": 821,
+            "scorable_observations": 821,
+            "unscorable_observations": 0,
+            "correct": 650,
+            "candidate_covered": 812,
+            "candidate_misses": 9,
+            "road_classes": 110,
+            "sequence_length": 222
+          },
+          "loss_sum": 418.2508537761016,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 28.81638200051384,
+          "metric_elapsed_ms": 3.6595889996533515,
+          "trip_id": "00000003"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.6886517943743938,
+            "macro_f1": 0.394505223123767,
+            "precision_macro": 0.44396101990557296,
+            "recall_macro": 0.37428283968008585,
+            "candidate_miss_rate": 0.014225670869705788,
+            "log_loss": 0.9440731548356774,
+            "sequence_arc_similarity": 0.15602836879432624,
+            "scored_match_fraction_original": 0.6886517943743938
+          },
+          "counts": {
+            "original_observations": 3093,
+            "scorable_observations": 3093,
+            "unscorable_observations": 0,
+            "correct": 2130,
+            "candidate_covered": 3049,
+            "candidate_misses": 44,
+            "road_classes": 317,
+            "sequence_length": 987
+          },
+          "loss_sum": 2878.4790490939804,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 99.06410399889864,
+          "metric_elapsed_ms": 7.268941000802442,
+          "trip_id": "00000008"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9838308457711443,
+            "macro_f1": 0.9383374072885988,
+            "precision_macro": 0.9450418441988946,
+            "recall_macro": 0.9355940026605661,
+            "candidate_miss_rate": 0.0,
+            "log_loss": 0.0577385925396815,
+            "sequence_arc_similarity": 0.9259259259259259,
+            "scored_match_fraction_original": 0.9838308457711443
+          },
+          "counts": {
+            "original_observations": 1608,
+            "scorable_observations": 1608,
+            "unscorable_observations": 0,
+            "correct": 1582,
+            "candidate_covered": 1608,
+            "candidate_misses": 0,
+            "road_classes": 209,
+            "sequence_length": 216
+          },
+          "loss_sum": 92.84365680380785,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 32.375602999309194,
+          "metric_elapsed_ms": 5.987227999867173,
+          "trip_id": "00000012"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9126378286683631,
+            "macro_f1": 0.7443570167911162,
+            "precision_macro": 0.7698529057149747,
+            "recall_macro": 0.7359244663498286,
+            "candidate_miss_rate": 0.0016963528413910093,
+            "log_loss": 0.22834137073157368,
+            "sequence_arc_similarity": 0.7455089820359282,
+            "scored_match_fraction_original": 0.9126378286683631
+          },
+          "counts": {
+            "original_observations": 1179,
+            "scorable_observations": 1179,
+            "unscorable_observations": 0,
+            "correct": 1076,
+            "candidate_covered": 1177,
+            "candidate_misses": 2,
+            "road_classes": 319,
+            "sequence_length": 334
+          },
+          "loss_sum": 268.7577933510622,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 35.043235000557615,
+          "metric_elapsed_ms": 7.179869999163202,
+          "trip_id": "00000025"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.814404432132964,
+            "macro_f1": 0.6794061881271184,
+            "precision_macro": 0.6989341085271318,
+            "recall_macro": 0.694282945736434,
+            "candidate_miss_rate": 0.0,
+            "log_loss": 0.46678183795203415,
+            "sequence_arc_similarity": 0.7530120481927711,
+            "scored_match_fraction_original": 0.814404432132964
+          },
+          "counts": {
+            "original_observations": 361,
+            "scorable_observations": 361,
+            "unscorable_observations": 0,
+            "correct": 294,
+            "candidate_covered": 361,
+            "candidate_misses": 0,
+            "road_classes": 172,
+            "sequence_length": 166
+          },
+          "loss_sum": 168.50824350068433,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 12.576712000736734,
+          "metric_elapsed_ms": 4.143544998441939,
+          "trip_id": "00000026"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9151785714285714,
+            "macro_f1": 0.8602049315221149,
+            "precision_macro": 0.8733998816918073,
+            "recall_macro": 0.857891079744217,
+            "candidate_miss_rate": 0.0008116883116883117,
+            "log_loss": 0.21657461688235058,
+            "sequence_arc_similarity": 0.8473557692307692,
+            "scored_match_fraction_original": 0.9151785714285714
+          },
+          "counts": {
+            "original_observations": 2464,
+            "scorable_observations": 2464,
+            "unscorable_observations": 0,
+            "correct": 2255,
+            "candidate_covered": 2462,
+            "candidate_misses": 2,
+            "road_classes": 805,
+            "sequence_length": 832
+          },
+          "loss_sum": 533.2067067643471,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 59.490546000233735,
+          "metric_elapsed_ms": 18.28756900067674,
+          "trip_id": "00000032"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.7808886183810103,
+            "macro_f1": 0.6492264998702613,
+            "precision_macro": 0.6825466346248515,
+            "recall_macro": 0.6495823664817308,
+            "candidate_miss_rate": 0.00852099817407182,
+            "log_loss": 0.6137300831555066,
+            "sequence_arc_similarity": 0.5199362041467305,
+            "scored_match_fraction_original": 0.7808886183810103
+          },
+          "counts": {
+            "original_observations": 1643,
+            "scorable_observations": 1643,
+            "unscorable_observations": 0,
+            "correct": 1283,
+            "candidate_covered": 1629,
+            "candidate_misses": 14,
+            "road_classes": 453,
+            "sequence_length": 627
+          },
+          "loss_sum": 999.7663054603202,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 47.831223000684986,
+          "metric_elapsed_ms": 9.307172000262653,
+          "trip_id": "00000035"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.7887426900584795,
+            "macro_f1": 0.6161984925231109,
+            "precision_macro": 0.6577139709030465,
+            "recall_macro": 0.602393846473777,
+            "candidate_miss_rate": 0.0021929824561403508,
+            "log_loss": 0.47529165470741885,
+            "sequence_arc_similarity": 0.2997542997542998,
+            "scored_match_fraction_original": 0.7887426900584795
+          },
+          "counts": {
+            "original_observations": 1368,
+            "scorable_observations": 1368,
+            "unscorable_observations": 0,
+            "correct": 1079,
+            "candidate_covered": 1365,
+            "candidate_misses": 3,
+            "road_classes": 175,
+            "sequence_length": 407
+          },
+          "loss_sum": 648.7731086756268,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 38.540450999789755,
+          "metric_elapsed_ms": 4.441416000190657,
+          "trip_id": "00000036"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8128930817610063,
+            "macro_f1": 0.8079977884145954,
+            "precision_macro": 0.8259446795330468,
+            "recall_macro": 0.8139047700714952,
+            "candidate_miss_rate": 0.0,
+            "log_loss": 0.5440374033459056,
+            "sequence_arc_similarity": 0.49723756906077343,
+            "scored_match_fraction_original": 0.8128930817610063
+          },
+          "counts": {
+            "original_observations": 1272,
+            "scorable_observations": 1272,
+            "unscorable_observations": 0,
+            "correct": 1034,
+            "candidate_covered": 1272,
+            "candidate_misses": 0,
+            "road_classes": 207,
+            "sequence_length": 362
+          },
+          "loss_sum": 692.0155770559918,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 37.42144799980451,
+          "metric_elapsed_ms": 5.968186000245623,
+          "trip_id": "00000047"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8642638036809815,
+            "macro_f1": 0.723525553168084,
+            "precision_macro": 0.744285031085605,
+            "recall_macro": 0.7199926504699059,
+            "candidate_miss_rate": 0.011503067484662576,
+            "log_loss": 0.2997605279207409,
+            "sequence_arc_similarity": 0.786144578313253,
+            "scored_match_fraction_original": 0.8642638036809815
+          },
+          "counts": {
+            "original_observations": 1304,
+            "scorable_observations": 1304,
+            "unscorable_observations": 0,
+            "correct": 1127,
+            "candidate_covered": 1289,
+            "candidate_misses": 15,
+            "road_classes": 697,
+            "sequence_length": 664
+          },
+          "loss_sum": 386.39132048983504,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 39.2643080012931,
+          "metric_elapsed_ms": 13.847393000105512,
+          "trip_id": "00000053"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.7946577629382304,
+            "macro_f1": 0.581807376125558,
+            "precision_macro": 0.6127064223655133,
+            "recall_macro": 0.5745977237048666,
+            "candidate_miss_rate": 0.05509181969949917,
+            "log_loss": 0.4231795694183509,
+            "sequence_arc_similarity": 0.6853146853146853,
+            "scored_match_fraction_original": 0.7946577629382304
+          },
+          "counts": {
+            "original_observations": 599,
+            "scorable_observations": 599,
+            "unscorable_observations": 0,
+            "correct": 476,
+            "candidate_covered": 566,
+            "candidate_misses": 33,
+            "road_classes": 308,
+            "sequence_length": 286
+          },
+          "loss_sum": 239.5196362907866,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 19.588215998737724,
+          "metric_elapsed_ms": 5.728182000893867,
+          "trip_id": "00000058"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9073416222616933,
+            "macro_f1": 0.772824171698072,
+            "precision_macro": 0.7947460554625703,
+            "recall_macro": 0.7701519939730647,
+            "candidate_miss_rate": 0.0011841326228537595,
+            "log_loss": 0.2906009759766907,
+            "sequence_arc_similarity": 0.5987261146496815,
+            "scored_match_fraction_original": 0.9073416222616933
+          },
+          "counts": {
+            "original_observations": 3378,
+            "scorable_observations": 3378,
+            "unscorable_observations": 0,
+            "correct": 3065,
+            "candidate_covered": 3374,
+            "candidate_misses": 4,
+            "road_classes": 572,
+            "sequence_length": 785
+          },
+          "loss_sum": 980.4876929453545,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 91.2709089989221,
+          "metric_elapsed_ms": 13.15043000067817,
+          "trip_id": "00000062"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8780934922089826,
+            "macro_f1": 0.7253314123473711,
+            "precision_macro": 0.7610429007814618,
+            "recall_macro": 0.7204172560720294,
+            "candidate_miss_rate": 0.0036663611365719525,
+            "log_loss": 0.35019140790801023,
+            "sequence_arc_similarity": 0.6349206349206349,
+            "scored_match_fraction_original": 0.8772893772893773
+          },
+          "counts": {
+            "original_observations": 1092,
+            "scorable_observations": 1091,
+            "unscorable_observations": 1,
+            "correct": 958,
+            "candidate_covered": 1087,
+            "candidate_misses": 4,
+            "road_classes": 193,
+            "sequence_length": 252
+          },
+          "loss_sum": 380.6580603960071,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 29.65751800002181,
+          "metric_elapsed_ms": 5.068878999736626,
+          "trip_id": "00000085"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8509659613615456,
+            "macro_f1": 0.8142545205504024,
+            "precision_macro": 0.8289598558082696,
+            "recall_macro": 0.8133985197916498,
+            "candidate_miss_rate": 0.0006133088009812941,
+            "log_loss": 0.3721074520286605,
+            "sequence_arc_similarity": 0.46224256292906174,
+            "scored_match_fraction_original": 0.8483644145521247
+          },
+          "counts": {
+            "original_observations": 3271,
+            "scorable_observations": 3261,
+            "unscorable_observations": 10,
+            "correct": 2775,
+            "candidate_covered": 3259,
+            "candidate_misses": 2,
+            "road_classes": 473,
+            "sequence_length": 874
+          },
+          "loss_sum": 1212.6981861614047,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 78.91869699960807,
+          "metric_elapsed_ms": 12.049245000525843,
+          "trip_id": "00000096"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9494985673352435,
+            "macro_f1": 0.8657012842019641,
+            "precision_macro": 0.8818550584825644,
+            "recall_macro": 0.867151067992946,
+            "candidate_miss_rate": 0.002328080229226361,
+            "log_loss": 0.13197771033053726,
+            "sequence_arc_similarity": 0.902554399243141,
+            "scored_match_fraction_original": 0.9494985673352435
+          },
+          "counts": {
+            "original_observations": 5584,
+            "scorable_observations": 5584,
+            "unscorable_observations": 0,
+            "correct": 5302,
+            "candidate_covered": 5571,
+            "candidate_misses": 13,
+            "road_classes": 1045,
+            "sequence_length": 1057
+          },
+          "loss_sum": 735.247824251423,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 138.026535998506,
+          "metric_elapsed_ms": 25.854332001472358,
+          "trip_id": "00000098"
+        }
+      ]
+    },
+    {
+      "fold": 3,
+      "fit": {
+        "fit_ms": 1223.5998889991606,
+        "fit_rows": 185689,
+        "positive_rows": 25108,
+        "warnings": []
+      },
+      "aggregate": {
+        "top1_accuracy": 0.8052274440814275,
+        "macro_f1": 0.6863429782571578,
+        "precision_macro": 0.7149396014996923,
+        "recall_macro": 0.6804359806291039,
+        "candidate_miss_rate": 0.027365893161319148,
+        "log_loss": 0.4782225357525136,
+        "sequence_arc_similarity": 0.5612510753135811,
+        "scored_match_fraction_original": 0.5439215316419881,
+        "candidate_scoring_ms": 1293.3352940017357,
+        "trips": 16,
+        "scorable_observations": 35811,
+        "original_observations": 53015,
+        "unscorable_observations": 17204,
+        "candidate_covered": 34831
+      },
+      "trips": [
+        {
+          "values": {
+            "top1_accuracy": 0.6152667075413857,
+            "macro_f1": 0.2637336272759368,
+            "precision_macro": 0.3292641105099173,
+            "recall_macro": 0.23711045597364588,
+            "candidate_miss_rate": 0.019773145309625997,
+            "log_loss": 0.9562296888739668,
+            "sequence_arc_similarity": 0.08349900596421467,
+            "scored_match_fraction_original": 0.5541902526577385
+          },
+          "counts": {
+            "original_observations": 7243,
+            "scorable_observations": 6524,
+            "unscorable_observations": 719,
+            "correct": 4014,
+            "candidate_covered": 6395,
+            "candidate_misses": 129,
+            "road_classes": 614,
+            "sequence_length": 3018
+          },
+          "loss_sum": 6115.0888603490175,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 257.4972179991164,
+          "metric_elapsed_ms": 14.875267001116299,
+          "trip_id": "00000002"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9732057416267943,
+            "macro_f1": 0.9524679842576617,
+            "precision_macro": 0.9618913196894847,
+            "recall_macro": 0.9472575712735524,
+            "candidate_miss_rate": 0.0,
+            "log_loss": 0.05714435946522782,
+            "sequence_arc_similarity": 0.9130434782608696,
+            "scored_match_fraction_original": 0.9732057416267943
+          },
+          "counts": {
+            "original_observations": 1045,
+            "scorable_observations": 1045,
+            "unscorable_observations": 0,
+            "correct": 1017,
+            "candidate_covered": 1045,
+            "candidate_misses": 0,
+            "road_classes": 109,
+            "sequence_length": 115
+          },
+          "loss_sum": 59.715855641163074,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 18.656811998880585,
+          "metric_elapsed_ms": 3.8959310004429426,
+          "trip_id": "00000005"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.571647509578544,
+            "macro_f1": 0.4027324864924513,
+            "precision_macro": 0.44245566584121576,
+            "recall_macro": 0.3939488628140052,
+            "candidate_miss_rate": 0.03984674329501916,
+            "log_loss": 1.095227819094105,
+            "sequence_arc_similarity": 0.2680412371134021,
+            "scored_match_fraction_original": 0.571647509578544
+          },
+          "counts": {
+            "original_observations": 1305,
+            "scorable_observations": 1305,
+            "unscorable_observations": 0,
+            "correct": 746,
+            "candidate_covered": 1253,
+            "candidate_misses": 52,
+            "road_classes": 276,
+            "sequence_length": 485
+          },
+          "loss_sum": 1372.3204573249134,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 43.049726000390365,
+          "metric_elapsed_ms": 6.044465000741184,
+          "trip_id": "00000016"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8812664907651715,
+            "macro_f1": 0.7346853772205886,
+            "precision_macro": 0.7515258215962441,
+            "recall_macro": 0.7394566114636537,
+            "candidate_miss_rate": 0.005277044854881266,
+            "log_loss": 0.30386647517776677,
+            "sequence_arc_similarity": 0.806896551724138,
+            "scored_match_fraction_original": 0.8812664907651715
+          },
+          "counts": {
+            "original_observations": 379,
+            "scorable_observations": 379,
+            "unscorable_observations": 0,
+            "correct": 334,
+            "candidate_covered": 377,
+            "candidate_misses": 2,
+            "road_classes": 142,
+            "sequence_length": 145
+          },
+          "loss_sum": 114.55766114201806,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 14.406635998966522,
+          "metric_elapsed_ms": 4.026906999570201,
+          "trip_id": "00000018"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9678800856531049,
+            "macro_f1": 0.8326469283774256,
+            "precision_macro": 0.8438870986153131,
+            "recall_macro": 0.8311331024339962,
+            "candidate_miss_rate": 0.0,
+            "log_loss": 0.11732963342191824,
+            "sequence_arc_similarity": 0.7301587301587302,
+            "scored_match_fraction_original": 0.9604759881002974
+          },
+          "counts": {
+            "original_observations": 2353,
+            "scorable_observations": 2335,
+            "unscorable_observations": 18,
+            "correct": 2260,
+            "candidate_covered": 2335,
+            "candidate_misses": 0,
+            "road_classes": 159,
+            "sequence_length": 189
+          },
+          "loss_sum": 273.9646940401791,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 41.38237000006484,
+          "metric_elapsed_ms": 4.581941999276751,
+          "trip_id": "00000020"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8884892086330936,
+            "macro_f1": 0.7650010006235951,
+            "precision_macro": 0.7878299678312141,
+            "recall_macro": 0.7647383820015965,
+            "candidate_miss_rate": 0.002767017155506364,
+            "log_loss": 0.28530949651309573,
+            "sequence_arc_similarity": 0.5431606905710491,
+            "scored_match_fraction_original": 0.8884892086330936
+          },
+          "counts": {
+            "original_observations": 3614,
+            "scorable_observations": 3614,
+            "unscorable_observations": 0,
+            "correct": 3211,
+            "candidate_covered": 3604,
+            "candidate_misses": 10,
+            "road_classes": 489,
+            "sequence_length": 753
+          },
+          "loss_sum": 1028.255425433197,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 91.69472600115114,
+          "metric_elapsed_ms": 12.020616999507183,
+          "trip_id": "00000034"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9423929098966026,
+            "macro_f1": 0.8588667051902347,
+            "precision_macro": 0.8833186360964139,
+            "recall_macro": 0.8493018812463258,
+            "candidate_miss_rate": 0.0014771048744460858,
+            "log_loss": 0.1798086723357831,
+            "sequence_arc_similarity": 0.8430232558139534,
+            "scored_match_fraction_original": 0.9423929098966026
+          },
+          "counts": {
+            "original_observations": 677,
+            "scorable_observations": 677,
+            "unscorable_observations": 0,
+            "correct": 638,
+            "candidate_covered": 676,
+            "candidate_misses": 1,
+            "road_classes": 162,
+            "sequence_length": 172
+          },
+          "loss_sum": 121.55066249898938,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 22.34631400096987,
+          "metric_elapsed_ms": 4.660033999243751,
+          "trip_id": "00000037"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8857808857808858,
+            "macro_f1": 0.7526508223739395,
+            "precision_macro": 0.7753567541274153,
+            "recall_macro": 0.7478867954878645,
+            "candidate_miss_rate": 0.000777000777000777,
+            "log_loss": 0.3402223621574688,
+            "sequence_arc_similarity": 0.595166163141994,
+            "scored_match_fraction_original": 0.8857808857808858
+          },
+          "counts": {
+            "original_observations": 1287,
+            "scorable_observations": 1287,
+            "unscorable_observations": 0,
+            "correct": 1140,
+            "candidate_covered": 1286,
+            "candidate_misses": 1,
+            "road_classes": 242,
+            "sequence_length": 331
+          },
+          "loss_sum": 437.5259577345049,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 38.585453999985475,
+          "metric_elapsed_ms": 5.829843999890727,
+          "trip_id": "00000038"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9408192272903476,
+            "macro_f1": 0.8638171345102087,
+            "precision_macro": 0.881806996252291,
+            "recall_macro": 0.8679007111942633,
+            "candidate_miss_rate": 0.0007752939656286342,
+            "log_loss": 0.18567933574954934,
+            "sequence_arc_similarity": 0.826060606060606,
+            "scored_match_fraction_original": 0.9408192272903476
+          },
+          "counts": {
+            "original_observations": 7739,
+            "scorable_observations": 7739,
+            "unscorable_observations": 0,
+            "correct": 7281,
+            "candidate_covered": 7733,
+            "candidate_misses": 6,
+            "road_classes": 1472,
+            "sequence_length": 1650
+          },
+          "loss_sum": 1435.858303351265,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 226.10242000155267,
+          "metric_elapsed_ms": 39.77127100006328,
+          "trip_id": "00000042"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.90625,
+            "macro_f1": 0.7630223732496458,
+            "precision_macro": 0.7859661530784525,
+            "recall_macro": 0.7635628891573824,
+            "candidate_miss_rate": 0.0015625,
+            "log_loss": 0.27599611092594534,
+            "sequence_arc_similarity": 0.5192307692307692,
+            "scored_match_fraction_original": 0.90625
+          },
+          "counts": {
+            "original_observations": 640,
+            "scorable_observations": 640,
+            "unscorable_observations": 0,
+            "correct": 580,
+            "candidate_covered": 639,
+            "candidate_misses": 1,
+            "road_classes": 66,
+            "sequence_length": 104
+          },
+          "loss_sum": 176.36151488167908,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 15.726369001640705,
+          "metric_elapsed_ms": 2.747025999269681,
+          "trip_id": "00000045"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.5196767392832045,
+            "macro_f1": 0.6268504947012553,
+            "precision_macro": 0.6651433912562053,
+            "recall_macro": 0.6185878240430053,
+            "candidate_miss_rate": 0.24525650035137034,
+            "log_loss": 1.0784269481572277,
+            "sequence_arc_similarity": 0.3087248322147651,
+            "scored_match_fraction_original": 0.07658054160410087
+          },
+          "counts": {
+            "original_observations": 19313,
+            "scorable_observations": 2846,
+            "unscorable_observations": 16467,
+            "correct": 1479,
+            "candidate_covered": 2148,
+            "candidate_misses": 698,
+            "road_classes": 528,
+            "sequence_length": 1192
+          },
+          "loss_sum": 2316.4610846417254,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 307.97432199869945,
+          "metric_elapsed_ms": 11.782086001403513,
+          "trip_id": "00000054"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8040638606676342,
+            "macro_f1": 0.723768316527131,
+            "precision_macro": 0.7491534700131561,
+            "recall_macro": 0.7235435408440285,
+            "candidate_miss_rate": 0.008708272859216255,
+            "log_loss": 0.4611662010086018,
+            "sequence_arc_similarity": 0.5441988950276243,
+            "scored_match_fraction_original": 0.8040638606676342
+          },
+          "counts": {
+            "original_observations": 2067,
+            "scorable_observations": 2067,
+            "unscorable_observations": 0,
+            "correct": 1662,
+            "candidate_covered": 2049,
+            "candidate_misses": 18,
+            "road_classes": 471,
+            "sequence_length": 724
+          },
+          "loss_sum": 944.9295458666251,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 60.78184199941461,
+          "metric_elapsed_ms": 11.23760799964657,
+          "trip_id": "00000069"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8481078278900985,
+            "macro_f1": 0.6128226987271993,
+            "precision_macro": 0.6620097224142686,
+            "recall_macro": 0.5968025170449337,
+            "candidate_miss_rate": 0.002592016588906169,
+            "log_loss": 0.35183240317585696,
+            "sequence_arc_similarity": 0.5298804780876494,
+            "scored_match_fraction_original": 0.8481078278900985
+          },
+          "counts": {
+            "original_observations": 1929,
+            "scorable_observations": 1929,
+            "unscorable_observations": 0,
+            "correct": 1636,
+            "candidate_covered": 1924,
+            "candidate_misses": 5,
+            "road_classes": 389,
+            "sequence_length": 502
+          },
+          "loss_sum": 676.9255437103487,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 50.79174099955708,
+          "metric_elapsed_ms": 7.559536001281231,
+          "trip_id": "00000074"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8780841799709724,
+            "macro_f1": 0.6582445952535476,
+            "precision_macro": 0.6821021021021021,
+            "recall_macro": 0.6532400921487609,
+            "candidate_miss_rate": 0.010159651669085631,
+            "log_loss": 0.353845766209946,
+            "sequence_arc_similarity": 0.6195121951219512,
+            "scored_match_fraction_original": 0.8780841799709724
+          },
+          "counts": {
+            "original_observations": 689,
+            "scorable_observations": 689,
+            "unscorable_observations": 0,
+            "correct": 605,
+            "candidate_covered": 682,
+            "candidate_misses": 7,
+            "road_classes": 185,
+            "sequence_length": 205
+          },
+          "loss_sum": 241.3228125551832,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 21.929249000095297,
+          "metric_elapsed_ms": 4.316687000027741,
+          "trip_id": "00000079"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8122096881220969,
+            "macro_f1": 0.5677360779528859,
+            "precision_macro": 0.6022888167329074,
+            "recall_macro": 0.5561212599697648,
+            "candidate_miss_rate": 0.003981420039814201,
+            "log_loss": 0.5402555612901548,
+            "sequence_arc_similarity": 0.32057416267942584,
+            "scored_match_fraction_original": 0.8122096881220969
+          },
+          "counts": {
+            "original_observations": 1507,
+            "scorable_observations": 1507,
+            "unscorable_observations": 0,
+            "correct": 1224,
+            "candidate_covered": 1501,
+            "candidate_misses": 6,
+            "road_classes": 209,
+            "sequence_length": 418
+          },
+          "loss_sum": 810.9235974965225,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 43.624362000628025,
+          "metric_elapsed_ms": 4.877256998952362,
+          "trip_id": "00000083"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8216612377850163,
+            "macro_f1": 0.602441029380818,
+            "precision_macro": 0.6350335978384758,
+            "recall_macro": 0.596383192968884,
+            "candidate_miss_rate": 0.035830618892508145,
+            "log_loss": 0.4486547011220198,
+            "sequence_arc_similarity": 0.5288461538461539,
+            "scored_match_fraction_original": 0.8216612377850163
+          },
+          "counts": {
+            "original_observations": 1228,
+            "scorable_observations": 1228,
+            "unscorable_observations": 0,
+            "correct": 1009,
+            "candidate_covered": 1184,
+            "candidate_misses": 44,
+            "road_classes": 328,
+            "sequence_length": 416
+          },
+          "loss_sum": 531.2071661284714,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 38.78573300062271,
+          "metric_elapsed_ms": 6.729349999659462,
+          "trip_id": "00000089"
+        }
+      ]
+    },
+    {
+      "fold": 4,
+      "fit": {
+        "fit_ms": 1023.5383110011753,
+        "fit_rows": 184348,
+        "positive_rows": 25007,
+        "warnings": []
+      },
+      "aggregate": {
+        "top1_accuracy": 0.8377009985467161,
+        "macro_f1": 0.7323163694553406,
+        "precision_macro": 0.7567411216314799,
+        "recall_macro": 0.7316363041387421,
+        "candidate_miss_rate": 0.007922741549857016,
+        "log_loss": 0.41276543356114126,
+        "sequence_arc_similarity": 0.6271505593362605,
+        "scored_match_fraction_original": 0.8376420953943513,
+        "candidate_scoring_ms": 1115.5257419977715,
+        "trips": 16,
+        "scorable_observations": 42662,
+        "original_observations": 42665,
+        "unscorable_observations": 3,
+        "candidate_covered": 42324
+      },
+      "trips": [
+        {
+          "values": {
+            "top1_accuracy": 0.7706766917293233,
+            "macro_f1": 0.48451910582491564,
+            "precision_macro": 0.5400202634245187,
+            "recall_macro": 0.4643797746508372,
+            "candidate_miss_rate": 0.016917293233082706,
+            "log_loss": 0.5115524990413663,
+            "sequence_arc_similarity": 0.5856353591160222,
+            "scored_match_fraction_original": 0.7706766917293233
+          },
+          "counts": {
+            "original_observations": 1064,
+            "scorable_observations": 1064,
+            "unscorable_observations": 0,
+            "correct": 820,
+            "candidate_covered": 1046,
+            "candidate_misses": 18,
+            "road_classes": 376,
+            "sequence_length": 362
+          },
+          "loss_sum": 535.0839139972692,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 31.755639000039082,
+          "metric_elapsed_ms": 8.020205999855534,
+          "trip_id": "00000004"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9236434108527132,
+            "macro_f1": 0.8310824275033062,
+            "precision_macro": 0.8479163644917511,
+            "recall_macro": 0.8264634199726442,
+            "candidate_miss_rate": 0.001937984496124031,
+            "log_loss": 0.19476984589414156,
+            "sequence_arc_similarity": 0.8267326732673268,
+            "scored_match_fraction_original": 0.9236434108527132
+          },
+          "counts": {
+            "original_observations": 2580,
+            "scorable_observations": 2580,
+            "unscorable_observations": 0,
+            "correct": 2383,
+            "candidate_covered": 2575,
+            "candidate_misses": 5,
+            "road_classes": 776,
+            "sequence_length": 808
+          },
+          "loss_sum": 501.5323531774145,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 74.38328999887744,
+          "metric_elapsed_ms": 18.829238000762416,
+          "trip_id": "00000013"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8861629048086359,
+            "macro_f1": 0.722954095051243,
+            "precision_macro": 0.7457934603522839,
+            "recall_macro": 0.7267100549636435,
+            "candidate_miss_rate": 0.003925417075564278,
+            "log_loss": 0.3092042818719367,
+            "sequence_arc_similarity": 0.7811550151975684,
+            "scored_match_fraction_original": 0.8861629048086359
+          },
+          "counts": {
+            "original_observations": 1019,
+            "scorable_observations": 1019,
+            "unscorable_observations": 0,
+            "correct": 903,
+            "candidate_covered": 1015,
+            "candidate_misses": 4,
+            "road_classes": 330,
+            "sequence_length": 329
+          },
+          "loss_sum": 313.8423461000158,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 31.09036200112314,
+          "metric_elapsed_ms": 6.697687998894253,
+          "trip_id": "00000041"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.823170731707317,
+            "macro_f1": 0.8372232223403959,
+            "precision_macro": 0.8528391425298641,
+            "recall_macro": 0.8428768831470124,
+            "candidate_miss_rate": 0.0010162601626016261,
+            "log_loss": 0.43643674889624373,
+            "sequence_arc_similarity": 0.5875576036866359,
+            "scored_match_fraction_original": 0.823170731707317
+          },
+          "counts": {
+            "original_observations": 984,
+            "scorable_observations": 984,
+            "unscorable_observations": 0,
+            "correct": 810,
+            "candidate_covered": 983,
+            "candidate_misses": 1,
+            "road_classes": 291,
+            "sequence_length": 434
+          },
+          "loss_sum": 429.0173241650076,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 32.23530200011737,
+          "metric_elapsed_ms": 7.0726659996580565,
+          "trip_id": "00000051"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9635922330097088,
+            "macro_f1": 0.883216925808824,
+            "precision_macro": 0.901917257513334,
+            "recall_macro": 0.8763553683070785,
+            "candidate_miss_rate": 0.0,
+            "log_loss": 0.09376651933573202,
+            "sequence_arc_similarity": 0.8639846743295019,
+            "scored_match_fraction_original": 0.9635922330097088
+          },
+          "counts": {
+            "original_observations": 2472,
+            "scorable_observations": 2472,
+            "unscorable_observations": 0,
+            "correct": 2382,
+            "candidate_covered": 2472,
+            "candidate_misses": 0,
+            "road_classes": 497,
+            "sequence_length": 522
+          },
+          "loss_sum": 231.79083579792953,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 59.78598200090346,
+          "metric_elapsed_ms": 11.545354000190855,
+          "trip_id": "00000055"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8808510638297873,
+            "macro_f1": 0.8504183894124893,
+            "precision_macro": 0.8677166166637685,
+            "recall_macro": 0.8529838340042734,
+            "candidate_miss_rate": 0.0012158054711246201,
+            "log_loss": 0.34259827519889136,
+            "sequence_arc_similarity": 0.6594202898550725,
+            "scored_match_fraction_original": 0.8808510638297873
+          },
+          "counts": {
+            "original_observations": 1645,
+            "scorable_observations": 1645,
+            "unscorable_observations": 0,
+            "correct": 1449,
+            "candidate_covered": 1643,
+            "candidate_misses": 2,
+            "road_classes": 304,
+            "sequence_length": 414
+          },
+          "loss_sum": 562.8889661517785,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 50.40568999902462,
+          "metric_elapsed_ms": 6.974760999582941,
+          "trip_id": "00000057"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8676814988290398,
+            "macro_f1": 0.741254165587499,
+            "precision_macro": 0.7584232804232803,
+            "recall_macro": 0.74255291005291,
+            "candidate_miss_rate": 0.02224824355971897,
+            "log_loss": 0.3158382559068142,
+            "sequence_arc_similarity": 0.8162291169451074,
+            "scored_match_fraction_original": 0.8676814988290398
+          },
+          "counts": {
+            "original_observations": 854,
+            "scorable_observations": 854,
+            "unscorable_observations": 0,
+            "correct": 741,
+            "candidate_covered": 835,
+            "candidate_misses": 19,
+            "road_classes": 450,
+            "sequence_length": 419
+          },
+          "loss_sum": 263.72494368218986,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 26.873292001255322,
+          "metric_elapsed_ms": 8.634600999357644,
+          "trip_id": "00000060"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.5916083916083916,
+            "macro_f1": 0.5351264475599375,
+            "precision_macro": 0.5685146725815058,
+            "recall_macro": 0.5437345721546428,
+            "candidate_miss_rate": 0.1,
+            "log_loss": 0.8691952345049674,
+            "sequence_arc_similarity": 0.3045325779036827,
+            "scored_match_fraction_original": 0.5916083916083916
+          },
+          "counts": {
+            "original_observations": 1430,
+            "scorable_observations": 1430,
+            "unscorable_observations": 0,
+            "correct": 846,
+            "candidate_covered": 1287,
+            "candidate_misses": 143,
+            "road_classes": 325,
+            "sequence_length": 706
+          },
+          "loss_sum": 1118.654266807893,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 44.087636999393,
+          "metric_elapsed_ms": 7.154230999731226,
+          "trip_id": "00000061"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9574773053033923,
+            "macro_f1": 0.8688728085901324,
+            "precision_macro": 0.8802595775152167,
+            "recall_macro": 0.8719632414369257,
+            "candidate_miss_rate": 0.001433349259436216,
+            "log_loss": 0.123856410305043,
+            "sequence_arc_similarity": 0.9164086687306502,
+            "scored_match_fraction_original": 0.9574773053033923
+          },
+          "counts": {
+            "original_observations": 2093,
+            "scorable_observations": 2093,
+            "unscorable_observations": 0,
+            "correct": 2004,
+            "candidate_covered": 2090,
+            "candidate_misses": 3,
+            "road_classes": 665,
+            "sequence_length": 646
+          },
+          "loss_sum": 258.8598975375399,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 53.12536800011003,
+          "metric_elapsed_ms": 14.499144999717828,
+          "trip_id": "00000064"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8660886319845857,
+            "macro_f1": 0.5351340361373351,
+            "precision_macro": 0.5709592472323943,
+            "recall_macro": 0.5311191007775944,
+            "candidate_miss_rate": 0.012042389210019268,
+            "log_loss": 0.39222266737705097,
+            "sequence_arc_similarity": 0.3846153846153846,
+            "scored_match_fraction_original": 0.8660886319845857
+          },
+          "counts": {
+            "original_observations": 2076,
+            "scorable_observations": 2076,
+            "unscorable_observations": 0,
+            "correct": 1798,
+            "candidate_covered": 2051,
+            "candidate_misses": 25,
+            "road_classes": 201,
+            "sequence_length": 351
+          },
+          "loss_sum": 804.4486907903315,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 49.697690999892075,
+          "metric_elapsed_ms": 5.083779000415234,
+          "trip_id": "00000070"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8071696344892221,
+            "macro_f1": 0.6626354193440309,
+            "precision_macro": 0.6925900737707971,
+            "recall_macro": 0.6501141792092319,
+            "candidate_miss_rate": 0.0007029053420805998,
+            "log_loss": 0.4746963650158494,
+            "sequence_arc_similarity": 0.17435424354243545,
+            "scored_match_fraction_original": 0.8071696344892221
+          },
+          "counts": {
+            "original_observations": 4268,
+            "scorable_observations": 4268,
+            "unscorable_observations": 0,
+            "correct": 3445,
+            "candidate_covered": 4265,
+            "candidate_misses": 3,
+            "road_classes": 265,
+            "sequence_length": 1084
+          },
+          "loss_sum": 2024.5799967925977,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 99.47089299930667,
+          "metric_elapsed_ms": 8.240655000918196,
+          "trip_id": "00000082"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8053025577043045,
+            "macro_f1": 0.6771495622661862,
+            "precision_macro": 0.7036840649067545,
+            "recall_macro": 0.6716363851539356,
+            "candidate_miss_rate": 0.005988771054273237,
+            "log_loss": 0.5097659569361264,
+            "sequence_arc_similarity": 0.17455621301775148,
+            "scored_match_fraction_original": 0.8052523236229805
+          },
+          "counts": {
+            "original_observations": 16031,
+            "scorable_observations": 16030,
+            "unscorable_observations": 1,
+            "correct": 12909,
+            "candidate_covered": 15934,
+            "candidate_misses": 96,
+            "road_classes": 797,
+            "sequence_length": 3380
+          },
+          "loss_sum": 8122.610757820237,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 384.83735999943747,
+          "metric_elapsed_ms": 31.119429999307613,
+          "trip_id": "00000084"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8805970149253731,
+            "macro_f1": 0.7528607788223174,
+            "precision_macro": 0.7766929651545036,
+            "recall_macro": 0.752345185678519,
+            "candidate_miss_rate": 0.007462686567164179,
+            "log_loss": 0.31069300480783213,
+            "sequence_arc_similarity": 0.8348214285714286,
+            "scored_match_fraction_original": 0.8805970149253731
+          },
+          "counts": {
+            "original_observations": 536,
+            "scorable_observations": 536,
+            "unscorable_observations": 0,
+            "correct": 472,
+            "candidate_covered": 532,
+            "candidate_misses": 4,
+            "road_classes": 234,
+            "sequence_length": 224
+          },
+          "loss_sum": 165.2886785577667,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 18.314966999241733,
+          "metric_elapsed_ms": 5.314199001077213,
+          "trip_id": "00000090"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.7375886524822695,
+            "macro_f1": 0.6448854799807555,
+            "precision_macro": 0.6774544175948917,
+            "recall_macro": 0.6512668910583908,
+            "candidate_miss_rate": 0.0025789813023855577,
+            "log_loss": 0.6919587420544641,
+            "sequence_arc_similarity": 0.43000000000000005,
+            "scored_match_fraction_original": 0.7375886524822695
+          },
+          "counts": {
+            "original_observations": 1551,
+            "scorable_observations": 1551,
+            "unscorable_observations": 0,
+            "correct": 1144,
+            "candidate_covered": 1547,
+            "candidate_misses": 4,
+            "road_classes": 335,
+            "sequence_length": 600
+          },
+          "loss_sum": 1070.4601739582558,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 46.15786499925889,
+          "metric_elapsed_ms": 9.699752001324669,
+          "trip_id": "00000095"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.9649425287356321,
+            "macro_f1": 0.9131654679380895,
+            "precision_macro": 0.9243783993783994,
+            "recall_macro": 0.9151466215982343,
+            "candidate_miss_rate": 0.0017241379310344827,
+            "log_loss": 0.0946558796811932,
+            "sequence_arc_similarity": 0.9179954441913439,
+            "scored_match_fraction_original": 0.9649425287356321
+          },
+          "counts": {
+            "original_observations": 1740,
+            "scorable_observations": 1740,
+            "unscorable_observations": 0,
+            "correct": 1679,
+            "candidate_covered": 1737,
+            "candidate_misses": 3,
+            "road_classes": 429,
+            "sequence_length": 439
+          },
+          "loss_sum": 164.4172630062326,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 46.342497000296135,
+          "metric_elapsed_ms": 9.3190700008563,
+          "trip_id": "00000097"
+        },
+        {
+          "values": {
+            "top1_accuracy": 0.8418103448275862,
+            "macro_f1": 0.7765635791179923,
+            "precision_macro": 0.7986981425704152,
+            "recall_macro": 0.7865324440539992,
+            "candidate_miss_rate": 0.0034482758620689655,
+            "log_loss": 0.39043417028515615,
+            "sequence_arc_similarity": 0.7764102564102564,
+            "scored_match_fraction_original": 0.8410852713178295
+          },
+          "counts": {
+            "original_observations": 2322,
+            "scorable_observations": 2320,
+            "unscorable_observations": 2,
+            "correct": 1953,
+            "candidate_covered": 2312,
+            "candidate_misses": 8,
+            "road_classes": 887,
+            "sequence_length": 975
+          },
+          "loss_sum": 902.683801699281,
+          "unavailable_reasons": {
+            "log_loss": null,
+            "sequence_arc_similarity": null
+          },
+          "candidate_scoring_ms": 66.96190699949511,
+          "metric_elapsed_ms": 19.513069999447907,
+          "trip_id": "00000099"
+        }
+      ]
+    }
+  ],
+  "cv": {
+    "top1_accuracy": 0.8428728834760761,
+    "macro_f1": 0.7203526836419709,
+    "precision_macro": 0.7458486853591106,
+    "recall_macro": 0.7178107213002076,
+    "candidate_miss_rate": 0.015154337909265597,
+    "log_loss": 0.3918135768330684,
+    "sequence_arc_similarity": 0.6106351537850521,
+    "scored_match_fraction_original": 0.7597652782642491,
+    "candidate_scoring_ms": 5498.749422004039,
+    "trips": 80,
+    "scorable_observations": 187867,
+    "original_observations": 208417,
+    "unscorable_observations": 20550,
+    "candidate_covered": 185020
+  },
+  "elapsed_s": 12.39704084999903
+}

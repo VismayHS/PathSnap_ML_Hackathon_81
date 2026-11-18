@@ -30,7 +30,8 @@ hostname -I            # Linux;  macOS: ipconfig getifaddr en0;  Windows: ipconf
 export PATHSNAP_MODE=development            # 'evaluator' only once the reserved trips are provided
 export PATHSNAP_DATA_ROOT=/absolute/path/to/Student_folder
 export PATHSNAP_BUNDLE_ROOT=$PWD/artifacts/final         # the bundle A publishes (diagnostic-v1 during M1)
-export PATHSNAP_CORS_ORIGINS="http://<LAPTOP2-IP>:4173,http://<LAPTOP2-IP>:5173"
+# Every browser origin the UI is opened from (scheme, host and port). This replaces the default list.
+export PATHSNAP_CORS_ORIGINS="http://<LAPTOP2-IP>:4173,http://localhost:4173,http://127.0.0.1:4173,http://<LAPTOP2-IP>:5173,http://localhost:5173"
 # evaluator mode only:
 # export PATHSNAP_MODE=evaluator
 # export PATHSNAP_EVALUATOR_ROOT=/absolute/path/to/reserved_trips
@@ -59,7 +60,7 @@ npm run build
 npm run preview          # serves on http://0.0.0.0:4173
 ```
 
-Open `http://localhost:4173` on Laptop 2. You can also change the address without rebuilding: open **Server address** in the panel and enter `http://<LAPTOP1-IP>:8000`, or add `?api=http://<LAPTOP1-IP>:8000` to the URL.
+Open `http://localhost:4173` on Laptop 2 (or `http://<LAPTOP2-IP>:4173`). Whichever address you use must be listed in Laptop 1's `PATHSNAP_CORS_ORIGINS`. You can also change the address without rebuilding: open **Server address** in the panel and enter `http://<LAPTOP1-IP>:8000`, or add `?api=http://<LAPTOP1-IP>:8000` to the URL.
 
 ## Firewall and network troubleshooting
 

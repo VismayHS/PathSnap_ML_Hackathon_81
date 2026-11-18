@@ -163,7 +163,9 @@ python3 -m venv .venv && .venv/bin/python -m pip install -r requirements.lock.tx
 export PATHSNAP_MODE=development                       # 'evaluator' once the reserved trips are provided
 export PATHSNAP_DATA_ROOT=/absolute/path/to/Student_folder
 export PATHSNAP_BUNDLE_ROOT=$PWD/artifacts/hgb-hmm-v1  # the final trained model
-export PATHSNAP_CORS_ORIGINS="http://<LAPTOP2-IP>:4173"  # Laptop 2's UI address (keep the quotes)
+# Browser origins allowed to call the API (keep the quotes). Setting this replaces the default list,
+# so include every address the UI will be opened from.
+export PATHSNAP_CORS_ORIGINS="http://<LAPTOP2-IP>:4173,http://localhost:4173,http://127.0.0.1:4173"
 .venv/bin/python -m uvicorn api.main:app --host 0.0.0.0 --port 8000
 ```
 
@@ -175,10 +177,10 @@ Check it: `curl http://127.0.0.1:8000/health` should show `"ready": true`.
 cd PathSnap_ML_Hackathon_81/ui
 npm ci
 echo "VITE_PATHSNAP_API_URL=http://<LAPTOP1-IP>:8000" > .env.local
-npm run build && npm run preview    # open http://localhost:4173
+npm run build && npm run preview    # open http://localhost:4173 (or http://<LAPTOP2-IP>:4173)
 ```
 
-On one machine, use `127.0.0.1` for both addresses. Windows commands, firewall and CORS troubleshooting, and the demo-day checklist are in [**docs/deployment/two-laptops.md**](docs/deployment/two-laptops.md).
+On one machine, use `127.0.0.1` for both addresses. The browser address must be one of the origins in `PATHSNAP_CORS_ORIGINS`, otherwise the UI shows "Can't reach the PathSnap server". Windows commands, firewall and CORS troubleshooting, and the demo-day checklist are in [**docs/deployment/two-laptops.md**](docs/deployment/two-laptops.md).
 
 ### API in one paragraph
 

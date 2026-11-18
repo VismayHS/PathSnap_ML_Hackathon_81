@@ -8,7 +8,7 @@ This is the team's reading guide and progress log. It records what has actually 
 
 B created common bootstrap commit `cea374cbdedb1ac1028c7ab85d41a1f55a4e51e6`, including this document, and published separate A/B worktrees. Both agents accepted contract `0.1.0`, aggregate SHA-256 `efbc1d7adcb18d639edd7997ab6627f5103196f9756efdf017dc49c82457ffd4`. A synced B's reference-isolation amendment in commit `0a0e9c431b6e3cdb045d61eb186666a78c2903b1`.
 
-A is working in `PathSnap_worktrees/llm-a` on branch `work/llm-a`. Initial parsing, geometry, candidate/features, alignment, graph/Viterbi, facade and diagnostic-export source has been written. The tested environment is pinned in commit `16b447a`; all 11 initial source tests passed. Committed-source real-data EDA and diagnostic runs are next. No model has been trained and no integrated application has been verified by A. A diagnostic is for wiring, not a trained-model benchmark.
+A is working in `PathSnap_worktrees/llm-a` on branch `work/llm-a`. Initial parsing, geometry, candidate/features, alignment, graph/Viterbi, facade and diagnostic-export source has been written. The tested environment is pinned in commit `16b447a`; all 11 initial source tests passed. Committed-source EDA and diagnostic runs have now completed; their evidence paths are recorded below. No model has been trained and no integrated application has been verified by A. A diagnostic is for wiring, not a trained-model benchmark.
 
 A maintains this guide and scientific source on its own branch, then supplies pinned commits for B to integrate. For new decisions see [science notes](../team/science-notes.md). The team-facing guide is now tracked in Git; the original bootstrap-pending note below is historical.
 
@@ -113,12 +113,12 @@ After baselines, run genuine Bayesian optimization with grouped CV, retain actua
 | Milestone | Intended evidence | Current status |
 |---|---|---|
 | M0 | Common Git base, separate worktrees, accepted interface hash | Completed contract handshake; both ACKs recorded in shared accepted-contract manifest |
-| M1 | Real permitted-data prediction path and API/map vertical slice | Scientific diagnostic source written; 11 initial tests passed; real-data and integration checks next |
+| M1 | Real permitted-data prediction path and API/map vertical slice | A diagnostic passed all ten student-test trips and CLI/core parity; combined API/UI integration pending |
 | M2 | Five measured models and application coverage | Not started |
 | M3 | Bayesian trials, final assets, HMM and measured comparisons | Not started |
 | M4 | Audited report, integrated checks and delivery readiness | Not started |
 
-A's next actions are to run committed-source real-data EDA and diagnostics, provide B the pinned M1 handoff, and profile a training-only pilot before choosing the experiment budget. B owns application and integration progress reporting; this file currently makes no claims about unreviewed B work.
+A's next actions are to review B's integration of the pinned M1 handoff, then profile a training-only pilot and implement the measured five-model comparison after milestone synchronization. B owns application and integration progress reporting; this file currently makes no claims about unreviewed B work.
 
 External requirements still pending include organizer scoring clarification, reserved evaluator provisioning, actual two-physical-laptop demonstration, and public repository submission. Local preparation is not proof of those steps.
 
@@ -132,3 +132,5 @@ When updating this log, include source/run IDs and evidence paths for new result
 - **18 November 2026:** Bootstrap/worktrees and bilateral contract acceptance completed. Continued in A's worktree. Wrote initial scientific modules and tests, an explicitly diagnostic artifact exporter, and the shared inference facade; validation remains pending dependency installation. Preliminary full-dataset candidate profiling gave 1,359,081 training candidate rows (1,362 empty observations) and 130,963 student-test candidate rows (none empty), using approximate local geometry at 100 m/top-8. These are budget estimates, not finalized coverage scores; missing reference arcs require separate aligned-label coverage accounting.
 
 - **18 November 2026:** The isolated Python environment passed dependency compatibility checks and all 11 initial scientific tests. Published the direct pins and complete dependency lock in commit `16b447a`; sent B `A-0010` so application work can use the tested versions. No model training or integrated application acceptance is claimed.
+
+- **18 November 2026 — M1 scientific evidence:** Reproducible EDA completed on all 90 permitted trips from source `e40733568bc39c41f771940469420d50b58e2929`; see `results/eda/initial-validation-v1/{metadata.json,trips.csv,file-hashes.json}`. The fingerprint matches the preliminary inspection. The explicitly geometric diagnostic completed all ten student-test trips (19,160 observations) from check source `9540ae6004a91d402bf24f35bbc3564cf2d0be7a`; see `results/experiments/m1-diagnostic-v1/{summary.json,checks.json}` and `artifacts/diagnostic-v1/manifest.json`. Core prediction took approximately 72–859 ms per trip in this run, excluding prior input loading and HTTP serialization. All boundary invariants passed; first-trip CLI/core arc/status/segment signatures matched. Scoring remains unavailable. Nearest-geometry choices produce many disconnected pieces (e.g. 1,022 on trip `00000000`); these are exposed, not bridged or called accurate. No trained-model or HMM benchmark results exist yet.

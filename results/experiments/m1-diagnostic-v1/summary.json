@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "run_id": "m1-diagnostic-v1",
+  "source_git_sha": "9540ae6004a91d402bf24f35bbc3564cf2d0be7a",
+  "model_kind": "diagnostic",
+  "trained_models_evaluated": 0,
+  "benchmark_metrics_available": false,
+  "startup_load_ms": 107.25289899983181,
+  "manifest_sha256": "138bf5ac32ac5f18eaa90a4d55225d4ccbfea9424eed02656ca4ddd93ea38502",
+  "checks": {
+    "contract_invariants": "passed for all listed development trips",
+    "reference_guard": "Path.open .route access rejected during prediction/scoring",
+    "cli_core_signature_parity": "passed on first listed trip",
+    "reserved_evaluator": "not provisioned, not inspected",
+    "actual_api_ui_lan": "not tested by this command"
+  },
+  "trips": [
+    {
+      "trip_id": "00000000",
+      "observation_count": 2503,
+      "statuses": {
+        "matched": 2503
+      },
+      "route_pieces": 1022,
+      "network_context_segments": 911,
+      "warning_counts": {
+        "decoder_break": 1021,
+        "diagnostic_model": 1
+      },
+      "timings_ms": {
+        "load_input": 7.8245109998533735,
+        "clean": 30.47631499975978,
+        "candidates": 292.58930800006056,
+        "features": 72.82018700061599,
+        "model": 23.63680399957957,
+        "decode": 44.43265000008978,
+        "geometry": 53.300806999686756,
+        "predict_total": 517.2742010008733
+      },
+      "scoring_status": "unavailable",
+      "signature_sha256": "d9971beade151039cf160e5f439c1557a211ce2b5db11783cb7c4e1df04e6d0c"
+    },
+    {
+      "trip_id": "00000007",
+      "observation_count": 1354,
+      "statuses": {
+        "matched": 1354
+      },
+      "route_pieces": 476,
+      "network_context_segments": 388,
+      "warning_counts": {
+        "decoder_break": 475,
+        "diagnostic_model": 1
+      },
+      "timings_ms": {
+        "load_input": 2.4290789997394313,
+        "clean": 17.032227999152383,
+        "candidates": 133.6219249997157,
+        "features": 39.507174999926065,
+        "model": 13.301451000188536,
+        "decode": 12.54379300007713,
+        "geometry": 29.001978000451345,
+        "predict_total": 245.02759300048638
+      },
+      "scoring_status": "unavailable",
+      "signature_sha256": "a8771dfeb9b37a5e0a80dc8fae2f5b661fbff30bda456efedabb0819bf7a9d09"
+    },
+    {
+      "trip_id": "00000009",
+      "observation_count": 1049,
+      "statuses": {
+        "matched": 1049
+      },
+      "route_pieces": 115,
+      "network_context_segments": 1389,
+      "warning_counts": {
+        "decoder_break": 114,
+        "diagnostic_model": 1
+      },
+      "timings_ms": {
+        "load_input": 4.592144000525877,
+        "clean": 22.350339999320568,
+        "candidates": 122.89096700078517,
+        "features": 30.528311999660218,
+        "model": 10.507940000024973,
+        "decode": 31.605554000634584,
+        "geometry": 52.434764000281575,
+        "predict_total": 270.3317879995666
+      },
+      "scoring_status": "unavailable",
+      "signature_sha256": "1ebd0cc6aaadf2987652099af350578fbecf9071d72751fb8d067ce77c02eae4"
+    },
+    {
+      "trip_id": "00000040",
+      "observation_count": 2995,
+      "statuses": {
+        "matched": 2995
+      },
+      "route_pieces": 922,
+      "network_context_segments": 1185,
+      "warning_counts": {
+        "decoder_break": 921,
+        "diagnostic_model": 1
+      },
+      "timings_ms": {
+        "load_input": 9.861675000138348,
+        "clean": 31.838576000154717,
+        "candidates": 326.11371300026804,
+        "features": 88.71215099952678,
+        "model": 30.656240999633155,
+        "decode": 68.53612099985185,
+        "geometry": 67.41956299993035,
+        "predict_total": 613.2935910000015
+      },
+      "scoring_status": "unavailable",
+      "signature_sha256": "3ff0bd89270ed16aea6844444f013a51d0ec5d611cbebca4dd4f71999dbbecc7"
+    },
+    {
+      "trip_id": "00000052",
+      "observation_count": 262,
+      "statuses": {
+        "matched": 262
+      },
+      "route_pieces": 63,
+      "network_context_segments": 352,
+      "warning_counts": {
+        "decoder_break": 62,
+        "diagnostic_model": 1
+      },
+      "timings_ms": {
+        "load_input": 1.672891999987769,
+        "clean": 16.815089999909105,
+        "candidates": 28.97077200032072,
+        "features": 7.8604869995615445,
+        "model": 2.673936000064714,
+        "decode": 8.706536999852688,
+        "geometry": 7.012532000771898,
+        "predict_total": 72.05088899991097
+      },
+      "scoring_status": "unavailable",
+      "signature_sha256": "295693aeab127aeba31b57b742ecc2b1ab888c2d0f95f615bb17edd183a27729"
+    },
+    {
+      "trip_id": "00000056",
+      "observation_count": 3958,
+      "statuses": {
+        "matched": 3958
+      },
+      "route_pieces": 721,
+      "network_context_segments": 2156,
+      "warning_counts": {
+        "decoder_break": 720,
+        "diagnostic_model": 1
+      },
+      "timings_ms": {
+        "load_input": 10.695734999899287,
+        "clean": 33.3744569998089,
+        "candidates": 438.75492600000143,
+        "features": 150.46865300064383,
+        "model": 43.37151799973071,
+        "decode": 93.18541099946742,
+        "geometry": 99.41139700003987,
+        "predict_total": 858.582689999821
+      },
+      "scoring_status": "unavailable",
+      "signature_sha256": "2cc382ecb8dc9ef8577ee32511a473f52ad293a865fc115af6c00a916b9406f3"
+    },
+    {
+      "trip_id": "00000065",
+      "observation_count": 768,
+      "statuses": {
+        "matched": 768
+      },
+      "route_pieces": 136,
+      "network_context_segments": 698,
+      "warning_counts": {
+        "decoder_break": 134,
+        "gps_gap": 1,
+        "diagnostic_model": 1
+      },
+      "timings_ms": {
+        "load_input": 4.789584999343788,
+        "clean": 25.446562999604794,
+        "candidates": 100.93621099986194,
+        "features": 24.6405269999741,
+        "model": 8.349912000085169,
+        "decode": 34.25525599959656,
+        "geometry": 20.24307800002134,
+        "predict_total": 213.88506699986465
+      },
+      "scoring_status": "unavailable",
+      "signature_sha256": "b7c9cc0b8ea8bd657395c346d2296f5acc20d5a667d5516d4532b8035508a14e"
+    },
+    {
+      "trip_id": "00000076",
+      "observation_count": 1486,
+      "statuses": {
+        "matched": 1486
+      },
+      "route_pieces": 224,
+      "network_context_segments": 1750,
+      "warning_counts": {
+        "decoder_break": 222,
+        "gps_gap": 1,
+        "diagnostic_model": 1
+      },
+      "timings_ms": {
+        "load_input": 16.82626099955087,
+        "clean": 45.549314999334456,
+        "candidates": 204.5934239995404,
+        "features": 43.94124800001009,
+        "model": 14.744371000233514,
+        "decode": 148.76445899972168,
+        "geometry": 44.04696299934585,
+        "predict_total": 501.65633899996465
+      },
+      "scoring_status": "unavailable",
+      "signature_sha256": "95046460f40837a13814434e22295f8aa2aa9f8c5fc096f6b9cf79294afe7d8f"
+    },
+    {
+      "trip_id": "00000077",
+      "observation_count": 3911,
+      "statuses": {
+        "matched": 3911
+      },
+      "route_pieces": 482,
+      "network_context_segments": 1158,
+      "warning_counts": {
+        "decoder_break": 481,
+        "diagnostic_model": 1
+      },
+      "timings_ms": {
+        "load_input": 5.610166000224126,
+        "clean": 22.769062999941525,
+        "candidates": 412.1129459999793,
+        "features": 114.26959500022349,
+        "model": 38.068826999733574,
+        "decode": 26.845983999919554,
+        "geometry": 106.228218999604,
+        "predict_total": 720.3086589997838
+      },
+      "scoring_status": "unavailable",
+      "signature_sha256": "5c76098ab2d5f2a7748aa9ad55a86bce85a782dee8edba72d6bfbc88a7f58a9e"
+    },
+    {
+      "trip_id": "00000091",
+      "observation_count": 874,
+      "statuses": {
+        "matched": 874
+      },
+      "route_pieces": 150,
+      "network_context_segments": 805,
+      "warning_counts": {
+        "decoder_break": 149,
+        "diagnostic_model": 1
+      },
+      "timings_ms": {
+        "load_input": 4.2230500002915505,
+        "clean": 21.80323300035525,
+        "candidates": 105.93605400026718,
+        "features": 25.071539000236953,
+        "model": 8.455483000034292,
+        "decode": 28.36884899988945,
+        "geometry": 23.123232999751053,
+        "predict_total": 212.77136100070493
+      },
+      "scoring_status": "unavailable",
+      "signature_sha256": "9ecd31d9e3b06db22605e20639aee063ba2f5b8c53d83d8a6b61396d2451738a"
+    }
+  ]
+}

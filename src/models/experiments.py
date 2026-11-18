@@ -10,6 +10,7 @@ import warnings
 import joblib
 import numpy as np
 from threadpoolctl import threadpool_limits
+from src.contracts import validate_trip_id_syntax
 from src.models.estimators import CONFIGS, FAMILIES, OBJECTIVES, make_estimator
 from src.evaluation.metrics import score_estimator, aggregate
 
@@ -19,7 +20,13 @@ def load_cache(cache):
     sampling = json.loads((cache/'training-observation-sampling.json').read_text())
     trips = {}
     for record in index['records']:
+        if record['partition'] not in ['train','student_test']:
+            raise ValueError('Only permitted development partitions can enter training caches')
+        validate_trip_id_syntax(record['trip_id'])
         path = cache/record['cache_path']
+        expected = cache/record['partition']/f"{record['trip_id']}.npz"
+        if path != expected or not path.resolve().is_relative_to(cache.resolve()):
+            raise ValueError('Processed cache path escapes its registered trip')
         if hashlib.sha256(path.read_bytes()).hexdigest() != record['cache_sha256']:
             raise ValueError('Processed cache checksum mismatch')
         with np.load(path, allow_pickle=False) as data:

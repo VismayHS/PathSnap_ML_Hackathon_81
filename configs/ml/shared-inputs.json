@@ -1,0 +1,19 @@
+{
+  "data_fingerprint": "1a27fe44527456ceacfb9f060f3d833a60ef7cdbf2eae44fbf030712e99a4ec1",
+  "feature_version": "candidate-geometry-v1",
+  "feature_names": [
+    "distance_m",
+    "log_distance",
+    "heading_cosine",
+    "heading_valid",
+    "log_length",
+    "projection_fraction",
+    "speed_mps",
+    "delta_t_s",
+    "distance_excess_over_nearest_m"
+  ],
+  "config_sha256": "27f645c79cc5e9ddb55e0c245694ccf0432fd688181d1f139be77cfead778480",
+  "split_sha256": "e0f02c93f555bfd042f8b9ddf5ce4c4b2d32eff2761fcd72d72986edc7cc14cf",
+  "sampling_sha256": "c528eb4c7aebf7148c9d49ed40d97645d26d37d5dbc47a62d7110e70fa1b5bcf",
+  "cache_content_sha256": "251a6b88949895ea219d7322ad8af492d6d5f7cc81ff3cb419d9a60d00f63833"
+}

@@ -13,11 +13,15 @@ from src.data_processing.candidates import SegmentIndex
 from src.features.candidate import FEATURE_NAMES, FEATURE_VERSION, build_features
 from src.evaluation.reference import read_reference
 from src.evaluation.alignment import align_reference
+from src.models.provenance import raw_development_fingerprint
 
 
 def prepare(root, cache, evidence, config, fingerprint):
     if cache.exists() or evidence.exists():
         raise FileExistsError('Use fresh cache and evidence directories')
+    actual_fingerprint = raw_development_fingerprint(root)
+    if actual_fingerprint != fingerprint:
+        raise ValueError('Raw permitted dataset differs from the expected fingerprint')
     source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
     cache.mkdir(parents=True); evidence.mkdir(parents=True)
     started = time.perf_counter(); records = []; sampling = {}

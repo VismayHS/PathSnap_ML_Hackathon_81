@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pathsnap.local/contracts/http.schema.json",
+  "title": "PathSnap HTTP contract",
+  "description": "Contract 0.1.0 (PROPOSED). Wire geometry is WGS84 [lon, lat]; bounds [west, south, east, north]; times seconds; distances metres; timings milliseconds. No NaN/Infinity. additionalProperties:false everywhere so no reference/label field can be added silently.",
+  "x-contract-version": "0.1.0",
+  "x-endpoints": {
+    "GET /health": {"200": "#/$defs/HealthResponse", "note": "Always 200 while the process is alive; readiness is the 'ready' flag."},
+    "GET /trips": {"200": "#/$defs/TripsResponse", "503": "#/$defs/ErrorResponse (data_not_configured)"},
+    "POST /predict": {
+      "request": "#/$defs/PredictRequest",
+      "200": "#/$defs/PredictResponse",
+      "404": "#/$defs/ErrorResponse (unknown_trip)",
+      "422": "#/$defs/ErrorResponse (invalid_request)",
+      "429": "#/$defs/ErrorResponse (busy; retryable)",
+      "500": "#/$defs/ErrorResponse (prediction_failed | internal_error)",
+      "503": "#/$defs/ErrorResponse (model_not_ready | data_not_configured | trip_data_unavailable)"
+    }
+  },
+  "x-headers": {"X-Request-ID": "Echoed/generated on every response; equals body.request_id; appears in Laptop 1 logs."},
+  "$defs": {
+    "SchemaVersion": {"type": "string", "const": "0.1.0"},
+    "Mode": {"type": "string", "enum": ["development", "evaluator"]},
+    "TripId": {"type": "string", "pattern": "^[A-Za-z0-9_-]{1,64}$"},
+    "RequestId": {"type": "string", "minLength": 8, "maxLength": 64},
+    "LonLat": {
+      "type": "array",
+      "prefixItems": [
+        {"type": "number", "minimum": -180, "maximum": 180},
+        {"type": "number", "minimum": -90, "maximum": 90}
+      ],
+      "items": false,
+      "minItems": 2
+    },
+    "Bounds": {
+      "description": "[west, south, east, north]",
+      "type": "array",
+      "items": {"type": "number"},
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "NullableNumber": {"type": ["number", "null"]},
+    "ModelIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "kind", "family", "decoder", "run_id"],
+      "properties": {
+        "version": {"type": "string"},
+        "kind": {"type": "string", "enum": ["trained", "diagnostic"], "description": "diagnostic = M1 reference-free geometric adapter, never final"},
+        "family": {"type": "string"},
+        "decoder": {"type": "string", "enum": ["hmm_viterbi", "classifier_only", "none"]},
+        "run_id": {"type": "string"}
+      }
+    },
+    "HealthResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "service", "api_version", "status", "ready", "mode", "data_configured", "model", "not_ready_reasons"],
+      "properties": {
+        "schema_version": {"$ref": "#/$defs/SchemaVersion"},
+        "service": {"const": "pathsnap-api"},
+        "api_version": {"type": "string"},
+        "status": {"type": "string", "enum": ["ok", "degraded"]},
+        "ready": {"type": "boolean", "description": "true only when model bundle loaded AND active partition configured"},
+        "mode": {"$ref": "#/$defs/Mode"},
+        "data_configured": {"type": "boolean"},
+        "model": {"oneOf": [{"$ref": "#/$defs/ModelIdentity"}, {"type": "null"}]},
+        "not_ready_reasons": {"type": "array", "items": {"type": "string"}, "description": "Safe codes/messages; no filesystem paths"}
+      }
+    },
+    "TripsResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "mode", "partition_label", "trip_ids", "count"],
+      "properties": {
+        "schema_version": {"$ref": "#/$defs/SchemaVersion"},
+        "mode": {"$ref": "#/$defs/Mode"},
+        "partition_label": {"type": "string", "description": "e.g. 'Student-testing trips (development mode)' or 'Reserved evaluation trips'"},
+        "trip_ids": {"type": "array", "items": {"$ref": "#/$defs/TripId"}, "uniqueItems": true, "description": "Discovered from the configured partition, sorted as strings"},
+        "count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "PredictRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trip_id"],
+      "properties": {"trip_id": {"$ref": "#/$defs/TripId"}}
+    },
+    "Observation": {
+      "description": "One per raw .track row, same order; index = 0-based raw row number.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["index", "lon", "lat", "t", "status", "segment_id", "arc_id", "snapped", "distance_m", "score", "candidate_count", "reason"],
+      "properties": {
+        "index": {"type": "integer", "minimum": 0},
+        "lon": {"$ref": "#/$defs/NullableNumber"},
+        "lat": {"$ref": "#/$defs/NullableNumber"},
+        "t": {"$ref": "#/$defs/NullableNumber", "description": "seconds, as in .track"},
+        "status": {"type": "string", "enum": ["matched", "no_candidate", "invalid", "unmatched"]},
+        "segment_id": {"type": ["integer", "null"]},
+        "arc_id": {"type": ["integer", "null"], "description": "graph-local arc id (row index in this trip's .arcs); null unless matched"},
+        "snapped": {"oneOf": [{"$ref": "#/$defs/LonLat"}, {"type": "null"}]},
+        "distance_m": {"$ref": "#/$defs/NullableNumber"},
+        "score": {"$ref": "#/$defs/NullableNumber", "description": "see PredictResponse.score_kind"},
+        "candidate_count": {"type": "integer", "minimum": 0},
+        "reason": {"type": ["string", "null"]}
+      }
+    },
+    "LineFeature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "geometry", "properties"],
+      "properties": {
+        "type": {"const": "Feature"},
+        "geometry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "coordinates"],
+          "properties": {
+            "type": {"const": "LineString"},
+            "coordinates": {"type": "array", "items": {"$ref": "#/$defs/LonLat"}, "minItems": 2}
+          }
+        },
+        "properties": {"type": "object"}
+      }
+    },
+    "RouteFeatureCollection": {
+      "description": "One LineString per connected RoutePiece. Disconnected pieces are separate features; never bridged.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "features"],
+      "properties": {
+        "type": {"const": "FeatureCollection"},
+        "features": {
+          "type": "array",
+          "items": {
+            "allOf": [{"$ref": "#/$defs/LineFeature"}],
+            "properties": {
+              "properties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["segment_id", "first_index", "last_index", "arc_ids", "arc_roles"],
+                "properties": {
+                  "segment_id": {"type": "integer"},
+                  "first_index": {"type": "integer"},
+                  "last_index": {"type": "integer"},
+                  "arc_ids": {"type": "array", "items": {"type": "integer"}},
+                  "arc_roles": {"type": "array", "items": {"enum": ["observed", "connector"]}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "NetworkFeatureCollection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "features", "policy", "truncated"],
+      "properties": {
+        "type": {"const": "FeatureCollection"},
+        "policy": {"type": "string"},
+        "truncated": {"type": "boolean"},
+        "features": {
+          "type": "array",
+          "items": {
+            "allOf": [{"$ref": "#/$defs/LineFeature"}],
+            "properties": {
+              "properties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["arc_id", "from_node", "to_node"],
+                "properties": {
+                  "arc_id": {"type": "integer"},
+                  "from_node": {"type": "integer"},
+                  "to_node": {"type": "integer"}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "value", "unit", "numerator", "denominator", "denominator_policy", "unavailable_reason"],
+      "properties": {
+        "name": {"type": "string"},
+        "value": {"$ref": "#/$defs/NullableNumber"},
+        "unit": {"type": ["string", "null"]},
+        "numerator": {"type": ["integer", "null"]},
+        "denominator": {"type": ["integer", "null"]},
+        "denominator_policy": {"type": "string"},
+        "unavailable_reason": {"type": ["string", "null"]}
+      }
+    },
+    "Evaluation": {
+      "description": "Aggregate only. Never reference arcs, per-observation labels or correctness masks.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "policy_id", "policy_status", "metrics", "unavailable_reason"],
+      "properties": {
+        "status": {"type": "string", "enum": ["scored", "unavailable"]},
+        "policy_id": {"type": "string"},
+        "policy_status": {"type": "string", "enum": ["provisional", "agreed"]},
+        "metrics": {"type": "array", "items": {"$ref": "#/$defs/Metric"}},
+        "unavailable_reason": {"type": ["string", "null"]}
+      }
+    },
+    "Warning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "observation_indices"],
+      "properties": {
+        "code": {"type": "string"},
+        "message": {"type": "string"},
+        "observation_indices": {"type": ["array", "null"], "items": {"type": "integer"}}
+      }
+    },
+    "Timings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pipeline_ms", "scoring_ms", "request_ms"],
+      "properties": {
+        "pipeline_ms": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0}, "description": "A's stage timings (load_input, clean, candidates, features, model, decode, geometry, predict_total)"},
+        "scoring_ms": {"$ref": "#/$defs/NullableNumber"},
+        "request_ms": {"type": "number", "minimum": 0, "description": "server-side wall time from request receipt to response serialisation start"}
+      }
+    },
+    "PredictResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "request_id", "mode", "partition_label", "trip_id", "model", "score_kind", "observation_count", "observations", "route", "network", "bounds", "timings", "warnings", "evaluation", "synthetic"],
+      "properties": {
+        "schema_version": {"$ref": "#/$defs/SchemaVersion"},
+        "request_id": {"$ref": "#/$defs/RequestId"},
+        "mode": {"$ref": "#/$defs/Mode"},
+        "partition_label": {"type": "string"},
+        "trip_id": {"$ref": "#/$defs/TripId"},
+        "model": {"$ref": "#/$defs/ModelIdentity"},
+        "score_kind": {"type": "string", "enum": ["calibrated_probability", "normalized_score", "none"]},
+        "observation_count": {"type": "integer", "minimum": 0},
+        "observations": {"type": "array", "items": {"$ref": "#/$defs/Observation"}},
+        "route": {"$ref": "#/$defs/RouteFeatureCollection"},
+        "network": {"$ref": "#/$defs/NetworkFeatureCollection"},
+        "bounds": {"$ref": "#/$defs/Bounds"},
+        "timings": {"$ref": "#/$defs/Timings"},
+        "warnings": {"type": "array", "items": {"$ref": "#/$defs/Warning"}},
+        "evaluation": {"$ref": "#/$defs/Evaluation"},
+        "synthetic": {"type": "boolean", "description": "true only for test fixtures; the live API always sends false"}
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "request_id", "error"],
+      "properties": {
+        "schema_version": {"$ref": "#/$defs/SchemaVersion"},
+        "request_id": {"$ref": "#/$defs/RequestId"},
+        "error": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["code", "message", "retryable"],
+          "properties": {
+            "code": {"type": "string", "enum": ["invalid_request", "unknown_trip", "busy", "model_not_ready", "data_not_configured", "trip_data_unavailable", "prediction_failed", "internal_error"]},
+            "message": {"type": "string", "description": "Safe for display; no paths, stack traces or labels"},
+            "retryable": {"type": "boolean"}
+          }
+        }
+      }
+    }
+  }
+}

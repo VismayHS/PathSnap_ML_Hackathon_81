@@ -1,0 +1,11 @@
+numpy
+pandas
+scikit-learn
+optuna
+folium
+matplotlib
+pyproj
+networkx
+fastapi
+uvicorn[standard]
+joblib

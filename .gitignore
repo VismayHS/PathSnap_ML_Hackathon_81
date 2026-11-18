@@ -1,0 +1,39 @@
+# Dataset lives outside the repo (../Student_folder); never commit raw or derived data
+data/raw/**
+data/processed/**
+!data/**/README.md
+!data/raw/*/
+*.track
+*.nodes
+*.arcs
+*.route
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# Node / UI
+node_modules/
+ui/dist/
+ui/test-results/
+ui/playwright-report/
+ui/.vite/
+
+# OS / editor
+.DS_Store
+*.swp

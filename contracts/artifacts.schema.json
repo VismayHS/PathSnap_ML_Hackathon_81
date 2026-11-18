@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pathsnap.local/contracts/artifacts.schema.json",
+  "title": "PathSnap artifact, results and development-visualisation schemas",
+  "description": "Contract 0.1.0 (PROPOSED). A produces these files; B validates/consumes them. All paths inside are relative (to the bundle root or repository root as stated). No absolute workstation paths.",
+  "x-contract-version": "0.1.0",
+  "$defs": {
+    "Sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "RelPath": {"type": "string", "pattern": "^(?!/)(?!.*\\.\\.)[^\\\\]+$"},
+    "ArtifactFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "path", "sha256", "bytes"],
+      "properties": {
+        "role": {"type": "string", "description": "e.g. classifier, preprocessor, feature_schema, hmm_config"},
+        "path": {"$ref": "#/$defs/RelPath"},
+        "sha256": {"$ref": "#/$defs/Sha256"},
+        "bytes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "Feature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "dtype"],
+      "properties": {"name": {"type": "string"}, "dtype": {"type": "string"}, "unit": {"type": ["string", "null"]}}
+    },
+    "BundleManifest": {
+      "description": "<bundle_root>/manifest.json. B checks schema, file existence and sha256 at API startup; any failure => model_not_ready.",
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["manifest_version", "contract_version", "model_version", "model_kind", "model_family", "decoder", "run_id", "source_git_sha", "config_sha256", "data_fingerprint", "files", "features", "score_kind", "crs", "graph_assumptions", "candidate_policy", "decoder_config", "dependencies"],
+      "properties": {
+        "manifest_version": {"const": 1},
+        "contract_version": {"type": "string"},
+        "model_version": {"type": "string"},
+        "model_kind": {"enum": ["trained", "diagnostic"]},
+        "model_family": {"type": "string"},
+        "decoder": {"enum": ["hmm_viterbi", "classifier_only", "none"]},
+        "run_id": {"type": "string"},
+        "source_git_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "config_sha256": {"$ref": "#/$defs/Sha256"},
+        "data_fingerprint": {"type": "string", "description": "fingerprint of permitted training data used (train/student_test only)"},
+        "files": {"type": "array", "items": {"$ref": "#/$defs/ArtifactFile"}, "minItems": 1},
+        "features": {"type": "array", "items": {"$ref": "#/$defs/Feature"}, "description": "ordered feature schema"},
+        "score_kind": {"enum": ["calibrated_probability", "normalized_score", "none"]},
+        "score_normalization": {"type": "string"},
+        "crs": {"type": "object", "description": "projection/geodesic assumptions, e.g. {\"input\": \"EPSG:4326\", \"metric\": \"EPSG:25832\"}"},
+        "graph_assumptions": {"type": "object", "description": "e.g. directed arcs as supplied, no reverse edges added, zero-length arc handling, arc/node IDs graph-local"},
+        "candidate_policy": {"type": "object", "description": "radius_m, top_k, spatial index, metric projection"},
+        "decoder_config": {"type": "object"},
+        "dependencies": {"type": "object", "additionalProperties": {"type": "string"}, "description": "package -> version actually used"}
+      }
+    },
+    "ResultRecord": {
+      "description": "One metric value. A writes these (CSV/JSONL) under results/experiments|hpo|hmm/<run_id>/. B's report tooling reads them verbatim; no recomputation.",
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["run_id", "source_git_sha", "model_name", "model_family", "variant", "decoder", "partition", "fold", "trip_id", "metric", "value", "denominator", "policy_id"],
+      "properties": {
+        "run_id": {"type": "string"},
+        "source_git_sha": {"type": "string"},
+        "model_name": {"type": "string"},
+        "model_family": {"type": "string"},
+        "variant": {"enum": ["untuned", "tuned", "diagnostic"]},
+        "decoder": {"enum": ["hmm_viterbi", "classifier_only", "none"]},
+        "partition": {"enum": ["train_cv", "train", "student_test"]},
+        "fold": {"type": ["integer", "null"]},
+        "trip_id": {"type": ["string", "null"], "description": "null for aggregated rows"},
+        "metric": {"type": "string"},
+        "value": {"type": ["number", "null"]},
+        "denominator": {"type": ["integer", "null"]},
+        "policy_id": {"type": "string"},
+        "unavailable_reason": {"type": ["string", "null"]}
+      }
+    },
+    "DevVisualisation": {
+      "description": "Development-only Folium handoff (train/student_test ONLY). Written by A to results/hmm/visualisation/<run_id>/<trip_id>.json (or agreed path). Never served by the API or copied into ui/.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "partition", "trip_id", "run_id", "source_git_sha", "model_version", "gps", "network", "reference", "predictions"],
+      "properties": {
+        "schema": {"const": "pathsnap-dev-vis/1"},
+        "partition": {"enum": ["train", "student_test"]},
+        "trip_id": {"type": "string"},
+        "run_id": {"type": "string"},
+        "source_git_sha": {"type": "string"},
+        "model_version": {"type": "string"},
+        "gps": {"type": "array", "items": {"type": "array", "prefixItems": [{"type": "integer"}, {"type": "number"}, {"type": "number"}, {"type": ["number", "null"]}], "items": false}, "description": "[index, lon, lat, t]"},
+        "network": {"type": "array", "items": {"type": "object", "required": ["arc_id", "coordinates"]}, "description": "arcs near the trajectory, [lon, lat] coordinates"},
+        "reference": {"type": ["object", "null"], "required": ["arc_ids", "pieces"], "description": "reference route geometry: pieces = list of [lon,lat] lists; null if unavailable"},
+        "predictions": {
+          "type": "object",
+          "description": "keys: decoder variants e.g. classifier_only, hmm_viterbi; values: {pieces: [[[lon,lat],...]], observations: [[index, arc_id|null, status]]}",
+          "additionalProperties": {"type": "object", "required": ["pieces"]}
+        }
+      }
+    }
+  }
+}

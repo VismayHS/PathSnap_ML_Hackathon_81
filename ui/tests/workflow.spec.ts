@@ -159,3 +159,40 @@ test('changing server mid-request drops the old server context', async ({ page }
   await expect(page.getByRole('heading', { name: /Trip 00000077/ })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Select a trip' })).toBeDisabled();
 });
+
+test('route playback runs, pauses and resets without fake progress', async ({ page }) => {
+  await openApp(page);
+  await page.getByRole('radio', { name: '00000052' }).check();
+  await page.getByRole('button', { name: 'Reconstruct route' }).click();
+  await expect(page.getByRole('heading', { name: /Trip 00000052/ })).toBeVisible();
+  await page.getByRole('combobox', { name: 'Playback speed' }).selectOption('240');
+  await page.getByRole('button', { name: 'Play route' }).click();
+  await expect(page.getByText(/point #\d+/)).toBeVisible();
+  await page.waitForTimeout(600);
+  await page.getByRole('button', { name: 'Pause' }).click();
+  const paused = await page.locator('.play-status').textContent();
+  await page.waitForTimeout(500);
+  await expect(page.locator('.play-status')).toHaveText(paused!);
+  await page.getByRole('button', { name: 'Reset' }).click();
+  await expect(page.locator('.play-status')).toHaveCount(0);
+  // a new prediction starts with a fresh playback state
+  await page.getByRole('button', { name: 'Play route' }).click();
+  await page.getByRole('radio', { name: '00000091' }).check();
+  await page.getByRole('button', { name: 'Reconstruct route' }).click();
+  await expect(page.getByRole('heading', { name: /Trip 00000091/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Play route' })).toBeVisible();
+});
+
+test('observations can be inspected without a pointer', async ({ page }) => {
+  await openApp(page);
+  await page.getByRole('radio', { name: '00000052' }).check();
+  await page.getByRole('button', { name: 'Reconstruct route' }).click();
+  await expect(page.getByRole('heading', { name: /Trip 00000052/ })).toBeVisible();
+  await page.getByLabel('Inspect observation').fill('10');
+  await page.getByLabel('Inspect observation').press('Enter');
+  await expect(page.getByRole('heading', { name: 'Observation #10' })).toBeVisible();
+  await page.getByRole('button', { name: 'Next observation' }).click();
+  await expect(page.getByRole('heading', { name: 'Observation #11' })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('heading', { name: /Observation #/ })).toHaveCount(0);
+});

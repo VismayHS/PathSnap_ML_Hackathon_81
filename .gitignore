@@ -38,3 +38,4 @@ ui/.vite/
 .DS_Store
 *.swp
 *.tsbuildinfo
+report/build/

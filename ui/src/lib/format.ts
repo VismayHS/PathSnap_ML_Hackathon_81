@@ -38,7 +38,7 @@ export const STAGE_LABELS: Record<string, string> = {
 
 export const SCORE_KIND_LABEL: Record<Prediction['score_kind'], string> = {
   calibrated_probability: 'calibrated probability',
-  normalized_score: 'normalised score (not a probability)',
+  normalized_score: 'normalised score, not a probability',
   none: 'no score',
 };
 

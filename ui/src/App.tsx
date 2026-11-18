@@ -4,6 +4,7 @@ import {
   DECODER_LABEL, metricLabel, metricValue, ms, SCORE_KIND_LABEL, STAGE_LABELS, summariseWarnings, WARNING_LABELS,
 } from './lib/format';
 import { MapView, observationAt, type LayerKey, type LayerVisibility } from './map/MapView';
+import { RATES, usePlayback, type Rate } from './map/usePlayback';
 
 type Conn =
   | { state: 'checking' }
@@ -97,9 +98,11 @@ export default function App() {
   const trips = conn.state === 'connected' ? conn.trips : null;
   const canRun = !!health?.ready && !!tripId && run.state !== 'running';
   const obs = observationAt(prediction, selected);
+  const playback = usePlayback(prediction);
 
   return (
     <div className="app">
+      <a className="skip" href="#trips-section">Skip to trip selection</a>
       <aside className="panel" aria-label="PathSnap controls">
         <header className="panel-head">
           <h1>PathSnap</h1>
@@ -129,7 +132,7 @@ export default function App() {
           >
             <label htmlFor="api-base">API URL</label>
             <div className="row">
-              <input id="api-base" value={draftBase} onChange={(e) => setDraftBase(e.target.value)} spellCheck={false} inputMode="url" />
+              <input id="api-base" name="api-base" type="url" autoComplete="off" value={draftBase} onChange={(e) => setDraftBase(e.target.value)} spellCheck={false} placeholder="http://192.168.1.10:8000" />
               <button className="btn" type="submit">Connect</button>
             </div>
           </form>
@@ -149,7 +152,7 @@ export default function App() {
         )}
 
         {trips && (
-          <section className="block">
+          <section className="block" id="trips-section" tabIndex={-1}>
             <div className="mode-line">
               <h2 id="trips-label">Trips</h2>
               <span className={trips.mode === 'development' ? 'badge badge-dev' : 'badge badge-eval'}>
@@ -161,7 +164,7 @@ export default function App() {
               {trips.trip_ids.map((id) => (
                 <label key={id} className={`trip ${id === tripId ? 'is-selected' : ''}`}>
                   <input type="radio" name="trip" value={id} checked={id === tripId} onChange={() => chooseTrip(id)} />
-                  <span className="mono">{id}</span>
+                  <span className="mono" translate="no">{id}</span>
                 </label>
               ))}
             </div>
@@ -182,13 +185,51 @@ export default function App() {
               <button className="btn" onClick={() => void reconstruct()}>Try again</button>
             </div>
           )}
-          {prediction && <Results p={prediction} />}
+          {prediction && (
+            <>
+              <Results p={prediction} />
+              <form
+                className="inspect-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const v = Number(new FormData(e.currentTarget).get('obs'));
+                  if (Number.isInteger(v) && v >= 0 && v < prediction.observation_count) setSelected(v);
+                }}
+              >
+                <label htmlFor="obs-index">Inspect observation</label>
+                <div className="row">
+                  <input id="obs-index" name="obs" type="number" min={0} max={prediction.observation_count - 1} defaultValue={0} autoComplete="off" />
+                  <button className="btn" type="submit">Show on map</button>
+                </div>
+                <p className="hint">Or click any GPS point on the map. Esc closes the details.</p>
+              </form>
+            </>
+          )}
         </section>
       </aside>
 
       <main className="stage">
-        <MapView prediction={prediction} visible={visible} selected={selected} onSelect={onSelect} fitToken={fitToken}>
+        <MapView prediction={prediction} visible={visible} selected={selected} onSelect={onSelect} fitToken={fitToken} playhead={playback.frame?.index ?? null}>
           <div className="map-tools">
+            {playback.available && (
+              <div className="playback" role="group" aria-label="Route playback">
+                <button className="btn btn-map" onClick={playback.toggle} aria-pressed={playback.playing}>
+                  {playback.playing ? 'Pause' : 'Play route'}
+                </button>
+                <button className="btn btn-map" onClick={playback.reset} disabled={!playback.frame}>Reset</button>
+                <label className="rate">
+                  <span className="visually-hidden">Playback speed</span>
+                  <select value={playback.rate} onChange={(e) => playback.setRate(Number(e.target.value) as Rate)}>
+                    {RATES.map((r) => <option key={r} value={r}>{r}× speed</option>)}
+                  </select>
+                </label>
+                {playback.frame && (
+                  <span className="play-status" aria-live="off">
+                    {Math.round(playback.elapsed)} / {Math.round(playback.duration)} s, point #{playback.frame.index}
+                  </span>
+                )}
+              </div>
+            )}
             <button className="btn btn-map" onClick={() => setFitToken((n) => n + 1)} disabled={!prediction}>Fit route</button>
           </div>
           <fieldset className={`layers ${layersOpen ? '' : 'is-collapsed'}`}>
@@ -214,7 +255,11 @@ export default function App() {
             <section className="inspector" aria-label={`Observation ${obs.index}`}>
               <div className="inspector-head">
                 <h3>Observation <span className="mono">#{obs.index}</span></h3>
-                <button className="btn btn-ghost" onClick={() => setSelected(null)} aria-label="Close observation details">Close</button>
+                <div className="inspector-nav">
+                  <button className="btn btn-ghost" onClick={() => setSelected(Math.max(0, obs.index - 1))} disabled={obs.index === 0} aria-label="Previous observation">Prev</button>
+                  <button className="btn btn-ghost" onClick={() => setSelected(Math.min(prediction.observation_count - 1, obs.index + 1))} disabled={obs.index >= prediction.observation_count - 1} aria-label="Next observation">Next</button>
+                  <button className="btn btn-ghost" onClick={() => setSelected(null)} aria-label="Close observation details">Close</button>
+                </div>
               </div>
               <dl className="kv">
                 <dt>Time</dt><dd>{obs.t === null ? '—' : `${obs.t.toFixed(0)} s`}</dd>
@@ -340,7 +385,7 @@ function Results({ p }: { p: Prediction }) {
           <div className="metric"><dt>Whole request (server)</dt><dd>{ms(p.timings.request_ms)}</dd></div>
         </dl>
       </details>
-      <p className="hint">Request ID <span className="mono">{p.request_id}</span> (matches the Laptop 1 API log)</p>
+      <p className="hint">Request ID <span className="mono" translate="no">{p.request_id}</span> (matches the Laptop 1 API log)</p>
     </>
   );
 }

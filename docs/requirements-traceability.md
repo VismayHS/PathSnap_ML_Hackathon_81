@@ -51,13 +51,13 @@ Last updated: 2026-11-18, after M4 (`main` `499c5ef`).
 | R1 | Public GitHub repository with all code, organised folders, README with install/run/deploy | DL §1 | repository, `README.md`, `docs/deployment/two-laptops.md` | the repo is public and pushed | B | Done |
 | R2 | Saved model weights and configs (within size limits) | DL §1 | `artifacts/hgb-hmm-v1` | checksummed manifest, verified at API startup | A | Done |
 | R3 | No secrets committed | DL §1 | `.gitignore`, pre-push scans | scan before each push | B | Done |
-| R4 | One consolidated PDF report following DL §2–7 | DL §1–2 | `report/`, `scripts/build_report.py` | `report/PathSnap_Technical_Report.pdf` (24 pages), reviewed by A and B at M4 | B (A science) | Partial: team names/SRN and release SHA filled; the team's AI statement and the LAN screenshot remain |
+| R4 | One consolidated PDF report following DL §2–7 | DL §1–2 | `report/`, `scripts/build_report.py` | `report/PathSnap_Technical_Report.pdf` (24 pages), reviewed by A and B at M4 | B (A science) | Partial: only the physical two-laptop terminal screenshot remains |
 | R5 | EDA in report: preprocessing, patterns, features, missing values, trajectory and network plots, ≥1 Folium map, partition named | DL §2.2 | A plots + B Folium | report section 2, figures S1–S2 | A/B | Done |
 | R6 | Comparison table, a subsection per model, required plots | DL §3 | A | report section 3, confusion matrices | A | Done (incl. feature ablation) |
 | R7 | HPO section | DL §4 | A | report section 4 | A | Done |
 | R8 | HMM section with classifier vs HMM | DL §5 | A | report section 5 | A | Done |
 | R9 | Folium maps: GPS, network, reference, predicted; legend, layers, extent; HTML or code committed | DL §6 | `src/visualisation/folium/make_maps.py` | `maps/hgb-hmm-v1/` (10 trips), report figures S1–S2 | B | Done |
-| R10 | UI screenshots and API response screenshots on the receiving laptop's terminal | DL §7 | — | UI screenshots (report S3–S4), single-machine API log excerpt | B | Partial: physical-LAN terminal screenshot pending |
+| R10 | UI screenshots and API response screenshots on the receiving laptop's terminal | DL §7 | — | UI screenshots (report S3–S4), single-machine API log excerpt | B | Partial: Wi-Fi-interface check recorded; physical two-laptop terminal screenshot pending |
 
 ## Mandatory: integrity
 
@@ -65,7 +65,7 @@ Last updated: 2026-11-18, after M4 (`main` `499c5ef`).
 |---|---|---|---|---|
 | I1 | Independent work, no shared code or weights across teams | AP §4, MG §11 | — | Team responsibility |
 | I2 | No fabricated metrics, graphs or results; every number traceable | AP §5, DL §8 | run IDs, source SHAs, evidence manifests | Ongoing |
-| I3 | Disclose AI assistance as the event policy requires | DL §8 rule 5 | `docs/team/README.md`, `docs/team/context/` | Partial: needs the team's statement in the report |
+| I3 | Disclose AI assistance as the event policy requires | DL §8 rule 5 | `report/sections/integrity.md`, `docs/team/context/` | Done |
 | I4 | Every member can explain the work (viva) | AP §5–6 | `docs/team/`, `docs/ml/` notes | Team responsibility |
 
 ## External and pending items
@@ -73,4 +73,3 @@ Last updated: 2026-11-18, after M4 (`main` `499c5ef`).
 - Organisers to clarify the official pointwise scoring and alignment semantics (metrics are labelled provisional until then).
 - Reserved evaluator trips: received and run once on the frozen system (aggregate results recorded).
 - Two-physical-laptop demonstration and real terminal screenshots.
-- Team AI-assistance disclosure wording in the report.

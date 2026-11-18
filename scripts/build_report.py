@@ -43,6 +43,7 @@ tr, img, pre, figure { break-inside: avoid; page-break-inside: avoid; } thead { 
 img { max-width: 100%; display: block; margin: 6pt auto; border: 1px solid #d3d9dd; }
 code { font-family: 'IBM Plex Mono', 'DejaVu Sans Mono', monospace; font-size: 9pt; }
 pre { background: #f4f6f7; padding: 6pt; font-size: 8pt; white-space: pre; overflow: hidden; }
+code.language-log { white-space: pre-wrap; overflow-wrap: anywhere; }  /* long log lines wrap; diagrams keep white-space: pre */
 .pending { color: #b42318; font-weight: 600; }
 .missing { color: #b42318; border: 1px dashed #b42318; padding: 8pt; }
 figcaption, .caption { font-size: 9pt; color: #56616b; text-align: center; }

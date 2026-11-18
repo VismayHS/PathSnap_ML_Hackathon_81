@@ -2,6 +2,13 @@
 
 Newest first. Each entry: what happened, why, what's next. Times are local (IST).
 
+## 2026-11-18, about 13:40: report filled in
+
+- **Team fields:** team PT-081 (Section F) names and SRNs, from the department's allocation sheet, are on the report front page and in the README. The release commit is `7e347de`.
+- **AI-assistance statement** written in `report/sections/integrity.md`. It says which tools did what and what we did ourselves. **Everyone should read it before submitting.**
+- **LAN check on one laptop:** the UI was opened over the laptop's Wi-Fi IP, a plain-HTTP origin like Laptop 2. It worked, and the request IDs matched the server log. Log lines in the PDF now wrap instead of being cut off.
+- **Only remaining item:** the two-laptop rehearsal and a real screenshot of Laptop 1's terminal (`report/sections/system.md`, then rebuild the PDF).
+
 ## 2026-11-18, about 13:30: M4 accepted; the report PDF is on `main`
 
 - **M4 (`499c5ef`)** is on `main`: the feature ablation, the final science wording (evaluator data was not used during development; the final run is reported separately in the system section), pooled continuity 99.96%, and the evaluation-panel layout fix.

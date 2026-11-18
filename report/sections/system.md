@@ -124,11 +124,22 @@ The step-by-step guide is `docs/deployment/two-laptops.md`. In short:
 
 Excerpt of the receiving-end API log from the single-machine run above. Each request ID appears in the UI:
 
-```
+```log
 INFO pathsnap.api predict_start request_id=612076a8a4404356b4eb822e3e7bf131 trip_id=00000000 mode=development model_version=hgb-hmm-v1
 INFO pathsnap.api predict_done  request_id=612076a8a4404356b4eb822e3e7bf131 trip_id=00000000 observations=2503 matched=2503 pieces=3 ...
 INFO pathsnap.api scoring_done  request_id=612076a8a4404356b4eb822e3e7bf131 trip_id=00000000 status=scored scoring_ms=484.7
 INFO pathsnap.api request       request_id=612076a8a4404356b4eb822e3e7bf131 client=127.0.0.1 method=POST path=/predict status=200 ms=1660.0
 ```
+
+**Network check on the Wi-Fi interface (2026-11-18).** As a rehearsal on one laptop, the API listened on all interfaces (`--host 0.0.0.0`). The built UI was served by `npm run preview` and opened in Chrome at the laptop's Wi-Fi address (`http://10.20.205.114:4173`), not `localhost`. That is a non-secure plain-HTTP origin, just like Laptop 2 on a LAN. Two trips were reconstructed with no browser errors, and the request IDs in the UI matched the server log, which recorded the client by its Wi-Fi address:
+
+```log
+INFO pathsnap.api predict_start request_id=4ad37b6b17e0e04409c65cc29014b1ef trip_id=00000091 mode=development model_version=hgb-hmm-v1
+INFO pathsnap.api predict_done  request_id=4ad37b6b17e0e04409c65cc29014b1ef trip_id=00000091 observations=874 matched=874 pieces=1 ...
+INFO pathsnap.api scoring_done  request_id=4ad37b6b17e0e04409c65cc29014b1ef trip_id=00000091 status=scored scoring_ms=206.5
+INFO pathsnap.api request       request_id=4ad37b6b17e0e04409c65cc29014b1ef client=10.20.205.114 method=POST path=/predict status=200 ms=877.7
+```
+
+This exercises the LAN code path (network interface, CORS for a non-localhost origin, request IDs without `crypto.randomUUID`). It does not replace the demonstration on two physical laptops.
 
 PENDING: screenshot of Laptop 1's terminal while Laptop 2 makes requests over the LAN (Deliverables §7). This must be a real capture from the two-laptop setup; the excerpt above is from a single machine.

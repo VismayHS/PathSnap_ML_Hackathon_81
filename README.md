@@ -289,9 +289,10 @@ The full command list with the exact run IDs used is in [`docs/ml/reproduce.md`]
 **Pending outside the code (team or organisers):**
 - [ ] Official pointwise scoring definition from the organisers (our metrics are provisional until then).
 - [x] The 10 reserved evaluator trips: received and run. For the demo, set `PATHSNAP_MODE=evaluator` and `PATHSNAP_EVALUATOR_ROOT=/path/to/evaluator_test`; the data stays outside the repository.
-- [ ] A rehearsal on two physical laptops, and real terminal screenshots for the report.
+- [x] LAN code path checked on one laptop over its Wi-Fi address (report, system section).
+- [ ] A rehearsal on two physical laptops, and a real screenshot of Laptop 1's terminal for the report.
 - [x] Team names and SRNs in the report (team PT-081).
-- [ ] The team's AI-assistance statement in the report (`report/sections/integrity.md`).
+- [x] The team's AI-assistance statement in the report (`report/sections/integrity.md`).
 
 ---
 

@@ -1,6 +1,6 @@
 ## 2. Dataset Understanding
 
-This scientific section uses only the supplied 80 training and ten student-testing trips. Reserved evaluator data were not available and were never inspected. Numerical tables below are generated from saved development JSON/CSV records by `src/evaluation/scientific_report.py`. Pointwise scores use the explicit **provisional** alignment policy `pathsnap-scoring-v0`; organizer clarification remains necessary.
+This scientific section uses only the supplied 80 training and ten student-testing trips. Reserved evaluator data were not available during development and were not inspected for EDA, training or selection. A separate frozen-system final validation is reported in the system section. Numerical tables below are generated from saved development JSON/CSV records by `src/evaluation/scientific_report.py`. Pointwise scores use the explicit **provisional** alignment policy `pathsnap-scoring-v0`; organizer clarification remains necessary.
 
 ### 2.1 Inventory, geometry and cleaning
 
@@ -229,7 +229,7 @@ Development-only GPS/network/reference/prediction exports are under `results/hmm
 
 EDA source `86343842fd4c73c6dd1a15ed99a3da6098eab93f`; baseline source `623a20253e03fa16c1dbecd782b4abd85352789a`; initial HPO source `5af7e3ceacde3f793220f28aa336b8c1f4f008f8` plus explicit recovery; trained comparison source `cce3485c116f589d7aed9554fd573620eb6c4d66`. Full hashes, configuration, data fingerprint, dependencies, per-fold/trip records and feature policy are in those run directories and the artifact manifest. `results/experiments/source-revision-map.json` resolves earlier metadata-cleanup revisions without altering original run evidence.
 
-Required external checks remain organizer confirmation of pointwise alignment, reserved evaluator provisioning and the two-physical-laptop demonstration. Student-test gains do not establish final evaluator performance. Team members should review the interpretation and use `docs/ml/viva-notes.md` to explain the implementation.
+Organizer confirmation of pointwise alignment and the two-physical-laptop demonstration remain external checks. Reserved evaluator data arrived after the serving prediction system was frozen at accepted M3; its separate final validation is reported in the system section with the exact frozen source identity. No model or decoder choices changed after that validation. Student-test gains alone do not establish evaluator performance. Team members should review the interpretation and use `docs/ml/viva-notes.md` to explain the implementation.
 
 Primary method reference: Paul Newson and John Krumm, *Hidden Markov Map Matching Through Noise and Sparseness*, ACM SIGSPATIAL GIS2009, https://www.microsoft.com/en-us/research/publication/hidden-markov-map-matching-noise-sparseness/. The user supplied an Uber Maps talk summary as background; no video was inspected. ECC was reviewed for development workflow guidance only, as documented in `docs/ml/ecc-review.md`; no third-party task implementation or model weights were copied.
 

@@ -20,7 +20,8 @@ Audited against all five supplied PDFs and the master/protocol after M3. This do
 | Development-only Folium handoff |10schema-valid exports;B generated10HTMLmaps, source/coordinate/piece review | Executed; complete map screenshot/PDF review withB |
 | Scientific report reproducibility | `src/evaluation/scientific_report.py` generates `report/sections/science.md` from saved records | Executed; consolidated PDF review withB |
 | Team understanding | `docs/ml/viva-notes.md`, team-understanding.md, methodology/reproduction notes | Prepared; team must review/defend |
-| Reserved evaluator/official pointwise policy/two-physical-laptop demo | Explicit external limits in report/deployment docs | External/pending |
+| Reserved evaluator final API | All ten allowlisted trips independently verified through frozen M3 API, schema/index/privacy/request-ID/log/scoring checks pass; private verification outside Git | Executed after development freeze; no EDA or retuning |
+| Official pointwise policy/two-physical-laptop demo | Explicit external limits in report/deployment docs | External/pending |
 
 Read the HMM counterexample: trip00000007 accuracy decreased despite pooled improvement. Sequence scores are not full-route accuracy; graph continuity does not certify unavailable traffic restrictions. The conditional log-loss value stays the same after Viterbi because it describes classifier emissions, not a posterior distribution.
 

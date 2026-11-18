@@ -21,3 +21,5 @@ The machine-readable supplemental review lives in the shared mailbox at `handoff
 ## How this changes subsequent work
 
 Before adding a model/dependency, inspect the existing code and official library documentation, compare fit with the task and measured budget, and retain a clear decision. Before handing off a milestone, record checks with precise PASS/failure/unconfigured status and keep local correctness separate from deployment acceptance. Use manual review with exact failure scenarios rather than speculative style findings. Record substantive fixes and their executed verification in meaningful commits.
+
+A subsequent concrete parser review finding was fixed in source `8634384`: blank/comment rows now fail explicitly instead of shifting IDs. The latest suite has 14 passing tests and the new immutable `m1-diagnostic-v2/checks.json` records unchanged all-trip counts, fingerprints and prediction signatures. The original 11-test evidence above remains historical.

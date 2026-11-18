@@ -1,0 +1,6 @@
+# Binary model/cache artifacts: never diff or normalise line endings
+*.joblib binary
+*.npz binary
+*.pkl binary
+*.png binary
+*.pdf binary

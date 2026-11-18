@@ -2,6 +2,15 @@
 
 Newest first. Each entry: what happened, why, what's next. Times are local (IST).
 
+## 2026-11-18 — M1 accepted: first end-to-end slice on `main` (`6bd8e8c`)
+
+- **What works:** Laptop 1 API plus the Laptop 2 UI on the 10 student-test trips. Pick a trip, reconstruct, see the predicted route over the GPS and nearby roads, inspect individual points, and play the route back. Every trip returns in under about 1 s.
+- **Important:** the model behind it is a *diagnostic* that snaps each point to the nearest road. It is **not** one of the five trained models, the UI says so, and accuracy metrics are switched off until the real scorer exists.
+- **Checks run:** 34 Python tests, 13 browser tests (keyboard use, small screens, errors, stale responses, LAN-safe request IDs), all 10 trips over real HTTP, and A's independent review of the merged code.
+- **A (science):** five-model pilot measured (each model fits in 0.05–1.7 s on 8 trips), and the full five-model cross-validation baseline is running locally (estimated 5–15 min). A four-laptop training kit is being built, including Windows instructions for the teammate's RTX 4060 laptop.
+- **Still pending outside our control:** organiser clarification of the official accuracy definition, the reserved evaluator trips, a real two-laptop LAN test, and real terminal screenshots for the report.
+- **How to run it:** [docs/deployment/two-laptops.md](../deployment/two-laptops.md).
+
 ## 2026-11-18 — M0 bootstrap (B)
 
 - Read all five PDFs, the master build prompt and the two-LLM protocol.

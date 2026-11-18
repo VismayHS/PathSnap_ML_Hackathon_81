@@ -4,7 +4,7 @@ UE24CS352A Machine Learning hackathon (PES University, RR Campus). Noisy GPS tra
 
 ## For the team
 
-Plain-language status and explanations: [docs/team/](docs/team/README.md) (start with the progress log). Interfaces between components: [contracts/interfaces.md](contracts/interfaces.md).
+Plain-language status and explanations: [docs/team/](docs/team/README.md) (start with the progress log). Interfaces between components: [contracts/interfaces.md](contracts/interfaces.md). Running the demo on two laptops: [docs/deployment/two-laptops.md](docs/deployment/two-laptops.md). Requirement status: [docs/requirements-traceability.md](docs/requirements-traceability.md).
 
 ## Repository layout
 

@@ -6,10 +6,29 @@ const METRIC_LABELS: Record<string, string> = {
   precision_macro: 'Precision (macro)',
   recall_macro: 'Recall (macro)',
   candidate_miss_rate: 'Candidate miss rate',
-  route_continuity: 'Route continuity',
+  route_continuity: 'Graph continuity',
   log_loss: 'Log loss',
-  scorable_observations: 'Scorable observations',
+  sequence_arc_similarity: 'Observed-arc sequence similarity',
+  scored_match_fraction_original: 'Correct matches / all GPS rows',
+  scorable_observations: 'Scorable GPS rows',
+  unscorable_observations: 'Unscorable GPS rows',
+  original_observations: 'Original GPS rows',
+  candidate_covered: 'Candidate-covered scorable rows',
+  candidate_misses: 'Scorable candidate misses',
 };
+
+// Plain-language meaning shown on hover/focus (wording reviewed by A, A-0035).
+export const METRIC_HINTS: Record<string, string> = {
+  sequence_arc_similarity: 'Compressed observed-arc edit similarity; not full-route accuracy.',
+  scored_match_fraction_original: 'Unscorable rows stay in the denominator.',
+  route_continuity: 'Consecutive matches connected under the supplied directed network and time bound.',
+  log_loss: 'Classifier emissions on candidate-covered observations; identical for both decoders.',
+};
+
+/** Metrics shown as headline values; the rest are counts shown in a compact list. */
+export const COUNT_METRICS = new Set([
+  'scorable_observations', 'unscorable_observations', 'original_observations', 'candidate_covered', 'candidate_misses',
+]);
 
 export const metricLabel = (name: string) =>
   METRIC_LABELS[name] ?? name.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase());

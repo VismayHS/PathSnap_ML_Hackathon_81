@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { api, ApiError, defaultApiBase, rememberApiBase, type Health, type Prediction, type Trips } from './lib/api';
 import {
-  DECODER_LABEL, metricLabel, metricValue, ms, SCORE_KIND_LABEL, STAGE_LABELS, summariseWarnings, WARNING_LABELS,
+  COUNT_METRICS, DECODER_LABEL, METRIC_HINTS, metricLabel, metricValue, ms, SCORE_KIND_LABEL, STAGE_LABELS, summariseWarnings, WARNING_LABELS,
 } from './lib/format';
 import { MapView, observationAt, type LayerKey, type LayerVisibility } from './map/MapView';
 import { RATES, usePlayback, type Rate } from './map/usePlayback';
@@ -341,9 +341,12 @@ function Results({ p }: { p: Prediction }) {
       ) : (
         <>
           <dl className="kv metrics">
-            {p.evaluation.metrics.map((m) => (
+            {p.evaluation.metrics.filter((m) => !COUNT_METRICS.has(m.name)).map((m) => (
               <div key={m.name} className="metric">
-                <dt title={m.denominator_policy}>{metricLabel(m.name)}</dt>
+                <dt>
+                  {metricLabel(m.name)}
+                  {METRIC_HINTS[m.name] && <span className="metric-hint">{METRIC_HINTS[m.name]}</span>}
+                </dt>
                 <dd>
                   {metricValue(m)}
                   {m.numerator !== null && m.denominator !== null && (
@@ -354,6 +357,14 @@ function Results({ p }: { p: Prediction }) {
               </div>
             ))}
           </dl>
+          <details className="timings">
+            <summary>Observation counts</summary>
+            <dl className="kv">
+              {p.evaluation.metrics.filter((m) => COUNT_METRICS.has(m.name)).map((m) => (
+                <div key={m.name} className="metric"><dt>{metricLabel(m.name)}</dt><dd>{m.value === null ? 'Unavailable' : m.value.toLocaleString()}</dd></div>
+              ))}
+            </dl>
+          </details>
           <p className="hint">
             Scoring policy <span className="mono">{p.evaluation.policy_id}</span>
             {p.evaluation.policy_status === 'provisional' ? ' (provisional, pending organiser confirmation)' : ''}. Computed on the server

@@ -6,11 +6,13 @@ This is the team's reading guide and progress log. It records what has actually 
 
 ## Current state
 
-The instructions and available development data have been inspected. No model has been trained, no pipeline has been implemented, and no integrated application has been verified by A yet. The repository still has no initial commit. Agent B must create the common bootstrap commit, publish the worker paths, and propose the interface contract before dependent implementation starts.
+B created common bootstrap commit `cea374cbdedb1ac1028c7ab85d41a1f55a4e51e6`, including this document, and published separate A/B worktrees. Both agents accepted contract `0.1.0`, aggregate SHA-256 `efbc1d7adcb18d639edd7997ab6627f5103196f9756efdf017dc49c82457ffd4`. A synced B's reference-isolation amendment in commit `0a0e9c431b6e3cdb045d61eb186666a78c2903b1`.
 
-This document was added to the repository directory at the user's request before worktrees existed. It is awaiting inclusion in B's bootstrap commit; it is not yet committed. After bootstrap, A maintains it in A's assigned worktree and hands off committed revisions for integration. No separate documentation branch is needed: the document travels with the reviewed scientific changes.
+A is working in `PathSnap_worktrees/llm-a` on branch `work/llm-a`. Initial parsing, geometry, candidate/features, alignment, graph/Viterbi, facade and diagnostic-export source has been written. The tested environment is pinned in commit `16b447a`; all 11 initial source tests passed. Committed-source real-data EDA and diagnostic runs are next. No model has been trained and no integrated application has been verified by A. A diagnostic is for wiring, not a trained-model benchmark.
 
-A has sent three findings/startup messages and a documentation handoff through the shared mailbox. No B reply was available at this update. A sent questions about official scoring semantics to B for organizer clarification; no organizer request or answer has been independently verified.
+A maintains this guide and scientific source on its own branch, then supplies pinned commits for B to integrate. For new decisions see [science notes](../team/science-notes.md). The team-facing guide is now tracked in Git; the original bootstrap-pending note below is historical.
+
+Official scoring semantics are still provisional. A sent the alignment/denominator question to B, who reported that the team must seek organizer clarification. No organizer answer has been verified.
 
 ## What we are building
 
@@ -110,13 +112,13 @@ After baselines, run genuine Bayesian optimization with grouped CV, retain actua
 
 | Milestone | Intended evidence | Current status |
 |---|---|---|
-| M0 | Common Git base, separate worktrees, accepted interface hash | Waiting for B bootstrap and proposal |
-| M1 | Real permitted-data prediction path and API/map vertical slice | Not implemented; a geometric diagnostic must be labeled clearly |
+| M0 | Common Git base, separate worktrees, accepted interface hash | Completed contract handshake; both ACKs recorded in shared accepted-contract manifest |
+| M1 | Real permitted-data prediction path and API/map vertical slice | Scientific diagnostic source written; 11 initial tests passed; real-data and integration checks next |
 | M2 | Five measured models and application coverage | Not started |
 | M3 | Bayesian trials, final assets, HMM and measured comparisons | Not started |
 | M4 | Audited report, integrated checks and delivery readiness | Not started |
 
-A's next actions are to review B's published contract, verify the common base/worktree and contract hashes, persist reproducible EDA, implement candidate/feature/alignment mechanics, and profile a training-only pilot before choosing the experiment budget. B owns application and integration progress reporting; this file currently makes no claims about unreviewed B work.
+A's next actions are to run committed-source real-data EDA and diagnostics, provide B the pinned M1 handoff, and profile a training-only pilot before choosing the experiment budget. B owns application and integration progress reporting; this file currently makes no claims about unreviewed B work.
 
 External requirements still pending include organizer scoring clarification, reserved evaluator provisioning, actual two-physical-laptop demonstration, and public repository submission. Local preparation is not proof of those steps.
 
@@ -126,3 +128,7 @@ External requirements still pending include organizer scoring clarification, res
 - **18 November 2026:** Added this team guide at the user's request and prepared message `A-0004` asking B to include the exact document in bootstrap. Document remains uncommitted until that happens.
 
 When updating this log, include source/run IDs and evidence paths for new results, separate implemented from executed and externally verified work, and correct stale status statements. Team members should review this guide and the recorded results before using its explanations in the report or viva. AI assistance must be disclosed as required by the event policy; it does not replace the team's understanding or actual experimentation.
+
+- **18 November 2026:** Bootstrap/worktrees and bilateral contract acceptance completed. Continued in A's worktree. Wrote initial scientific modules and tests, an explicitly diagnostic artifact exporter, and the shared inference facade; validation remains pending dependency installation. Preliminary full-dataset candidate profiling gave 1,359,081 training candidate rows (1,362 empty observations) and 130,963 student-test candidate rows (none empty), using approximate local geometry at 100 m/top-8. These are budget estimates, not finalized coverage scores; missing reference arcs require separate aligned-label coverage accounting.
+
+- **18 November 2026:** The isolated Python environment passed dependency compatibility checks and all 11 initial scientific tests. Published the direct pins and complete dependency lock in commit `16b447a`; sent B `A-0010` so application work can use the tested versions. No model training or integrated application acceptance is claimed.

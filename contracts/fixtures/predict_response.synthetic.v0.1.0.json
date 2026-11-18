@@ -1,0 +1,291 @@
+{
+  "schema_version": "0.1.0",
+  "request_id": "synthetic-0000-0000",
+  "mode": "development",
+  "partition_label": "SYNTHETIC FIXTURE - not real data",
+  "trip_id": "SYNTH0001",
+  "model": {
+    "version": "synthetic-0",
+    "kind": "diagnostic",
+    "family": "synthetic",
+    "decoder": "none",
+    "run_id": "synthetic"
+  },
+  "score_kind": "normalized_score",
+  "observation_count": 5,
+  "observations": [
+    {
+      "index": 0,
+      "lon": 10.0,
+      "lat": 50.0,
+      "t": 0.0,
+      "status": "matched",
+      "segment_id": 0,
+      "arc_id": 0,
+      "snapped": [
+        10.0,
+        50.00001
+      ],
+      "distance_m": 1.1,
+      "score": 0.9,
+      "candidate_count": 2,
+      "reason": null
+    },
+    {
+      "index": 1,
+      "lon": 10.0005,
+      "lat": 50.0,
+      "t": 1.0,
+      "status": "matched",
+      "segment_id": 0,
+      "arc_id": 1,
+      "snapped": [
+        10.0005,
+        50.00001
+      ],
+      "distance_m": 1.1,
+      "score": 0.8,
+      "candidate_count": 2,
+      "reason": null
+    },
+    {
+      "index": 2,
+      "lon": null,
+      "lat": null,
+      "t": 2.0,
+      "status": "invalid",
+      "segment_id": null,
+      "arc_id": null,
+      "snapped": null,
+      "distance_m": null,
+      "score": null,
+      "candidate_count": 0,
+      "reason": "non_finite_coordinate"
+    },
+    {
+      "index": 3,
+      "lon": 10.01,
+      "lat": 50.01,
+      "t": 40.0,
+      "status": "no_candidate",
+      "segment_id": null,
+      "arc_id": null,
+      "snapped": null,
+      "distance_m": null,
+      "score": null,
+      "candidate_count": 0,
+      "reason": "outside_candidate_radius"
+    },
+    {
+      "index": 4,
+      "lon": 10.002,
+      "lat": 50.002,
+      "t": 60.0,
+      "status": "matched",
+      "segment_id": 1,
+      "arc_id": 3,
+      "snapped": [
+        10.002,
+        50.00201
+      ],
+      "distance_m": 1.1,
+      "score": 0.7,
+      "candidate_count": 1,
+      "reason": null
+    }
+  ],
+  "route": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              9.9995,
+              50.00001
+            ],
+            [
+              10.0,
+              50.00001
+            ],
+            [
+              10.001,
+              50.00001
+            ]
+          ]
+        },
+        "properties": {
+          "segment_id": 0,
+          "first_index": 0,
+          "last_index": 1,
+          "arc_ids": [
+            0,
+            1
+          ],
+          "arc_roles": [
+            "observed",
+            "observed"
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              10.0015,
+              50.00201
+            ],
+            [
+              10.0025,
+              50.00201
+            ]
+          ]
+        },
+        "properties": {
+          "segment_id": 1,
+          "first_index": 4,
+          "last_index": 4,
+          "arc_ids": [
+            3
+          ],
+          "arc_roles": [
+            "observed"
+          ]
+        }
+      }
+    ]
+  },
+  "network": {
+    "type": "FeatureCollection",
+    "policy": "synthetic: all arcs",
+    "truncated": false,
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              9.9995,
+              50.00001
+            ],
+            [
+              10.0,
+              50.00001
+            ]
+          ]
+        },
+        "properties": {
+          "arc_id": 0,
+          "from_node": 0,
+          "to_node": 1
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              10.0,
+              50.00001
+            ],
+            [
+              10.001,
+              50.00001
+            ]
+          ]
+        },
+        "properties": {
+          "arc_id": 1,
+          "from_node": 1,
+          "to_node": 2
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              10.001,
+              50.00001
+            ],
+            [
+              10.001,
+              50.002
+            ]
+          ]
+        },
+        "properties": {
+          "arc_id": 2,
+          "from_node": 2,
+          "to_node": 3
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              10.0015,
+              50.00201
+            ],
+            [
+              10.0025,
+              50.00201
+            ]
+          ]
+        },
+        "properties": {
+          "arc_id": 3,
+          "from_node": 4,
+          "to_node": 5
+        }
+      }
+    ]
+  },
+  "bounds": [
+    9.9995,
+    50.0,
+    10.01,
+    50.01
+  ],
+  "timings": {
+    "pipeline_ms": {
+      "predict_total": 0.0
+    },
+    "scoring_ms": null,
+    "request_ms": 0.0
+  },
+  "warnings": [
+    {
+      "code": "gps_gap",
+      "message": "Synthetic 20 s gap between observations 3 and 4",
+      "observation_indices": [
+        3,
+        4
+      ]
+    },
+    {
+      "code": "invalid_observations",
+      "message": "1 observation removed by cleaning",
+      "observation_indices": [
+        2
+      ]
+    }
+  ],
+  "evaluation": {
+    "status": "unavailable",
+    "policy_id": "pathsnap-scoring-v0",
+    "policy_status": "provisional",
+    "metrics": [],
+    "unavailable_reason": "synthetic fixture: no reference exists"
+  },
+  "synthetic": true
+}

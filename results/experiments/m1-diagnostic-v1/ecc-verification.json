@@ -1,0 +1,38 @@
+{
+  "source_sha": "c9b376d995bdab59916934255c2f3a2ae7658737",
+  "workflow": "ECC verification-loop, manually adapted to owned scientific scope; no agent/plugin installer invoked",
+  "compile": {
+    "status": "PASS",
+    "command": ".venv/bin/python -m compileall -q src tests/ml"
+  },
+  "types": {
+    "status": "NOT_CONFIGURED",
+    "note": "No static type checker configured; compile/import checks do not establish static type safety"
+  },
+  "lint": {
+    "status": "NOT_CONFIGURED",
+    "note": "No Python linter configured. CRLF-aware diff whitespace check passed; not a substitute for lint"
+  },
+  "tests": {
+    "status": "PASS",
+    "evidence": "results/experiments/m1-diagnostic-v1/checks.json",
+    "outcome": "...........                                                              [100%]\n11 passed in 0.46s"
+  },
+  "security_scope": {
+    "status": "PASS for specified scans",
+    "tracked_files": 65,
+    "forbidden_raw_or_secret_file_paths": [],
+    "token_private_key_pattern_hits": [],
+    "note": "Targeted scans and manual data-isolation/path review, not an exhaustive vulnerability audit"
+  },
+  "diff_review": {
+    "status": "PASS",
+    "evidence": "A-M1-0001 owned diff and A-0012 peer API review",
+    "branch_clean": true
+  },
+  "target_acceptance": {
+    "status": "NOT_PERFORMED",
+    "note": "No real HTTP/UI/two-laptop/reserved evaluator acceptance by A. Ten-trip diagnostic facade and first-trip CLI parity executed only."
+  },
+  "provenance_note": "Existing test records were executed against original revisions; verified public revision mapping is results/experiments/source-revision-map.json. Metadata-only cleanup preserved the code tree."
+}

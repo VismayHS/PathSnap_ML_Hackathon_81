@@ -1,0 +1,11 @@
+{
+  "aggregate_sha256": "1274c6cb729602c3ceba58cb94b4ebc8c12edf426f8f49c4a44fc473f10fdc85",
+  "files": {
+    "contracts/artifacts.schema.json": "25b0f61f280e659e68709024121c117462171957b87804fcbe8a53ed12ff88a3",
+    "contracts/fixtures/predict_response.synthetic.v0.1.0.json": "77784a1d42109f618bdd14ee5d2c5720c41543b18f8e25a2049d5b87c1af51f3",
+    "contracts/http.schema.json": "ddeac91490f893217708c3e2dfab83278d6a8ef7daa4bfbd97c36f233bf07e04",
+    "contracts/interfaces.md": "dfb72e3f9e6e55903813db243afcd08978d21b1a16c163e8e8cf12b2694449b9",
+    "src/contracts.py": "da2d0e9e389c654e0c65b1450e9e60a42b0d6c20f1b53f289ca3523db9061634"
+  },
+  "version": "0.1.0"
+}

@@ -1,0 +1,13 @@
+{
+  "original_source_git_sha": "5af7e3ceacde3f793220f28aa336b8c1f4f008f8",
+  "recovery_source_git_sha": "8170e51dc98f498a3f4b8308726c7e6d1ab0a01f",
+  "recorded_trial": 11,
+  "recorded_params": {
+    "max_iter": 179,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 80,
+    "learning_rate": 0.12261991419637631,
+    "l2_regularization": 8.75151377351353
+  },
+  "reason": "Original process ended with143; rerun its already sampled final parameters without adding/resampling trials"
+}

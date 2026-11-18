@@ -1,0 +1,121 @@
+{
+  "manifest_version": 1,
+  "contract_version": "0.1.0",
+  "model_version": "hgb-hmm-v1",
+  "model_kind": "trained",
+  "model_family": "hist_gradient_boosting",
+  "decoder": "hmm_viterbi",
+  "run_id": "hgb-hmm-v1",
+  "source_git_sha": "cce3485c116f589d7aed9554fd573620eb6c4d66",
+  "config_sha256": "68f114ec3d00b8924edb684cbfc70cbdb161a17bf2b996584fba6208a6b6ee4a",
+  "data_fingerprint": "1a27fe44527456ceacfb9f060f3d833a60ef7cdbf2eae44fbf030712e99a4ec1",
+  "features": [
+    {
+      "name": "distance_m",
+      "dtype": "float32"
+    },
+    {
+      "name": "log_distance",
+      "dtype": "float32"
+    },
+    {
+      "name": "heading_cosine",
+      "dtype": "float32"
+    },
+    {
+      "name": "heading_valid",
+      "dtype": "float32"
+    },
+    {
+      "name": "log_length",
+      "dtype": "float32"
+    },
+    {
+      "name": "projection_fraction",
+      "dtype": "float32"
+    },
+    {
+      "name": "speed_mps",
+      "dtype": "float32"
+    },
+    {
+      "name": "delta_t_s",
+      "dtype": "float32"
+    },
+    {
+      "name": "distance_excess_over_nearest_m",
+      "dtype": "float32"
+    }
+  ],
+  "score_kind": "normalized_score",
+  "score_normalization": "Clip binary relevance to 1e-12; divide by observation candidate sum; not calibrated confidence",
+  "crs": {
+    "input": "EPSG:4326",
+    "coordinate_order": "lon,lat",
+    "metric": "WGS84 local azimuthal-equidistant centered on median valid GPS; always_xy"
+  },
+  "graph_assumptions": {
+    "directed": true,
+    "reverse_edges_added": false,
+    "arc_ids": "original trip-local zero-based rows",
+    "zero_length_arcs": "retained for topology, excluded from geometric candidates",
+    "geometry": "straight node-to-node segments"
+  },
+  "candidate_policy": {
+    "radius_m": 100.0,
+    "top_k": 8,
+    "index": "length-binned midpoint cKDTree with exact projection refinement"
+  },
+  "decoder_config": {
+    "gap_s": 30.0,
+    "max_speed_mps": 65.0,
+    "transition_scale_m": 25.0,
+    "gps_slack_m": 50.0,
+    "stationary_projection_noise_m": 15.0
+  },
+  "dependencies": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "pyproj": "3.7.1",
+    "scikit-learn": "1.6.1",
+    "joblib": "1.5.1"
+  },
+  "files": [
+    {
+      "role": "feature_schema",
+      "path": "feature-schema.json",
+      "bytes": 278,
+      "sha256": "ac184b3d95e059495ad5ba8722ef33a281e32ef9b8b3282e6ddd7445e92a3a5f"
+    },
+    {
+      "role": "hmm_config",
+      "path": "decoder-config.json",
+      "bytes": 139,
+      "sha256": "c32ffe5e9aa5d47192e6288e1a1435e3f56e768dd542e1eb54221d590754dc04"
+    },
+    {
+      "role": "classifier",
+      "path": "classifier.joblib",
+      "bytes": 290682,
+      "sha256": "6a664bcd35c13a70e6d94300fd419009142e3532c1602ab3d9a5eb6c108bccf4"
+    }
+  ],
+  "training_provenance": {
+    "selected_variant": "tuned",
+    "selection_metric": "fixed training-group CV trip Macro F1",
+    "training_source_sha": "5af7e3ceacde3f793220f28aa336b8c1f4f008f8",
+    "training_run": "hgb-tpe-v1",
+    "training_configuration": {
+      "max_iter": 179,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 80,
+      "learning_rate": 0.12261991419637631,
+      "l2_regularization": 8.75151377351353,
+      "early_stopping": false,
+      "random_state": 81
+    },
+    "training_asset_sha256": "858c81993afa8f80c762b93e35f45c78e1f899710048c6e7bdb7f60d5de96e8f",
+    "untuned_cv_macro_f1": 0.7252192438133924,
+    "tuned_cv_macro_f1": 0.729680187168286
+  }
+}

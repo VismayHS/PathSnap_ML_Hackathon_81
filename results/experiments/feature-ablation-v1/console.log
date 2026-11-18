@@ -1,0 +1,2 @@
+{"feature_variant": "distance_only", "cv_macro_f1": 0.3450989102678509, "student_accuracy": 0.5105782792665726, "elapsed_s": 22.337665929999275}
+{"feature_variant": "distance_heading", "cv_macro_f1": 0.6523643655479925, "student_accuracy": 0.8291281408347699, "elapsed_s": 22.70831712600011}

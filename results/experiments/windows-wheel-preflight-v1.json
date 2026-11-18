@@ -1,0 +1,510 @@
+{
+  "kind": "Official PyPI wheel-tag availability preflight, not executed Windows installation",
+  "target": "CPython3.12 win_amd64",
+  "packages": [
+    {
+      "package": "alembic",
+      "version": "1.20.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "alembic-1.20.1-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "annotated-types",
+      "version": "0.8.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "annotated_types-0.8.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "anyio",
+      "version": "4.16.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "anyio-4.16.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "attrs",
+      "version": "26.1.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "attrs-26.1.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "branca",
+      "version": "0.8.2",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "branca-0.8.2-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "certifi",
+      "version": "2026.10.23",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "certifi-2026.10.23-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "charset-normalizer",
+      "version": "3.5.2",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "charset_normalizer-3.5.2-cp312-cp312-win_amd64.whl",
+        "charset_normalizer-3.5.2-cp37-abi3-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "click",
+      "version": "8.5.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "click-8.5.1-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "colorlog",
+      "version": "6.12.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "colorlog-6.12.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "contourpy",
+      "version": "1.4.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "contourpy-1.4.0-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "cycler",
+      "version": "0.12.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "cycler-0.12.1-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "fastapi",
+      "version": "0.115.12",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "fastapi-0.115.12-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "folium",
+      "version": "0.19.7",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "folium-0.19.7-py2.py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "fonttools",
+      "version": "4.68.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "fonttools-4.68.0-cp312-cp312-win_amd64.whl",
+        "fonttools-4.68.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "h11",
+      "version": "0.16.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "h11-0.16.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "httpcore",
+      "version": "1.0.9",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "httpcore-1.0.9-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "httptools",
+      "version": "0.9.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "httptools-0.9.0-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "httpx",
+      "version": "0.28.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "httpx-0.28.1-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "idna",
+      "version": "3.20",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "idna-3.20-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "iniconfig",
+      "version": "2.3.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "iniconfig-2.3.1-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "Jinja2",
+      "version": "3.1.6",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "jinja2-3.1.6-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "joblib",
+      "version": "1.5.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "joblib-1.5.1-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "jsonschema",
+      "version": "4.24.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "jsonschema-4.24.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "jsonschema-specifications",
+      "version": "2025.9.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "jsonschema_specifications-2025.9.1-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "kiwisolver",
+      "version": "1.5.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "kiwisolver-1.5.1-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "Mako",
+      "version": "1.4.3",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "mako-1.4.3-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "MarkupSafe",
+      "version": "3.0.4",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "markupsafe-3.0.4-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "matplotlib",
+      "version": "3.10.3",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "matplotlib-3.10.3-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "networkx",
+      "version": "3.4.2",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "networkx-3.4.2-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "numpy",
+      "version": "2.2.6",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "numpy-2.2.6-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "optuna",
+      "version": "4.3.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "optuna-4.3.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "packaging",
+      "version": "26.3",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "packaging-26.3-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "pandas",
+      "version": "2.2.3",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "pandas-2.2.3-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "pillow",
+      "version": "13.0.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "pillow-13.0.0-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "pluggy",
+      "version": "1.7.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "pluggy-1.7.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "pydantic",
+      "version": "2.11.5",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "pydantic-2.11.5-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "pydantic_core",
+      "version": "2.33.2",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "pydantic_core-2.33.2-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "pyparsing",
+      "version": "3.3.3",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "pyparsing-3.3.3-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "pyproj",
+      "version": "3.7.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "pyproj-3.7.1-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "pytest",
+      "version": "8.3.5",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "pytest-8.3.5-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "python-dateutil",
+      "version": "4.0.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "python_dateutil-4.0.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "python-dotenv",
+      "version": "1.2.4",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "python_dotenv-1.2.4-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "pytz",
+      "version": "2026.6",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "pytz-2026.6-py2.py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "PyYAML",
+      "version": "6.0.3",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "pyyaml-6.0.3-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "referencing",
+      "version": "0.37.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "referencing-0.37.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "requests",
+      "version": "2.34.2",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "requests-2.34.2-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "rpds-py",
+      "version": "2026.9.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "rpds_py-2026.9.1-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "scikit-learn",
+      "version": "1.6.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "scikit_learn-1.6.1-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "scipy",
+      "version": "1.15.3",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "scipy-1.15.3-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "SQLAlchemy",
+      "version": "2.1.9",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "sqlalchemy-2.1.9-cp312-cp312-win_amd64.whl",
+        "sqlalchemy-2.1.9-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "starlette",
+      "version": "0.46.2",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "starlette-0.46.2-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "threadpoolctl",
+      "version": "3.8.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "threadpoolctl-3.8.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "tqdm",
+      "version": "4.70.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "tqdm-4.70.1-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "typing-inspection",
+      "version": "0.4.5",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "typing_inspection-0.4.5-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "typing_extensions",
+      "version": "4.16.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "typing_extensions-4.16.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "tzdata",
+      "version": "2026.6",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "tzdata-2026.6-py2.py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "urllib3",
+      "version": "2.8.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "urllib3-2.8.0-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "uvicorn",
+      "version": "0.34.2",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "uvicorn-0.34.2-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "watchfiles",
+      "version": "1.3.0",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "watchfiles-1.3.0-cp310-abi3-win_amd64.whl"
+      ]
+    },
+    {
+      "package": "websockets",
+      "version": "17.4",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "websockets-17.4-cp312-cp312-win_amd64.whl",
+        "websockets-17.4-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "xyzservices",
+      "version": "2026.9.1",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "xyzservices-2026.9.1-py3-none-any.whl"
+      ]
+    },
+    {
+      "package": "colorama",
+      "version": "0.4.6",
+      "compatible_windows_wheel": true,
+      "examples": [
+        "colorama-0.4.6-py2.py3-none-any.whl"
+      ]
+    }
+  ],
+  "missing": [],
+  "skipped_by_marker": [
+    "uvloop"
+  ]
+}

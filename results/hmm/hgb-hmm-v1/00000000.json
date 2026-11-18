@@ -1,0 +1,484 @@
+[
+  {
+    "trip_id": "00000000",
+    "decoder": "classifier_only",
+    "metrics": {
+      "top1_accuracy": 0.9444666400319617,
+      "macro_f1": 0.7939419235321206,
+      "precision_macro": 0.8149853935565672,
+      "recall_macro": 0.7902599041360123,
+      "candidate_miss_rate": 0.001997602876548142,
+      "log_loss": 0.1580436429355818,
+      "sequence_arc_similarity": 0.6063829787234043,
+      "scored_match_fraction_original": 0.9444666400319617,
+      "route_continuity": 0.9748201438848921,
+      "scorable_observations": 2503.0,
+      "unscorable_observations": 0.0,
+      "original_observations": 2503.0,
+      "candidate_covered": 2498.0,
+      "candidate_misses": 5.0
+    },
+    "counts": {
+      "top1_accuracy": {
+        "numerator": 2364,
+        "denominator": 2503,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "macro_f1": {
+        "numerator": null,
+        "denominator": 206,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "precision_macro": {
+        "numerator": null,
+        "denominator": 206,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "recall_macro": {
+        "numerator": null,
+        "denominator": 206,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "candidate_miss_rate": {
+        "numerator": 5,
+        "denominator": 2503,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "log_loss": {
+        "numerator": null,
+        "denominator": 2498,
+        "policy": "Scorable observations whose label arc occurs in the candidate set; normalized classifier relevance, not calibrated probability"
+      },
+      "sequence_arc_similarity": {
+        "numerator": null,
+        "denominator": 282,
+        "policy": "One minus normalized Levenshtein distance of compressed scorable observed-arc sequences; not full route accuracy"
+      },
+      "scored_match_fraction_original": {
+        "numerator": 2364,
+        "denominator": 2503,
+        "policy": "All original observation rows, including unscorable rows"
+      },
+      "route_continuity": {
+        "numerator": 2439,
+        "denominator": 2502,
+        "policy": "All consecutive valid observation pairs with 0 < time delta <=30s; unmatched or physically unreachable pairs fail"
+      },
+      "scorable_observations": {
+        "numerator": 2503,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "unscorable_observations": {
+        "numerator": 0,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "original_observations": {
+        "numerator": 2503,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_covered": {
+        "numerator": 2498,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_misses": {
+        "numerator": 5,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      }
+    },
+    "timings_ms": {
+      "load_input": 13.526751999961562,
+      "clean": 26.00454300045385,
+      "candidates": 262.5939670015214,
+      "features": 65.790978998848,
+      "model": 81.4204839989543,
+      "decode": 45.12578100002429,
+      "geometry": 44.74227399987285,
+      "predict_total": 525.6972880015383
+    },
+    "scoring_ms": 429.4261319992074,
+    "wall_s": 0.9578442230013025,
+    "route_pieces": 64,
+    "warnings": [
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      }
+    ]
+  },
+  {
+    "trip_id": "00000000",
+    "decoder": "hmm_viterbi",
+    "metrics": {
+      "top1_accuracy": 0.954854174990012,
+      "macro_f1": 0.8804051844426425,
+      "precision_macro": 0.8888424384689558,
+      "recall_macro": 0.8833891722366534,
+      "candidate_miss_rate": 0.001997602876548142,
+      "log_loss": 0.1580436429355818,
+      "sequence_arc_similarity": 0.85,
+      "scored_match_fraction_original": 0.954854174990012,
+      "route_continuity": 0.9992006394884093,
+      "scorable_observations": 2503.0,
+      "unscorable_observations": 0.0,
+      "original_observations": 2503.0,
+      "candidate_covered": 2498.0,
+      "candidate_misses": 5.0
+    },
+    "counts": {
+      "top1_accuracy": {
+        "numerator": 2390,
+        "denominator": 2503,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "macro_f1": {
+        "numerator": null,
+        "denominator": 189,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "precision_macro": {
+        "numerator": null,
+        "denominator": 189,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "recall_macro": {
+        "numerator": null,
+        "denominator": 189,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "candidate_miss_rate": {
+        "numerator": 5,
+        "denominator": 2503,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "log_loss": {
+        "numerator": null,
+        "denominator": 2498,
+        "policy": "Scorable observations whose label arc occurs in the candidate set; normalized classifier relevance, not calibrated probability"
+      },
+      "sequence_arc_similarity": {
+        "numerator": null,
+        "denominator": 200,
+        "policy": "One minus normalized Levenshtein distance of compressed scorable observed-arc sequences; not full route accuracy"
+      },
+      "scored_match_fraction_original": {
+        "numerator": 2390,
+        "denominator": 2503,
+        "policy": "All original observation rows, including unscorable rows"
+      },
+      "route_continuity": {
+        "numerator": 2500,
+        "denominator": 2502,
+        "policy": "All consecutive valid observation pairs with 0 < time delta <=30s; unmatched or physically unreachable pairs fail"
+      },
+      "scorable_observations": {
+        "numerator": 2503,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "unscorable_observations": {
+        "numerator": 0,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "original_observations": {
+        "numerator": 2503,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_covered": {
+        "numerator": 2498,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_misses": {
+        "numerator": 5,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      }
+    },
+    "timings_ms": {
+      "load_input": 13.526751999961562,
+      "clean": 20.96963799885998,
+      "candidates": 262.2415240002738,
+      "features": 65.83755900101096,
+      "model": 63.83911699958844,
+      "decode": 354.65274499983934,
+      "geometry": 43.78846699910355,
+      "predict_total": 811.3470549997146
+    },
+    "scoring_ms": 427.79899800007115,
+    "wall_s": 1.2421509760006302,
+    "route_pieces": 3,
+    "warnings": [
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "decoder_restart"
+      },
+      {
+        "code": "decoder_break",
+        "message": "decoder_restart"
+      }
+    ]
+  }
+]

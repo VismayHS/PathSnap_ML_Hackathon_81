@@ -1,0 +1,15 @@
+{
+  "version": "candidate-geometry-v1",
+  "names": [
+    "distance_m",
+    "log_distance",
+    "heading_cosine",
+    "heading_valid",
+    "log_length",
+    "projection_fraction",
+    "speed_mps",
+    "delta_t_s",
+    "distance_excess_over_nearest_m"
+  ],
+  "dtype": "float32"
+}

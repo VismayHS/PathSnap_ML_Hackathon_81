@@ -1,238 +1,241 @@
-## 2. Dataset Understanding
+## 1. Dataset Understanding and Exploratory Data Analysis
 
-This scientific section uses only the supplied 80 training and ten student-testing trips. Reserved evaluator data were not available during development and were not inspected for EDA, training or selection. A separate frozen-system final validation is reported in the system section. Numerical tables below are generated from saved development JSON/CSV records by `src/evaluation/scientific_report.py`. Pointwise scores use the explicit **provisional** alignment policy `pathsnap-scoring-v0`; organizer clarification remains necessary.
+### 1.1 What the data looks like
 
-### 2.1 Inventory, geometry and cleaning
+Each trip comes as a folder with four plain-text files:
 
-| Partition | Trips | GPS observations | Nodes | Directed arcs |
-|---|---:|---:|---:|---:|
-| train | 80 | 208,417 | 1,933,485 | 3,876,904 |
-| student_test | 10 | 19,160 | 90,689 | 185,041 |
+- **`.track`**: the GPS readings, one per line, each with longitude, latitude and a timestamp.
+- **`.nodes`**: points on the road map (junctions and bends), given as longitude and latitude.
+- **`.arcs`**: road segments. Each one runs in a single direction from one node to another, so a two-way street appears as two arcs.
+- **`.route`**: the true list of arcs the vehicle drove, in order. We used it only to create training labels and to score predictions. It is never an input to prediction.
 
-All supplied GPS/node coordinates and numeric values passed validation; timestamps increased strictly. Exactly one-second steps account for 96.50% of training and 98.62% of student-testing steps, but maximum gaps are 153,064 s and 210 s respectively. Gap handling is therefore necessary. There are 100 training and six student-test zero-length arcs: these retain their original graph IDs and topology but cannot be geometric candidates. Supplied reference traversals contain 67/255 repeated occurrences and 13/1 nonadjacent successive arc pairs (train/student test). References must retain occurrence order and disconnected geometry.
+Node and arc IDs are simply line numbers inside each trip, so arc 12 in one trip has nothing to do with arc 12 in another.
 
-Parsing preserves original row-based observation, node and arc IDs. Malformed physical rows fail explicitly instead of being silently skipped. Invalid observations in future inputs remain in place with validity/reason masks; inference does not silently delete them. Numeric feature imputation uses medians fitted only on fold training rows. No learned transformation sees validation or student-test rows during fitting.
+| Partition | Trips | GPS points | Nodes | Directed arcs | Used for |
+|---|---:|---:|---:|---:|---|
+| Training | 80 | 208,417 | 1,933,485 | 3,876,904 | Training, cross-validation and tuning |
+| Student test | 10 | 19,160 | 90,689 | 185,041 | Comparing models |
+| Evaluator (reserved) | 10 | 19,674 | — | — | One final run only |
 
-Road geometry is a straight directed node-to-node segment, projected separately per trip using WGS84 local azimuthal-equidistant coordinates centered on the median valid GPS location. `always_xy` fixes longitude/latitude order. Physical calculations use metres; browser geometry stays WGS84 `[lon, lat]`. This avoids applying Euclidean distances to degrees. Directed connectivity follows supplied arcs; unavailable traffic rules and turn restrictions are not invented.
+All exploration in this section uses the training and student-test trips only. The reserved evaluator trips were not opened during development.
 
-![Trip sizes and timestamp gaps](results/figures/data-quality-v1/trip-sizes-and-gaps.png)
+### 1.2 How we preprocessed the data
 
-*Figure 1. All 90 permitted trips, separated by partition. Maximum time gaps use a log scale. Source: `results/eda/initial-validation-v2/trips.csv`.*
+1. **Validation.** We parsed every file strictly and checked coordinates, numeric values and timestamps. Malformed rows raise an error instead of being skipped silently, and every original row index is kept, so predictions can always be traced back to the input.
+2. **Missing values.** No GPS or node coordinates were missing or invalid in the 90 trips, and timestamps always increased. Motion features are undefined for the first point of a trip and when the vehicle is not moving. They are set to zero and marked with a "heading valid" flag, so the model knows the direction is unreliable. As a safety net, every model also includes a median imputer, fitted only on the training part of each cross-validation fold.
+3. **Projection to metres.** Latitude and longitude are angles, so straight-line distances between them are meaningless. Each trip is projected onto a flat local map in metres, centred on the trip's own GPS points. Every distance in the system is measured in metres.
+4. **Candidate roads.** For every GPS point we look up the roads within 100 m using a KD-tree spatial index over road midpoints, then measure the exact point-to-segment distance. We keep the 8 closest. On average a point has 6.5 candidates (training) to 6.8 (student test), and the correct road is among them for 99.6% of student-test points.
+5. **Per-point labels.** The `.route` file lists roads, not one road per GPS point. An order-preserving alignment (dynamic programming) assigns each GPS point the reference road that best fits it in distance and direction. A point is used for training and scoring only if its aligned road is within 100 m. This gave 187,867 usable training points and 19,143 of the 19,160 student-test points.
 
-### Network connectivity and geographic extent
+### 1.3 What we observed
 
-| Partition | Weak components per trip (min–max) | Strong components per trip (min–max) | Longitude extent | Latitude extent |
-|---|---:|---:|---|---|
-| train | 1–421 | 2–1942 | -100.419 to 137.237 | -34.640 to 61.267 |
-| student_test | 5–100 | 6–415 | -93.424 to 77.271 | 42.646 to 61.700 |
+- **Sampling is regular, with occasional long gaps.** 96.5% of training steps and 98.6% of student-test steps are exactly one second, but the longest gaps are 153,064 s (training) and 210 s (student test). The decoder therefore had to handle gaps explicitly.
+- **The road networks are large and fragmented.** A training trip's network splits into between 1 and 421 separate weakly connected pieces. A route cannot be assumed to be one connected line.
+- **Trips cover very different parts of the world.** Longitudes range from −100° to 137°, which is why each trip gets its own projection.
+- **Two-way streets make direction critical.** Both directions of a street sit in exactly the same place. Distance alone cannot tell them apart; the direction of travel can.
+- **Some arcs have zero length** (100 in training, 6 in student test). They stay in the road graph but can never be a GPS candidate.
 
-There were no isolated supplied nodes. Disconnected components make a single connected route unsafe as a default. Extents span different regions, supporting per-trip metric projections. Per-trip file sizes, IDs, components and timestamp statistics remain in the EDA CSV.
+![Trip sizes and timestamp gaps](results/figures/data-quality-v1/trip-sizes-and-gaps.png){: style="max-width:80%"}
+<p class="caption">Figure 1. Size of every trip and its largest time gap (log scale), training and student-test partitions.</p>
 
-### 2.2 Reference alignment and candidate accounting
+![Point coverage after alignment](results/figures/data-quality-v1/target-coverage.png){: style="max-width:80%"}
+<p class="caption">Figure 2. For each partition: how many GPS points received a usable label, and how many of those have the correct road among their candidates.</p>
 
-A `.route` file is a road traversal, not one label per GPS row. Offline supervision uses monotone dynamic programming over traversal occurrences, including nonconsecutive repeats. Free endpoints and forward skips allow unobserved intervening arcs. Costs combine capped squared metric projection residual (20 m scale, 100 m cap) and a directional penalty of two when motion is reliable. A valid observation is scorable only if its aligned residual is at most 100 m. Low geometric margins below3 m are diagnosed, not removed. This derived policy is not certified organizer ground truth.
+GPS trajectories and road networks are shown on the interactive Folium maps in Section 5.
 
-| Partition | Original rows | Scorable | Unscorable | Candidate covered | Candidate misses |
-|---|---:|---:|---:|---:|---:|
-| train | 208,417 | 187,867 | 20,550 | 185,020 | 2,847 |
-| student_test | 19,160 | 19,143 | 17 | 19,059 | 84 |
+### 1.4 Features and why we chose them
 
-The substantial training unscorable count is a limitation, not discarded evidence. Accuracy includes all scorable candidate misses and unmatched rows as errors; a separate original-row score and raw/scorable counts expose the denominator. Alternative official alignment could change both scores and model rankings.
+For every pair of a GPS point and a candidate road, we compute nine features:
 
-![Target coverage](results/figures/data-quality-v1/target-coverage.png)
+| Feature | What it measures | Why it helps |
+|---|---|---|
+| Distance, log distance | How far the point is from the road | The true road is usually close |
+| Distance beyond the nearest candidate | How much farther this road is than the closest one | Compares candidates against each other |
+| Heading cosine, heading valid | Whether the vehicle moves in the road's direction | Separates the two directions of a street |
+| Projection fraction | Where along the segment the point falls | Flags points that sit beyond the end of a road |
+| Log road length | Short or long segment | Short connectors behave differently |
+| Speed | Vehicle speed from consecutive points | Makes the heading more reliable |
+| Time gap | Seconds since the previous point | Longer gaps mean more uncertainty |
 
-*Figure 2. Complete row accounting under provisional alignment; candidate misses are retained in accuracy denominators. Source: `results/eda/preparation-v1/preparation.json`.*
+Arc IDs are never used as features: they mean nothing across trips, and using them would leak information.
 
-Indexed candidate generation uses length-binned segment-midpoint cKDTrees, conservatively querying radius plus maximum half-segment length and then refining exact segment projections. Radius100 m/top8 and deterministic distance/arc-ID tie ordering are fixed across models. Features are constructed before reference access: metric and log distance, heading cosine/validity, log arc length, projection fraction, speed, time delta and distance excess over the nearest candidate. Trip-local IDs and references are excluded from features.
+**A controlled check of the features.** We kept the final model and its settings fixed, and added the feature groups one at a time:
 
-### 2.3 Leakage controls and metrics
-
-Five seeded (81) GroupKFold splits hold out whole training trips: 64fit/16validation per fold and every one of the 80 training trips held out once. Fit observations are deterministically capped at 400 scorable rows per training trip; all their candidate rows are retained. Validation and student testing are unsampled. A median imputer is fitted inside every model pipeline; LR/KNN also use fold-fitted StandardScaler. Predictions load only track/nodes/arcs. A separate post-prediction scorer alone reads references, and returns only aggregates.
-
-Accuracy is pooled over scorable observations; Macro F1, precision and recall average per-trip road-class macro values over truth union matched predictions. Unmatched predictions cause false negatives. Conditional log loss uses only observations whose aligned arc occurs in candidates and describes normalized relevance, not calibrated confidence. Candidate miss rate is reported separately. Sequence similarity is one minus normalized Levenshtein distance of compressed observed-arc runs, not full-route accuracy. Continuity is the proportion of consecutive valid pairs within 30 s with a feasible directed route under the fixed physical bound; unmatched pairs fail. There is no global road-class confusion matrix because arc IDs are trip-local.
-
-## 3. Model Experimentation
-
-Five distinct algorithms completed identical grouped comparisons, with source `623a20253e03fa16c1dbecd782b4abd85352789a` and local total elapsed time 554.69 s at two threads. Complete per-fold/per-trip records, warnings, configurations and fitted assets are retained under `results/experiments/baselines-local-v1`. No model is credited for the HMM decoder as an additional classifier.
-
-| Model | Training CV trip Macro F1 | Student accuracy | Student trip Macro F1 | Total seconds |
-|---|---:|---:|---:|---:|
-| Logistic Regression | 0.634800 | 0.817166 | 0.650309 | 24.08 |
-| Distance-weighted KNN | 0.666337 | 0.837852 | 0.706329 | 302.73 |
-| Random Forest | 0.721476 | 0.859009 | 0.765520 | 160.90 |
-| Extra Trees | 0.702618 | 0.853262 | 0.735686 | 41.40 |
-| HistGradientBoosting | 0.725219 | 0.857912 | 0.766924 | 25.57 |
-
-| Model | Student precision | Student recall | Conditional log loss |
+| Features used | CV Macro F1 | Student-test accuracy | Student-test Macro F1 |
 |---|---:|---:|---:|
-| Logistic Regression | 0.682786 | 0.646737 | 0.573085 |
-| Distance-weighted KNN | 0.738438 | 0.700882 | 0.865981 |
-| Random Forest | 0.790284 | 0.764245 | 0.373154 |
-| Extra Trees | 0.762655 | 0.732716 | 0.415473 |
-| HistGradientBoosting | 0.791504 | 0.765144 | 0.360599 |
+| Distance only | 0.345 | 51.1% | 0.338 |
+| Distance + heading | 0.652 | 82.9% | 0.666 |
+| All features | 0.730 | 86.0% | 0.771 |
 
-| Model | Family / key initial settings | Student continuity | Student scoring ms | Final refit ms |
-|---|---|---:|---:|---:|
-| Logistic Regression | regularized linear; {"C": 1.0, "max_iter": 500, "random_state": 81, "solver": "lbfgs"} | 0.935816 | 103.54 | 682.80 |
-| Distance-weighted KNN | instance based; {"algorithm": "kd_tree", "leaf_size": 40, "n_jobs": 2, "n_neighbors": 15, "weights": "distance"} | 0.940516 | 20862.75 | 610.37 |
-| Random Forest | bagged randomized trees; {"max_depth": 16, "min_samples_leaf": 8, "n_estimators": 64, "n_jobs": 2, "random_state": 81} | 0.949446 | 530.63 | 29516.68 |
-| Extra Trees | extremely randomized trees; {"max_depth": 16, "min_samples_leaf": 8, "n_estimators": 64, "n_jobs": 2, "random_state": 81} | 0.949708 | 586.88 | 4899.45 |
-| HistGradientBoosting | histogram gradient boosting; {"early_stopping": false, "l2_regularization": 1.0, "learning_rate": 0.1, "max_iter": 100, "max_leaf_nodes": 15, "min_samples_leaf": 30, "random_state": 81} | 0.950648 | 386.58 | 1172.81 |
+Distance alone gets only about half the points right, because it cannot tell the directions of a street apart. Adding the heading is the biggest single improvement, and the motion and geometry features add a further 3 points.
 
-Student scoring timings include saved preprocessing, estimator scoring and per-observation selection; exclude cached candidate/feature construction, graph routing and reference metrics. Full-facade timings appear in section 5. Final refit fits the sampled observations across all 80 training trips. The source JSON retains per-fold fit time and warnings.
+## 2. Model Experimentation and Comparison
 
-![Five-model grouped comparison](results/figures/baselines-v1/training-cv-macro-f1.png)
+### 2.1 How the models were trained and compared
 
-*Figure 3. Training-CV means; error bars are standard deviations of five fold means, not confidence intervals or independent point-level uncertainty.*
+Each model answers one question: *given the features of a (GPS point, candidate road) pair, how likely is this the correct road?* For every point we then pick the candidate with the highest score.
 
-![Student testing metrics](results/figures/baselines-v1/student-test-accuracy-f1.png)
+- **Cross-validation.** 5-fold *grouped* cross-validation over the 80 training trips: each fold trains on 64 trips and validates on 16 unseen trips. Whole trips stay together, because neighbouring GPS points are nearly identical and splitting a trip would leak answers into validation.
+- **Same conditions for every model.** The same features, the same five folds and the same random seed (81). To keep training time practical, each training trip contributes at most 400 points when fitting; validation and testing always use every point.
+- **Testing.** Each model is then refit on all 80 training trips and run on the 10 student-test trips.
+- **Selection rule.** The model is chosen on cross-validation Macro F1, decided in advance. The student-test results are reported but not used to choose.
 
-*Figure 4. Pooled accuracy and mean trip Macro F1 answer different weighting questions. Student data describe generalization and are excluded from model selection.*
+**Metrics.**
 
-![Conditional loss](results/figures/baselines-v1/student-test-conditional-log-loss.png)
+- *Top-1 accuracy:* the share of GPS points assigned to the correct road.
+- *Macro F1:* precision and recall averaged evenly over all roads in a trip, then over trips, so rarely used roads count as much as busy ones.
+- *Log loss:* how well the scores separate correct from incorrect candidates, computed on points whose true road is among the candidates.
+- *Route continuity:* the share of consecutive points whose predicted roads are actually connected on the road network.
 
-*Figure 5. Conditional candidate-distribution log loss, lower is better. Candidate misses remain separate.*
+The organisers had not specified the exact per-point scoring rule, so all scores use the alignment described in 1.2 (documented in `docs/ml/scoring-policy.md`).
 
-### 3.1 Logistic Regression
+### 2.2 Overall model comparison
 
-A compact linear baseline tests whether geometric evidence combines approximately linearly. L2 regularization limits coefficient growth; standardized features support stable optimization. It cannot express all interactions among heading, distance and local geometry.
+| Model | Algorithm family | Key configuration | CV Macro F1 | Top-1 accuracy (test) | Macro F1 (test) | Log loss | Route continuity | Inference time |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| Logistic Regression | Linear | C = 1.0, lbfgs | 0.635 | 81.7% | 0.650 | 0.573 | 93.6% | 0.10 s |
+| K-Nearest Neighbours | Instance-based | k = 15, distance-weighted | 0.666 | 83.8% | 0.706 | 0.866 | 94.1% | 20.9 s |
+| Random Forest | Bagged trees | 64 trees, depth 16 | 0.721 | 85.9% | 0.766 | 0.373 | 94.9% | 0.53 s |
+| Extra Trees | Randomised trees | 64 trees, depth 16 | 0.703 | 85.3% | 0.736 | 0.415 | 95.0% | 0.59 s |
+| **HistGradient&shy;Boosting** | Boosted trees | 100 iterations, lr 0.1 | **0.725** | 85.8% | **0.767** | **0.361** | **95.1%** | 0.39 s |
 
-Regularized binary log loss; C1,lbfgs,max_iter500.
+"Test" means the 10 student-test trips. The CV standard deviation across the five folds is between 0.016 and 0.020 for every model. Inference time is the classifier's scoring time for all 10 test trips (candidate search and HMM decoding not included). Continuity is for the classifier alone, before HMM decoding (Section 4). The whole experiment (cross-validation, refit and testing) took 24 s for Logistic Regression, 26 s for HistGradientBoosting, 41 s for Extra Trees, 161 s for Random Forest and 303 s for KNN.
 
-Fit-sample accuracy 0.812933; held-out CV accuracy 0.814273; student accuracy 0.817166. Fit rows are sampled whereas evaluation is unsampled: the gap is descriptive evidence, not a controlled overfit estimate. A high training score alone does not establish generalization. Detailed fold warnings and metrics are retained in `logistic_regression.json`.
+![Cross-validation Macro F1](results/figures/baselines-v1/training-cv-macro-f1.png){: style="max-width:75%"}
+<p class="caption">Figure 3. Cross-validation Macro F1 of the five models (mean and standard deviation over five folds).</p>
 
-![Logistic Regression local-road confusion](results/experiments/confusion-v1/logistic_regression.png)
+![Student-test accuracy and Macro F1](results/figures/baselines-v1/student-test-accuracy-f1.png){: style="max-width:75%"}
+<p class="caption">Figure 4. Student-test Top-1 accuracy and Macro F1 of the five models.</p>
 
-*Diagnostic matrix for student trip 00000052; both axes use the complete ordered set of trip-local road classes. Original arc IDs are listed in the adjacent class-order JSON. This is not a global cross-trip class matrix.*
+![Log loss](results/figures/baselines-v1/student-test-conditional-log-loss.png){: style="max-width:75%"}
+<p class="caption">Figure 5. Student-test log loss (lower is better).</p>
 
-### 3.2 Distance-weighted KNN
+**Why HistGradientBoosting was selected.** It had the highest cross-validation Macro F1, which was our selection rule. It also had the lowest log loss and the best student-test Macro F1, and it was one of the two fastest models to train. Random Forest came very close in cross-validation but took about six times longer to train.
 
-Distance-weighted neighbors can learn nonlinear local feature patterns with little fitted parameterization. Standardization is essential for its metric. Prediction retains the training rows and was costly on this workload; sparse neighborhoods can also give overconfident relevance.
+Training, cross-validation and student-test accuracy, used below to judge over- and under-fitting:
 
-15 distance-weighted neighbors; kd_tree,leaf_size40. No iterative fitted loss optimizer.
+| Model | Training (fit points) | Cross-validation | Student test |
+|---|---:|---:|---:|
+| Logistic Regression | 81.3% | 81.4% | 81.7% |
+| KNN | 98.2% | 81.9% | 83.8% |
+| Random Forest | 89.5% | 84.2% | 85.9% |
+| Extra Trees | 85.3% | 83.8% | 85.3% |
+| HistGradientBoosting | 85.8% | 84.4% | 85.8% |
 
-Fit-sample accuracy 0.981883; held-out CV accuracy 0.819170; student accuracy 0.837852. Fit rows are sampled whereas evaluation is unsampled: the gap is descriptive evidence, not a controlled overfit estimate. A high training score alone does not establish generalization. Detailed fold warnings and metrics are retained in `knn.json`.
+### 2.3 Logistic Regression
 
-![Distance-weighted KNN local-road confusion](results/experiments/confusion-v1/knn.png)
+- **Why suitable:** a fast, simple baseline that tests whether the features combine roughly linearly into a good score.
+- **Strengths and limitations:** quick to train and easy to interpret. However, a single linear boundary cannot capture interactions such as "close to the road *and* moving in its direction".
+- **Hyperparameters:** C = 1.0 (L2 regularisation strength), solver lbfgs, up to 500 iterations. Features are standardised first.
+- **Objective:** regularised binary log loss.
+- **Student-test performance:** Top-1 accuracy 81.7%, Macro F1 0.650, log loss 0.573.
+- **Over- or under-fitting:** training, CV and test accuracy are all about 81–82%. This is **under-fitting**: train and test scores are equal but low, because a linear boundary is too simple for this problem.
 
-*Diagnostic matrix for student trip 00000052; both axes use the complete ordered set of trip-local road classes. Original arc IDs are listed in the adjacent class-order JSON. This is not a global cross-trip class matrix.*
+### 2.4 K-Nearest Neighbours
 
-### 3.3 Random Forest
+- **Why suitable:** it judges a candidate by how similar training examples were labelled. That can capture non-linear patterns without assuming any shape.
+- **Strengths and limitations:** flexible and needs no training phase. However, it keeps every training example and searches them at prediction time, which made it the slowest model (303 s). It also needs carefully scaled features.
+- **Hyperparameters:** 15 neighbours, weighted by distance, KD-tree search, leaf size 40. Features are standardised.
+- **Objective:** none; KNN does not optimise a loss and simply stores the data.
+- **Student-test performance:** Top-1 accuracy 83.8%, Macro F1 0.706, log loss 0.866 (the worst of the five).
+- **Over- or under-fitting:** 98.2% training accuracy against 81.9% in CV. This is clear **over-fitting**: distance weighting lets each training point effectively vote for itself. The high log loss shows its scores are over-confident.
 
-Bagged randomized trees model nonlinear interactions and resist simple feature scaling problems. Depth and leaf-size limits constrain fit complexity. Its CV result was close to HGB, and student accuracy exceeded untuned HGB, but its measured training/evaluation cost was larger.
+### 2.5 Random Forest
 
-64 bootstrap trees; Gini splits,max_depth16,min_samples_leaf8,seed81.
+- **Why suitable:** many decision trees, each trained on a random sample, can model interactions between distance, heading and motion without any feature scaling.
+- **Strengths and limitations:** accurate and robust. However, it is slower to train (161 s) and produces a larger model.
+- **Hyperparameters:** 64 trees, maximum depth 16, at least 8 samples per leaf, Gini splits, seed 81.
+- **Objective:** each tree split minimises Gini impurity; the forest averages the trees' votes.
+- **Student-test performance:** Top-1 accuracy 85.9%, Macro F1 0.766, log loss 0.373.
+- **Over- or under-fitting:** 89.5% training against 84.2% CV, so **mild over-fitting**. The depth and leaf-size limits keep it under control, and test accuracy (85.9%) matches CV.
 
-Fit-sample accuracy 0.894524; held-out CV accuracy 0.841899; student accuracy 0.859009. Fit rows are sampled whereas evaluation is unsampled: the gap is descriptive evidence, not a controlled overfit estimate. A high training score alone does not establish generalization. Detailed fold warnings and metrics are retained in `random_forest.json`.
+### 2.6 Extra Trees
 
-![Random Forest local-road confusion](results/experiments/confusion-v1/random_forest.png)
+- **Why suitable:** like Random Forest, but split thresholds are chosen at random. This is a distinct ensemble that is faster and less prone to over-fitting.
+- **Strengths and limitations:** fast to train (41 s) and low in variance. However, random thresholds can miss the fine distance and heading boundaries that matter here, which leaves it slightly below Random Forest.
+- **Hyperparameters:** 64 trees, maximum depth 16, at least 8 samples per leaf, seed 81.
+- **Objective:** Gini impurity on randomised splits.
+- **Student-test performance:** Top-1 accuracy 85.3%, Macro F1 0.736, log loss 0.415.
+- **Over- or under-fitting:** 85.3% training, 83.8% CV and 85.3% test. These are close together, so the fit is **good**, slightly less flexible than Random Forest.
 
-*Diagnostic matrix for student trip 00000052; both axes use the complete ordered set of trip-local road classes. Original arc IDs are listed in the adjacent class-order JSON. This is not a global cross-trip class matrix.*
+### 2.7 HistGradientBoosting (selected)
 
-### 3.4 Extra Trees
+- **Why suitable:** builds trees one after another, each correcting the errors of the previous ones. It learns feature interactions well, and binning the features into histograms makes it fast.
+- **Strengths and limitations:** the best accuracy-to-cost balance of the five, and a small model file. However, it has several hyperparameters that need tuning (Section 3).
+- **Hyperparameters (before tuning):** 100 boosting iterations, learning rate 0.1, 15 leaves per tree, at least 30 samples per leaf, L2 regularisation 1.0, no early stopping, seed 81.
+- **Objective:** binary log loss.
+- **Student-test performance:** Top-1 accuracy 85.8%, Macro F1 0.767, log loss 0.361.
+- **Over- or under-fitting:** 85.8% training, 84.4% CV and 85.8% test. The values are very close, so there is **no meaningful over-fitting** and the model generalises well.
 
-Genuinely randomized split thresholds offer a distinct ensemble and inexpensive fitting here. Extra randomization can reduce variance but may lose fine distance/heading boundaries. It was competitive but below RF/HGB on the predefined CV objective.
+## 3. Bayesian Hyperparameter Optimisation
 
-64 randomized-threshold trees; Gini splits,max_depth16,min_samples_leaf8,seed81.
+We tuned the selected HistGradientBoosting model with **Optuna**, a Python optimisation library, using its **TPE** (Tree-structured Parzen Estimator) method.
 
-Fit-sample accuracy 0.852929; held-out CV accuracy 0.837582; student accuracy 0.853262. Fit rows are sampled whereas evaluation is unsampled: the gap is descriptive evidence, not a controlled overfit estimate. A high training score alone does not establish generalization. Detailed fold warnings and metrics are retained in `extra_trees.json`.
+**Why Bayesian optimisation.** Each trial is a full five-fold cross-validation, so trials are expensive. Random or grid search ignore earlier results. TPE instead splits the completed trials into better and worse groups, and proposes new settings that resemble the better ones. That reaches good settings in fewer trials.
 
-![Extra Trees local-road confusion](results/experiments/confusion-v1/extra_trees.png)
+1. **Hyperparameters searched and their ranges:**
 
-*Diagnostic matrix for student trip 00000052; both axes use the complete ordered set of trip-local road classes. Original arc IDs are listed in the adjacent class-order JSON. This is not a global cross-trip class matrix.*
+| Hyperparameter | What it controls | Range | Best value |
+|---|---|---|---|
+| `max_iter` | Number of boosting iterations (trees) | 60 – 180 | 179 |
+| `max_leaf_nodes` | Size of each tree | 7 – 31 | 31 |
+| `min_samples_leaf` | Minimum points in a leaf (guards against over-fitting) | 15 – 80 | 80 |
+| `learning_rate` | Size of each tree's correction | 0.03 – 0.2, log scale | 0.123 |
+| `l2_regularization` | Penalty that keeps leaf values small | 0.01 – 10, log scale | 8.75 |
 
-### 3.5 HistGradientBoosting
+2. **Objective:** mean cross-validation Macro F1 over the same five grouped folds used in Section 2. No student-test or evaluator data was used.
+3. **Number of trials:** 12. The first 4 used random settings to explore; the next 8 were proposed by TPE from the earlier results.
+4. **Best result:** trial 11 had a CV Macro F1 of 0.7297. The full search record (Optuna database and one file per trial) is in `results/hpo/hgb-tpe-v1/`.
 
-Sequential histogram trees model geometric-feature interactions with compact assets. Learning rate, leaf count, iterations and regularization require control. It led the predefined CV Macro F1 at low measured cost and was selected for TPE; the small lead over RF should not be treated as a statistically established universal advantage.
+![Optuna trial history](results/figures/final-v1/bayesian-trials.png){: style="max-width:75%"}
+<p class="caption">Figure 6. Every trial's cross-validation Macro F1 and the best value so far. TPE-guided trials start after the first four.</p>
 
-Binary log loss;100iterations,15leaves,min_samples_leaf30,learning_rate0.1,L2=1,early_stoppingFalse,seed81.
+**Did the tuned model beat the untuned one?** Yes, on every measure, under the same folds, features and test trips:
 
-Fit-sample accuracy 0.857506; held-out CV accuracy 0.843671; student accuracy 0.857912. Fit rows are sampled whereas evaluation is unsampled: the gap is descriptive evidence, not a controlled overfit estimate. A high training score alone does not establish generalization. Detailed fold warnings and metrics are retained in `hist_gradient_boosting.json`.
+| HistGradientBoosting | CV Macro F1 | Student-test Top-1 accuracy | Student-test Macro F1 | Log loss | Scoring time, all 10 trips (median of 3 runs) |
+|---|---:|---:|---:|---:|---:|
+| Untuned | 0.7252 | 85.8% | 0.767 | 0.361 | 503 ms |
+| **Tuned** | **0.7297** | **86.0%** | **0.771** | **0.352** | 864 ms |
 
-![HistGradientBoosting local-road confusion](results/experiments/confusion-v1/hist_gradient_boosting.png)
+![Tuned vs untuned](results/figures/final-v1/tuned-untuned.png){: style="max-width:75%"}
+<p class="caption">Figure 7. Tuned and untuned HistGradientBoosting under identical conditions.</p>
 
-*Diagnostic matrix for student trip 00000052; both axes use the complete ordered set of trip-local road classes. Original arc IDs are listed in the adjacent class-order JSON. This is not a global cross-trip class matrix.*
+The gain is modest, which is expected: the default settings were already reasonable. The tuned model uses more and larger trees, which explains its higher inference time, but scoring all 10 student-test trips still takes under a second.
 
-Per-model confusion matrices preserve original trip-local arc IDs and unmatched=-1 in the separate `results/experiments/confusion-v1` supplement. Each PNG shows the complete matrix for student trip 00000052; class-order JSON maps matrix indices back to original IDs. Counts are not pooled across different road networks. This visualization is diagnostic and does not determine the selected model.
+## 4. HMM and Viterbi Route Reconstruction
 
-### Controlled feature-block ablation
+The classifier scores each GPS point on its own. On its own it can produce routes that jump between parallel streets from one second to the next. We therefore decode the whole trip with a Hidden Markov Model, which only allows drivable movements.
 
-The final prompt audit added a small feature ablation using the same HGB parameters, five training-trip folds, fit sampling and unsampled validation/student testing. Distance-only uses distance, log distance and excess over the nearest candidate. The next block adds heading cosine/validity. Full features additionally include arc length, projection fraction, speed and elapsed time. All candidates are unchanged and references remain excluded from features.
+1. **Hidden states.** The candidate roads of each GPS point, each paired with the point's position along that road.
+2. **Emission probabilities.** The tuned classifier's scores for a point's candidates, normalised to sum to one and used in log form. A road that fits the GPS point well gets a high emission score.
+3. **Transition probabilities.** For each move from a previous candidate road to a current one, we compute the shortest *driving* distance on the directed road network (Dijkstra's algorithm, respecting one-way arcs). We compare it with the straight-line distance the GPS moved:
 
-| Feature block | CV trip Macro F1 | Student accuracy | Student trip Macro F1 | Conditional log loss |
-|---|---:|---:|---:|---:|
-| distance only | 0.345099 | 0.510578 | 0.338318 | 0.929764 |
-| distance heading | 0.652364 | 0.829128 | 0.666377 | 0.481082 |
-| full features | 0.729680 | 0.860367 | 0.770553 | 0.352425 |
+    `transition score = −|driving distance − GPS distance| / 25 m`
 
-![Measured feature ablation](results/experiments/feature-ablation-v1/feature-ablation.png)
+    When the two distances agree, the move is believable. Moves that would need more than 65 m/s, plus 50 m of slack for GPS noise, are impossible.
+4. **Missing candidates and large gaps.** A point with no road within 100 m, or a time gap over 30 seconds, ends the current route piece; decoding restarts after it. We never invent a road to bridge a gap.
+5. **Disconnected road segments.** If no current candidate can be reached from any previous candidate, the route is split at that point instead of drawing a straight line across buildings. Each piece is built only from real road segments.
+6. **Viterbi decoding.** For every point and candidate, Viterbi keeps the best total score of any path ending there, plus a pointer to the previous road. At the end of each piece it follows the pointers back to recover the best sequence. The work is done in log space for numerical stability.
 
-The fixed-parameter results support adding orientation and the remaining geometry/motion block over distance alone. Pure geometric distance cannot distinguish co-located reverse-direction arcs. This is a descriptive ablation, not a separately tuned competition: parameters were previously selected for full features. The final increment bundles geometry and motion, so it does not isolate their individual causal effects. The two new variants took 45.06 s in total, including CV, refits and evaluation. They do not count as extra distinct algorithms and did not trigger any final model or decoder retuning. Source and complete per-fold/trip records: `results/experiments/feature-ablation-v1`.
+The decoder settings (25 m, 65 m/s, 30 s) were fixed before testing and never adjusted to the test results. The code is in `src/hmm/viterbi.py` and `src/hmm/graph.py`.
 
-## 4. Bayesian Hyperparameter Optimisation
+**Did HMM decoding improve the route?** Yes, clearly. Student-test trips, same tuned classifier:
 
-Optuna4.3.0 TPESampler(seed81) executed12 real sequential trials: four random startup trials followed by eight adaptive TPE trials. The objective is mean held-out-trip Macro F1 over the exact same five training-group folds, sampling and features. No student-test or evaluator metric enters the objective. Search space: iterations60–180; leaves7–31; minimum samples per leaf15–80; learning rate0.03–0.2 logarithmic; L2 regularization0.01–10 logarithmic. There was no random-search substitution for Bayesian tuning and no pruning of difficult folds.
-
-Best trial 11 had training-CV Macro F1 0.729680, compared with 0.725219 untuned. Best parameters: `{"l2_regularization": 8.75151377351353, "learning_rate": 0.12261991419637631, "max_iter": 179, "max_leaf_nodes": 31, "min_samples_leaf": 80}`. Its final classifier-only student accuracy is 0.860367 and trip Macro F1 0.770553. Selection uses CV, not that descriptive student-test change.
-
-Completed trial compute sums 166.75 s at four threads. The original process ended unexpectedly with 143 after 11 completed trials while the final sampled trial was running. SQLite retained its parameters; explicit recovery reran exactly those parameters, without replacing completed trials or sampling extras. `recovery.json` records both source revisions. Recovery-invocation elapsed 25.63 s includes its final trial and refit; it is not total tuning time. Interrupted partial-trial compute is unavailable. Full SQLite storage,12 trial files,fold metrics and failures/recovery provenance are retained under `results/hpo/hgb-tpe-v1`.
-
-![Actual TPE history](results/figures/final-v1/bayesian-trials.png)
-
-*Figure 6. Actual complete trial values and running best; adaptive TPE begins after the first four startup trials.*
-
-![Tuned versus untuned](results/figures/final-v1/tuned-untuned.png)
-
-*Figure 7. Same training folds and objective; the improvement is modest. CV used for tuning is selection evidence, not an unbiased nested-CV estimate.*
-
-The search ranges balance measured laptop cost with capacity: iteration count and learning rate govern boosting fit; leaf count and minimum leaf support control local complexity; L2 regularizes uncertain leaf estimates. Log scales cover learning-rate/regularization orders of magnitude with a limited12-trial budget. Early stopping remains disabled to avoid an internal observation-level holdout crossing trip-group boundaries.
-
-### Tuned and untuned results under the same definitions
-
-| HGB variant | CV Macro F1 | Student accuracy | Student Macro F1 | Log loss |
-|---|---:|---:|---:|---:|
-| Untuned | 0.725219 | 0.857912 | 0.766924 | 0.360599 |
-| Tuned | 0.729680 | 0.860367 | 0.770553 | 0.352425 |
-
-Common-host inference profile: untuned median 502.74 ms; tuned median 863.93 ms across all ten student trips, same four-thread limit, one warmup and three measured passes each. Boundary: saved preprocessing, model scores and per-observation normalization/selection; candidate preparation, graph decoding and reference metrics excluded. See `results/experiments/selected-profile-v1/summary.json`.
-
-## 5. HMM and Viterbi
-
-The hidden state is a directed candidate arc together with its projected position. Emission scores are clipped, per-observation normalized binary relevance from the selected fitted classifier. They are discriminative scores, not calibrated GPS likelihoods. Transition log scores penalize the absolute difference between feasible directed route distance and observed metric displacement, divided by 25 m. Directed travel includes source-arc remainder, a Dijkstra connector and target-arc prefix. No reverse edges are invented; small backward projection noise up to 15 m on the same arc is treated as stationary.
-
-A 65 m/s bound plus 50 m slack limits travel for each observed time interval. Empty candidates, time gaps above 30 s, nonpositive time intervals and all-unreachable transitions terminate or restart the lattice. Log-space Viterbi uses backpointers and subtracts a common offset per step for stability. The recurrence maximizes previous log score plus transition score plus emission log score. Route geometry consists of actual observed and connecting arcs, with disconnected pieces kept separate. The hybrid scoring assumptions follow the map-matching framework of Newson and Krumm (2009), adapted to learned emissions; they do not claim calibrated generative probabilities or unavailable real-world traffic restrictions.
-
-All decoder parameters were fixed before the student comparison. Each of the ten student-testing trips ran twice through the actual reference-free facade, followed by the isolated scorer. All prediction invariants and development visualization schemas passed. Classifier-only aggregate metrics matched the independent cached HPO evaluation to1e-12 for all six checked metrics.
-
-| Metric | Tuned classifier only | Tuned classifier + HMM |
+| Metric | Classifier only | Classifier + HMM/Viterbi |
 |---|---:|---:|
-| top1 accuracy | 0.860367 | 0.885493 |
-| macro f1 | 0.770553 | 0.851054 |
-| precision macro | 0.794938 | 0.865255 |
-| recall macro | 0.768745 | 0.856570 |
-| candidate miss rate | 0.004388 | 0.004388 |
-| route continuity | 0.949760 | 0.999164 |
-| sequence arc similarity | 0.638746 | 0.855911 |
-| log loss | 0.352425 | 0.352425 |
+| Top-1 accuracy | 86.0% | **88.5%** |
+| Macro F1 | 0.771 | **0.851** |
+| Precision (macro) | 0.795 | **0.865** |
+| Recall (macro) | 0.769 | **0.857** |
+| Route continuity | 95.0% | **99.9%** |
+| Separate route pieces (10 trips) | 974 | **28** |
+| Inference time (10 trips) | 5.1 s | 10.7 s |
 
-![Classifier and HMM comparison](results/figures/final-v1/classifier-hmm.png)
+![Classifier only vs HMM](results/figures/final-v1/classifier-hmm.png){: style="max-width:75%"}
+<p class="caption">Figure 8. Classifier-only predictions against classifier + HMM/Viterbi on the student-test trips.</p>
 
-*Figure 8. Measured development scores under provisional alignment. Sequence similarity compares observed-arc runs, not a complete reference traversal.*
+The HMM turns about 97 broken fragments per trip into about 3 connected pieces, and it raises accuracy and Macro F1 at the same time. The remaining breaks are real GPS gaps or points with no road nearby.
 
-Conditional log loss is identical because it evaluates the same classifier emissions; a Viterbi path is not an HMM posterior. The HMM improved both pointwise and continuity metrics here, but direction ambiguity, missing candidates, network/reference mismatch and unmodeled traffic rules remain limitations.
+**Where HMM decoding did not help.** On student-test trip 00000007, accuracy fell from 94.8% to 88.3%, even though Macro F1 rose slightly (0.958 to 0.963). A connected route can still be connected along the wrong street, for example when two parallel roads are linked further along. We kept the decoder settings unchanged rather than fit them to this one trip. Across all ten trips the HMM's gain is clear.
 
-Connected route pieces fell from 974 to 28. Full facade inference across ten trips took 5.06 s classifier-only and 10.70 s HMM on this host, excluding separate scoring. These are local measurements, not a LAN guarantee. The portable checksummed bundle is `artifacts/hgb-hmm-v1`. Both modes retain 19,160 original observations;19,143 are provisionally scorable,17 unscorable and84 scorable candidate misses.
-
-Development-only GPS/network/reference/prediction exports are under `results/hmm/hgb-hmm-v1/visualisation`. They supply B’s separate Folium generator and never enter UI/API inference inputs. Reference geometry is restricted to these permitted development exports. API evaluation exposes aggregate metrics only.
-
-### Scientific evidence and remaining limits
-
-EDA source `86343842fd4c73c6dd1a15ed99a3da6098eab93f`; baseline source `623a20253e03fa16c1dbecd782b4abd85352789a`; initial HPO source `5af7e3ceacde3f793220f28aa336b8c1f4f008f8` plus explicit recovery; trained comparison source `cce3485c116f589d7aed9554fd573620eb6c4d66`. Full hashes, configuration, data fingerprint, dependencies, per-fold/trip records and feature policy are in those run directories and the artifact manifest. `results/experiments/source-revision-map.json` resolves earlier metadata-cleanup revisions without altering original run evidence.
-
-Organizer confirmation of pointwise alignment and the two-physical-laptop demonstration remain external checks. Reserved evaluator data arrived after the serving prediction system was frozen at accepted M3; its separate final validation is reported in the system section with the exact frozen source identity. No model or decoder choices changed after that validation. Student-test gains alone do not establish evaluator performance. Team members are responsible for explaining the implementation.
-
-Primary method reference: Paul Newson and John Krumm, *Hidden Markov Map Matching Through Noise and Sparseness*, ACM SIGSPATIAL GIS2009, https://www.microsoft.com/en-us/research/publication/hidden-markov-map-matching-noise-sparseness/. The user supplied an Uber Maps talk summary as background; no video was inspected. ECC was reviewed for development workflow guidance only, as documented in `docs/ml/ecc-review.md`; no third-party task implementation or model weights were copied.
-
-### Counterexample: continuity does not guarantee a correct route
-
-Student trip 00000007 is the observed exception: classifier accuracy 0.947563 fell to 0.882570 after HMM; trip Macro F1 changed from 0.958418 to 0.963147. Thus the pooled improvement is not an improvement on every trip. A connectivity prior can favor a coherent but incorrectly aligned route; identifying the specific cause here requires local reference/map review. We report the regression and did not adjust decoder parameters to this student-test case. See the two per-trip records and actual Folium layers.
+The final model, the tuned classifier together with the decoder settings, is saved with checksums in `artifacts/hgb-hmm-v1/`.

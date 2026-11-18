@@ -208,7 +208,7 @@ Every response carries an `X-Request-ID` that also appears in Laptop 1's log. Th
 
 # 6. Folium maps and the report PDF
 .venv/bin/python -m src.visualisation.folium.make_maps --input results/hmm/hgb-hmm-v1/visualisation --output maps/my-maps
-.venv/bin/python -m src.evaluation.scientific_report
+.venv/bin/python -m src.evaluation.scientific_report   # regenerates the scientific tables from saved results (report/build/)
 .venv/bin/python scripts/build_report.py
 ```
 

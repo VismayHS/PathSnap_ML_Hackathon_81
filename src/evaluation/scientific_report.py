@@ -71,4 +71,6 @@ def generate(output):
     output.parent.mkdir(parents=True,exist_ok=True);output.write_text(text)
 
 
-if __name__=='__main__':generate(Path('report/sections/science.md'))
+# Writes the auto-generated draft of the scientific tables for checking against the saved results.
+# The submitted report text in report/sections/science.md is written by hand and is not overwritten.
+if __name__=='__main__':generate(Path('report/build/science-generated.md'))

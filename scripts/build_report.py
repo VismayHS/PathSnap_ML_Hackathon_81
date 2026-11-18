@@ -37,7 +37,7 @@ body { font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; font-size: 10.5p
 h1 { font-size: 20pt; margin: 0 0 6pt; } h2 { font-size: 14pt; margin-top: 18pt; border-bottom: 1px solid #d3d9dd; padding-bottom: 3pt; }
 h3 { font-size: 11.5pt; margin-top: 12pt; }
 h2 { page-break-after: avoid; } h3 { page-break-after: avoid; }
-table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 8pt 0; font-variant-numeric: tabular-nums; }
+table { border-collapse: collapse; width: 100%; font-size: 8.5pt; margin: 8pt 0; font-variant-numeric: tabular-nums; }
 th, td { border: 1px solid #d3d9dd; padding: 3pt 5pt; vertical-align: top; } th { background: #eef1f2; text-align: left; }
 tr, img, pre, figure { break-inside: avoid; page-break-inside: avoid; } thead { display: table-header-group; }
 img { max-width: 100%; display: block; margin: 6pt auto; border: 1px solid #d3d9dd; }

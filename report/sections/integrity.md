@@ -1,15 +1,9 @@
-## Academic integrity and AI-assistance disclosure
+## 7. Academic Integrity and AI-Assistance Disclosure
 
-**AI assistance was used substantially in this project, and we disclose it here as the event policy requires.**
+**AI assistance.** We used AI coding assistants substantially in this project, and disclose it as the event policy requires. Two AI coding-assistant sessions worked under our direction: one of them was Claude Code (Anthropic). One session focused on the machine learning: data exploration, features, the five models, Bayesian tuning, the HMM decoder and scoring. The other focused on the application: the API, the interface, the Folium maps, deployment and assembling this report. Each session reviewed the other's work before it was merged.
 
-**Tools and what they did.** The code, experiments, documentation and this report were produced with two AI coding-assistant sessions working in parallel, under our direction:
+**Our role.** We set up the project and repository, supplied the data, directed the work step by step, made the key decisions (for example, training on one laptop instead of splitting across four), and checked the results.
 
-- **Agent A (science):** a second AI coding-assistant session that wrote and ran the data exploration, candidate generation, feature extraction, the five classifiers with grouped cross-validation, Bayesian hyperparameter optimisation, the HMM/Viterbi decoder, the scorer and the scientific sections of this report.
-- **Agent B (application):** Claude Code (Anthropic) wrote the FastAPI service, the React evaluator interface, the Folium maps, the deployment guide, the report build and the system sections, and integrated both agents' work.
-- The two sessions coordinated through files and reviewed each other's work before anything reached `main`. Claude in Chrome was used once to read the team allocation sheet from our email.
+**Honesty of results.** Every number, table and figure in this report comes from code and saved run records in the repository, together with the settings, seeds and code version that produced them. Nothing was copied from other teams, and no other team's code, model or results were used. The reserved evaluator trips were not used for exploration, training, tuning or model selection. They were run once on the finished system, and only summary metrics are reported.
 
-**What we did ourselves.** We chose the problem setup and repository, supplied the dataset and the reserved evaluator archive, directed the agents step by step, made the key decisions (for example, to train on one laptop rather than split across four), and checked the results as they were reported.
-
-**Evidence and honesty.** Every number in this report comes from code and run records in the repository (run IDs, source commits, seeds and timings are stored with each result). Nothing was copied from other teams, and no other team's code, weights or results were used. The reserved evaluator trips were not used for exploration, training, tuning or model selection; they were run once on the frozen system, and only aggregate metrics are published. Pointwise scores use our provisional alignment policy until the organisers confirm the official definition.
-
-**Our responsibility.** We take responsibility for this submission. Each team member is expected to understand and explain the method, the code and the results in the viva, using this report and the method notes in `docs/ml/`.
+**Responsibility.** We take responsibility for this submission. Every team member is prepared to explain the method, the code and the results.

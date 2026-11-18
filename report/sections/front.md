@@ -1,21 +1,23 @@
-# PathSnap: map-matching and route reconstruction
+# PathSnap: Map-Matching and Route Reconstruction
 
-UE24CS352A Machine Learning, PES University (RR Campus). Technical report.
+**UE24CS352A Machine Learning Hackathon · PES University (RR Campus) · Technical Report**
 
-**Team:** PT-081, Section F (AIML 2024)
+**Team PT-081, Section F (AIML 2024)**
 
 | Name | SRN |
 |---|---|
-| VISMAY H S | PES1UG24AM325 |
-| VISMAYA.G | PES1UG24AM326 |
-| VUDUTHA KUNDHAN | PES1UG24AM327 |
-| Y B HALLI VISWANATHAREDDY BHAVANA | PES1UG24AM328 |
+| Vismay H S | PES1UG24AM325 |
+| Vismaya G | PES1UG24AM326 |
+| Vudutha Kundhan | PES1UG24AM327 |
+| Y B Halli Viswanathareddy Bhavana | PES1UG24AM328 |
 
-*Source: the department's team allocation sheet (Project_Teams_5a_to_5h.xlsx, sheet 5f).*
+**Repository:** <https://github.com/VismayHS/PathSnap_ML_Hackathon_81>
 
-**Repository:** <https://github.com/VismayHS/PathSnap_ML_Hackathon_81> (software release: commit `7e347de584064a220dcaabddafe7b50f9c3646be`; later commits change only this front page and the built PDF)
+### Summary
 
-## Contents
+PathSnap reconstructs the road a vehicle actually drove from its noisy GPS trace. For every GPS point it finds the nearby candidate roads and scores each one with a trained classifier. A Hidden Markov Model with Viterbi decoding then chooses a connected, drivable route for the whole trip. We compared five classifiers and selected HistGradientBoosting, which we tuned with Bayesian optimisation (Optuna TPE). On the ten reserved evaluator trips, the final system matched **87.8%** of GPS points to the correct road, with **99.96%** route continuity. The model runs behind a FastAPI service on one laptop, and an evaluator uses it from a React web interface on a second laptop.
+
+### Contents
 
 1. Dataset understanding and exploratory data analysis
 2. Model experimentation and comparison

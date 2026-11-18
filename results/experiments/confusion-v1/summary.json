@@ -1,0 +1,50 @@
+{
+  "source_git_sha": "44fb765b3926e9ff267af8974bf52e3a0ea35010",
+  "data_fingerprint": "1a27fe44527456ceacfb9f060f3d833a60ef7cdbf2eae44fbf030712e99a4ec1",
+  "partition": "student_test",
+  "policy": "pathsnap-scoring-v0; sparse[true arc,predicted arc,count] pertrip; unmatched=-1; unscorable excluded and counted in primary experiments",
+  "inputs": {
+    "results/experiments/baselines-local-v1/summary.json": "42cede135bf75e0c50280c8ed9677a6dc23492b6b30303157528a2e37a1b27bb",
+    "results/hpo/hgb-tpe-v1/summary.json": "758740631628862abaace27c154d29f72ac2d60e7586a13ff44d7e4eb59e1bb6",
+    "results/hmm/hgb-hmm-v1/summary.json": "d25bd4cfdd7b474d5ab03c34d940875df963d8d9af010586e0f2c4526d71f458"
+  },
+  "results": [
+    {
+      "name": "logistic_regression",
+      "accuracy": 0.8171655435407198,
+      "trips": 10
+    },
+    {
+      "name": "knn",
+      "accuracy": 0.8378519563286841,
+      "trips": 10
+    },
+    {
+      "name": "random_forest",
+      "accuracy": 0.8590085148618294,
+      "trips": 10
+    },
+    {
+      "name": "extra_trees",
+      "accuracy": 0.8532622890873949,
+      "trips": 10
+    },
+    {
+      "name": "hist_gradient_boosting",
+      "accuracy": 0.8579115081230737,
+      "trips": 10
+    },
+    {
+      "name": "hist_gradient_boosting_tuned",
+      "accuracy": 0.8603667136812412,
+      "trips": 10
+    },
+    {
+      "name": "hist_gradient_boosting_tuned_hmm",
+      "accuracy": 0.8854933918403594,
+      "trips": 10
+    }
+  ],
+  "elapsed_s": 34.70926801099995,
+  "figures": "Complete matrix for trip00000052; axis order maps to original local arc IDs in class-order JSON. Arc classes are never pooled across trip networks."
+}

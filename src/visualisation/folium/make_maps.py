@@ -7,6 +7,10 @@ decoder variant. Each route piece is its own line; gaps are never bridged.
 
     python -m src.visualisation.folium.make_maps --input results/hmm/visualisation/<run_id> --output maps/<run_id>
 
+View the maps over HTTP so the OpenStreetMap tile servers accept the requests (they block file://):
+
+    python3 -m http.server 8001 --directory maps/<run_id>     # then open http://localhost:8001/
+
 The output contains development reference geometry, so it must never be served by the API or
 copied into ui/. Evaluator trips are refused.
 """
@@ -45,6 +49,8 @@ def build_map(doc: dict) -> folium.Map:
 
     pts = [(lat, lon) for _, lon, lat, _ in doc["gps"] if lat is not None and lon is not None]
     fmap = folium.Map(tiles=None, control_scale=True, prefer_canvas=True)
+    # OSM tiles need a Referer: open maps through a local web server (see module docstring), not
+    # file://. Without tiles the map still shows every PathSnap layer, including the road network.
     folium.TileLayer("OpenStreetMap", name="Basemap (OpenStreetMap)", control=True).add_to(fmap)
 
     net = folium.FeatureGroup(name="Road network (nearby)", show=True)
@@ -52,6 +58,14 @@ def build_map(doc: dict) -> folium.Map:
         folium.PolyLine(_latlngs(seg["coordinates"]), color=COLORS["network"], weight=1, opacity=0.6,
                         tooltip=f"arc {seg['arc_id']}").add_to(net)
     net.add_to(fmap)
+
+    gps = folium.FeatureGroup(name="Raw GPS points", show=True)
+    for idx, lon, lat, t in doc["gps"]:
+        if lat is None or lon is None:
+            continue
+        folium.CircleMarker((lat, lon), radius=2, color=COLORS["gps"], weight=1, opacity=0.7, fill=True, fill_color="#ffffff",
+                            fill_opacity=0.8, tooltip=f"obs {idx}" + (f", t={t:.0f} s" if t is not None else "")).add_to(gps)
+    gps.add_to(fmap)
 
     if doc["reference"] is not None:
         ref = folium.FeatureGroup(name="Reference route (development data)", show=True)
@@ -67,13 +81,6 @@ def build_map(doc: dict) -> folium.Map:
                             dash_array=style["dash"]).add_to(group)
         group.add_to(fmap)
 
-    gps = folium.FeatureGroup(name="Raw GPS points", show=True)
-    for idx, lon, lat, t in doc["gps"]:
-        if lat is None or lon is None:
-            continue
-        folium.CircleMarker((lat, lon), radius=2.5, color=COLORS["gps"], weight=1, fill=True, fill_color="#ffffff",
-                            fill_opacity=0.9, tooltip=f"obs {idx}" + (f", t={t:.0f} s" if t is not None else "")).add_to(gps)
-    gps.add_to(fmap)
 
     if pts:
         lats, lons = zip(*pts)
@@ -96,7 +103,8 @@ def _legend(doc: dict) -> str:
     return ('<div style="position:fixed;bottom:24px;left:12px;z-index:9999;background:#fff;padding:8px 10px;'
             'border-radius:8px;box-shadow:0 2px 8px rgba(32,38,43,.14);font:13px/1.4 sans-serif;max-width:360px">'
             f'<div style="font-weight:600;margin-bottom:4px">{title}</div>{items}'
-            '<div style="color:#56616b;margin-top:4px">Gaps between predicted pieces are real decoder breaks, not drawn over.</div></div>')
+            '<div style="color:#56616b;margin-top:4px">Gaps between predicted pieces are real decoder breaks, not drawn over. '
+            'Basemap tiles load only when served over http (python3 -m http.server).</div></div>')
 
 
 def main() -> None:

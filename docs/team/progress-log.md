@@ -2,6 +2,16 @@
 
 Newest first. Each entry: what happened, why, what's next. Times are local (IST).
 
+## 2026-11-18, about 12:50: M2 and M3 accepted; the trained model is live in the demo
+
+- **M2 (`fbd0df0`):** all five models were trained with 5-fold grouped cross-validation on the 80 training trips (about 9 min) and tested on the 10 student-test trips. HistGradientBoosting was selected for the best CV Macro F1 (0.725) and log loss. See `docs/ml/model-selection.md`.
+- **M3 (`603b42f`):** 12 Optuna TPE trials took CV Macro F1 from 0.7252 to 0.7297. One trial was interrupted and completed from its recorded parameters, and this is documented. On the student-test trips, classifier + HMM reaches **88.5% Top-1 accuracy** (86.0% without the HMM), Macro F1 0.851, and 99.9% route continuity. The route has 28 pieces instead of 974. On trip 00000007 the HMM made accuracy worse, and the report says so.
+- **The app** now runs the trained model: all 10 trips are scored in 0.2–5.8 s each. Folium maps exist for all 10 trips (`maps/hgb-hmm-v1/`).
+- **Training ran only on the user's laptop.** It was faster than splitting across four laptops. The multi-laptop guide stays optional.
+- **The README** is now a complete front page, with results, screenshots and how to run and reproduce everything.
+- **Now (M4):** A is adding a required feature ablation. Early result: distance features alone reach CV Macro F1 0.345, against 0.725 with all features. Then the combined report PDF gets its final audit.
+- **Team to-do:** names and SRNs in the report, your own AI-assistance statement, a two-laptop rehearsal with real terminal screenshots, and reading `docs/ml/viva-notes.md`.
+
 ## 2026-11-18 — M1 accepted: first end-to-end slice on `main` (`6bd8e8c`)
 
 - **What works:** Laptop 1 API plus the Laptop 2 UI on the 10 student-test trips. Pick a trip, reconstruct, see the predicted route over the GPS and nearby roads, inspect individual points, and play the route back. Every trip returns in under about 1 s.

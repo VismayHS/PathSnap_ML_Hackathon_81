@@ -25,3 +25,7 @@ The user requested commit-message metadata cleanup. Public revision references a
 ## Parser review correction
 
 The initial numeric loader could silently skip blank/comment rows because that is NumPy's default behavior. That would risk changing row-based IDs for malformed files. The parser now rejects malformed physical rows explicitly and disables comment skipping; invalid numeric GPS coordinates such as NaN still retain their original observation row and validity mask. The scientific suite now passes 14 tests, including three new malformed-row regression cases. Real development checks are being rerun from the correction's committed source before a replacement handoff.
+
+## M2: five measured models
+
+The complete baseline ran in 554.69 seconds. [Model selection](../ml/model-selection.md) links the saved results and comparison table. HistGradientBoosting leads training CV Macro F1 and is selected for genuine Bayesian tuning. Training was local; no Kaggle/GPU run or four-laptop execution is claimed. Per the updated user preference, distributed training is optional and will be used only if a measured full tuning trial exceeds about two minutes or projected tuning exceeds about thirty minutes. The API still uses the M1 diagnostic pending final-model integration.

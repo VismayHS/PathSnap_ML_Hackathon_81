@@ -1,0 +1,112 @@
+{
+  "model_name": "knn",
+  "family": "instance based",
+  "objective": "distance-weighted neighbor class proportion; no fitted loss optimizer",
+  "configuration": {
+    "n_neighbors": 15,
+    "weights": "distance",
+    "algorithm": "kd_tree",
+    "leaf_size": 40,
+    "n_jobs": 2
+  },
+  "pilot_train_trips": [
+    "00000001",
+    "00000002",
+    "00000003",
+    "00000004",
+    "00000005",
+    "00000006",
+    "00000008",
+    "00000012"
+  ],
+  "pilot_validation_trips": [
+    "00000010",
+    "00000011"
+  ],
+  "fit": {
+    "fit_ms": 41.714037000019744,
+    "fit_rows": 21500,
+    "positive_rows": 3166,
+    "warnings": []
+  },
+  "validation": {
+    "top1_accuracy": 0.7615092977071674,
+    "macro_f1": 0.6133655777889037,
+    "precision_macro": 0.6546851130871187,
+    "recall_macro": 0.6056511199246859,
+    "candidate_miss_rate": 0.007040982126737678,
+    "log_loss": 1.4648306872619723,
+    "sequence_arc_similarity": 0.5184278126250375,
+    "scored_match_fraction_original": 0.7615092977071674,
+    "candidate_scoring_ms": 2375.643880000098,
+    "trips": 2,
+    "scorable_observations": 5539,
+    "original_observations": 5539,
+    "unscorable_observations": 0,
+    "candidate_covered": 5500
+  },
+  "per_trip": [
+    {
+      "values": {
+        "top1_accuracy": 0.5639985245296938,
+        "macro_f1": 0.3805087944294896,
+        "precision_macro": 0.4423767887103278,
+        "recall_macro": 0.36556634039072455,
+        "candidate_miss_rate": 0.014016967908520842,
+        "log_loss": 2.8159084893287396,
+        "sequence_arc_similarity": 0.12841756420878214,
+        "scored_match_fraction_original": 0.5639985245296938
+      },
+      "counts": {
+        "original_observations": 2711,
+        "scorable_observations": 2711,
+        "unscorable_observations": 0,
+        "correct": 1529,
+        "candidate_covered": 2673,
+        "candidate_misses": 38,
+        "road_classes": 314,
+        "sequence_length": 1207
+      },
+      "loss_sum": 7526.923391975721,
+      "unavailable_reasons": {
+        "log_loss": null,
+        "sequence_arc_similarity": null
+      },
+      "candidate_scoring_ms": 1318.4317200002624,
+      "metric_elapsed_ms": 6.467858000178239,
+      "trip_id": "00000010"
+    },
+    {
+      "values": {
+        "top1_accuracy": 0.9508486562942009,
+        "macro_f1": 0.8462223611483177,
+        "precision_macro": 0.8669934374639096,
+        "recall_macro": 0.8457358994586472,
+        "candidate_miss_rate": 0.0003536067892503536,
+        "log_loss": 0.18735245417938695,
+        "sequence_arc_similarity": 0.9084380610412927,
+        "scored_match_fraction_original": 0.9508486562942009
+      },
+      "counts": {
+        "original_observations": 2828,
+        "scorable_observations": 2828,
+        "unscorable_observations": 0,
+        "correct": 2689,
+        "candidate_covered": 2827,
+        "candidate_misses": 1,
+        "road_classes": 572,
+        "sequence_length": 557
+      },
+      "loss_sum": 529.6453879651269,
+      "unavailable_reasons": {
+        "log_loss": null,
+        "sequence_arc_similarity": null
+      },
+      "candidate_scoring_ms": 1057.2121599998354,
+      "metric_elapsed_ms": 12.31473999996524,
+      "trip_id": "00000011"
+    }
+  ],
+  "status": "complete",
+  "elapsed_s": 2.4381246989996725
+}

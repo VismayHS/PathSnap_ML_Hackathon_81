@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "seed": 81,
+  "folds": 5,
+  "train_observation_cap_per_trip": 400,
+  "threads": 2,
+  "candidate_policy": {"radius_m": 100.0, "top_k": 8},
+  "alignment_policy": "pathsnap-scoring-v0",
+  "primary_selection_metric": "mean held-out trip road-class Macro F1 across all 80 training trips",
+  "validation_sampling": "none; evaluate every scorable observation and retain misses/unmatched",
+  "preprocessing": "median imputer; StandardScaler for LR/KNN, fitted inside each training fold",
+  "pilot": {"train_trips": 8, "validation_trips": 2, "partition": "train only"}
+}

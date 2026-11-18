@@ -1,0 +1,105 @@
+{
+  "schema": "pathsnap-training-worker/1",
+  "run_id": "laptop-1-kit-smoke-v1",
+  "source_git_sha": "391a221575b94144b8dfbce4e56d35a3f3ed21ce",
+  "execution_git_sha": "391a221575b94144b8dfbce4e56d35a3f3ed21ce",
+  "source_code_sha256": "0cdcfa49668143ae03fa1ae74a2f0f82c26bc1a93e33ddc75f623ac4abb03d41",
+  "identity": {
+    "data_fingerprint": "1a27fe44527456ceacfb9f060f3d833a60ef7cdbf2eae44fbf030712e99a4ec1",
+    "feature_version": "candidate-geometry-v1",
+    "feature_names": [
+      "distance_m",
+      "log_distance",
+      "heading_cosine",
+      "heading_valid",
+      "log_length",
+      "projection_fraction",
+      "speed_mps",
+      "delta_t_s",
+      "distance_excess_over_nearest_m"
+    ],
+    "config_sha256": "27f645c79cc5e9ddb55e0c245694ccf0432fd688181d1f139be77cfead778480",
+    "split_sha256": "e0f02c93f555bfd042f8b9ddf5ce4c4b2d32eff2761fcd72d72986edc7cc14cf",
+    "sampling_sha256": "c528eb4c7aebf7148c9d49ed40d97645d26d37d5dbc47a62d7110e70fa1b5bcf",
+    "cache_content_sha256": "251a6b88949895ea219d7322ad8af492d6d5f7cc81ff3cb419d9a60d00f63833"
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-43-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "logical_cpus": 12,
+    "threads": 2,
+    "packages": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.6.1",
+      "pyproj": "3.7.1",
+      "joblib": "1.5.1"
+    }
+  },
+  "laptop": "laptop-1",
+  "model_configs": {
+    "logistic_regression": {
+      "C": 1.0,
+      "solver": "lbfgs",
+      "max_iter": 500,
+      "random_state": 81
+    },
+    "knn": {
+      "n_neighbors": 15,
+      "weights": "distance",
+      "algorithm": "kd_tree",
+      "leaf_size": 40,
+      "n_jobs": 2
+    },
+    "random_forest": {
+      "n_estimators": 64,
+      "max_depth": 16,
+      "min_samples_leaf": 8,
+      "random_state": 81,
+      "n_jobs": 2
+    },
+    "extra_trees": {
+      "n_estimators": 64,
+      "max_depth": 16,
+      "min_samples_leaf": 8,
+      "random_state": 81,
+      "n_jobs": 2
+    },
+    "hist_gradient_boosting": {
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 30,
+      "learning_rate": 0.1,
+      "l2_regularization": 1.0,
+      "early_stopping": false,
+      "random_state": 81
+    }
+  },
+  "model_objectives": {
+    "logistic_regression": "L2-regularized binary log loss",
+    "knn": "distance-weighted neighbor class proportion; no fitted loss optimizer",
+    "random_forest": "bootstrap trees with Gini impurity splits",
+    "extra_trees": "random-threshold trees with Gini impurity splits",
+    "hist_gradient_boosting": "binary log loss with L2 leaf regularization"
+  },
+  "preparation_source_sha": "7cdce15bae67fb80fa21f36bdff79597aa57e1ac",
+  "task_manifest_sha256": "b692cea5b55d2d0b7c6a946d1979d5a4d5f28618e1757e75c2b323dc82b4a427",
+  "metric_policy_id": "pathsnap-scoring-v0",
+  "timing_policy": "candidate scoring excludes cached preparation and metric calculation; compare hosts separately",
+  "completed_tasks": [
+    {
+      "task_id": "logistic_regression-cv-0",
+      "status": "complete"
+    }
+  ],
+  "elapsed_s": 2.2882345729994995,
+  "status": "complete",
+  "file_sha256": {
+    "job-logistic_regression-cv-0.json": "9053a844e3969e14af3f0385e49a2dccaa36136c3cbe0c8760b2be1d03052c39",
+    "metadata.json": "2e2eea8e048cb1fedb52c67b06598afe246468077d092417e38c119d92ce3a7e",
+    "records.jsonl": "d3e426f88e5f6bbe4cef186454445e296075176256226110031eaff15c5c6f86"
+  },
+  "file_hash_policy": "JSON/JSONL canonical LF; binary assets exact bytes"
+}

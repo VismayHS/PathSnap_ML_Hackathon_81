@@ -1,0 +1,24 @@
+[I 2026-11-18 12:17:54,421] A new study created in RDB with name: hgb-tpe-v1
+{"trial": 0, "cv_macro_f1": 0.7263081380531341, "elapsed_s": 12.088192871999127}
+[I 2026-11-18 12:18:06,600] Trial 0 finished with value: 0.7263081380531341 and parameters: {'max_iter': 103, 'max_leaf_nodes': 15, 'min_samples_leaf': 76, 'learning_rate': 0.16983409033768979, 'l2_regularization': 3.2538249512829434}. Best is trial 0 with value: 0.7263081380531341.
+{"trial": 1, "cv_macro_f1": 0.7098980117219311, "elapsed_s": 7.752256189000036}
+[I 2026-11-18 12:18:14,434] Trial 1 finished with value: 0.7098980117219311 and parameters: {'max_iter': 67, 'max_leaf_nodes': 13, 'min_samples_leaf': 48, 'learning_rate': 0.03555474114653261, 'l2_regularization': 2.2670059586358584}. Best is trial 0 with value: 0.7263081380531341.
+{"trial": 2, "cv_macro_f1": 0.7257961723885308, "elapsed_s": 11.039647912999499}
+[I 2026-11-18 12:18:25,549] Trial 2 finished with value: 0.7257961723885308 and parameters: {'max_iter': 108, 'max_leaf_nodes': 18, 'min_samples_leaf': 65, 'learning_rate': 0.08780806321432176, 'l2_regularization': 0.05446361734423557}. Best is trial 0 with value: 0.7263081380531341.
+{"trial": 3, "cv_macro_f1": 0.7203526836419709, "elapsed_s": 12.39704084999903}
+[I 2026-11-18 12:18:38,021] Trial 3 finished with value: 0.7203526836419709 and parameters: {'max_iter': 125, 'max_leaf_nodes': 10, 'min_samples_leaf': 44, 'learning_rate': 0.07253911578946609, 'l2_regularization': 1.4206022474096942}. Best is trial 0 with value: 0.7263081380531341.
+{"trial": 4, "cv_macro_f1": 0.7284952839386735, "elapsed_s": 19.99145343100099}
+[I 2026-11-18 12:18:58,101] Trial 4 finished with value: 0.7284952839386735 and parameters: {'max_iter': 179, 'max_leaf_nodes': 31, 'min_samples_leaf': 76, 'learning_rate': 0.19901821530990005, 'l2_regularization': 8.97483823067189}. Best is trial 4 with value: 0.7284952839386735.
+{"trial": 5, "cv_macro_f1": 0.7194435193333855, "elapsed_s": 16.336817780000274}
+[I 2026-11-18 12:19:14,532] Trial 5 finished with value: 0.7194435193333855 and parameters: {'max_iter': 177, 'max_leaf_nodes': 30, 'min_samples_leaf': 15, 'learning_rate': 0.1849740969336778, 'l2_regularization': 0.011301814903568163}. Best is trial 4 with value: 0.7284952839386735.
+{"trial": 6, "cv_macro_f1": 0.7288885061858176, "elapsed_s": 17.833833287000743}
+[I 2026-11-18 12:19:32,464] Trial 6 finished with value: 0.7288885061858176 and parameters: {'max_iter': 172, 'max_leaf_nodes': 30, 'min_samples_leaf': 57, 'learning_rate': 0.10869791952902001, 'l2_regularization': 9.8833231437686}. Best is trial 6 with value: 0.7288885061858176.
+{"trial": 7, "cv_macro_f1": 0.7275453309635838, "elapsed_s": 16.067771538999295}
+[I 2026-11-18 12:19:48,615] Trial 7 finished with value: 0.7275453309635838 and parameters: {'max_iter': 146, 'max_leaf_nodes': 24, 'min_samples_leaf': 45, 'learning_rate': 0.0919976121173629, 'l2_regularization': 0.28812299432545685}. Best is trial 6 with value: 0.7288885061858176.
+{"trial": 8, "cv_macro_f1": 0.7253199851568334, "elapsed_s": 14.37198474700017}
+[I 2026-11-18 12:20:03,061] Trial 8 finished with value: 0.7253199851568334 and parameters: {'max_iter': 151, 'max_leaf_nodes': 24, 'min_samples_leaf': 25, 'learning_rate': 0.04789900383851594, 'l2_regularization': 0.47971579083451454}. Best is trial 6 with value: 0.7288885061858176.
+{"trial": 9, "cv_macro_f1": 0.7264471970839697, "elapsed_s": 8.099157658998593}
+[I 2026-11-18 12:20:11,236] Trial 9 finished with value: 0.7264471970839697 and parameters: {'max_iter': 75, 'max_leaf_nodes': 24, 'min_samples_leaf': 58, 'learning_rate': 0.1201536122897455, 'l2_regularization': 8.930982488683572}. Best is trial 6 with value: 0.7288885061858176.
+{"trial": 10, "cv_macro_f1": 0.715359361522928, "elapsed_s": 10.699965339999835}
+[I 2026-11-18 12:20:22,017] Trial 10 finished with value: 0.715359361522928 and parameters: {'max_iter': 158, 'max_leaf_nodes': 7, 'min_samples_leaf': 32, 'learning_rate': 0.055106738307256216, 'l2_regularization': 0.16844614586888032}. Best is trial 6 with value: 0.7288885061858176.
+{"trial": 11, "cv_macro_f1": 0.729680187168286, "elapsed_s": 20.069571141999404}

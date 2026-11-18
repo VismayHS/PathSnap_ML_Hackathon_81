@@ -1,0 +1,10 @@
+{
+  "inputs": {
+    "results/eda/initial-validation-v2/trips.csv": "ef61ed403137a0fa20de0d0b5234584989a3f607680947e271bc6faf67381497",
+    "results/eda/preparation-v1/preparation.json": "359253d9ce13f5e4ffbbab173e2cc053fd40ac8569071d5b21dad7d0c5d7d220"
+  },
+  "figures": {
+    "target-coverage.png": "716e64c5b9089348f423e8b644b71f638b59cf177ee1d8b8dc3a77427db2a07a",
+    "trip-sizes-and-gaps.png": "af683cfc92e30d7a07c62faa85db8a3d9762c256bea89c6186c3dd441c1df5ed"
+  }
+}

@@ -1,0 +1,1344 @@
+[
+  {
+    "trip_id": "00000056",
+    "decoder": "classifier_only",
+    "metrics": {
+      "top1_accuracy": 0.8662775945191575,
+      "macro_f1": 0.7506686757523247,
+      "precision_macro": 0.7784385674913337,
+      "recall_macro": 0.7570243060386984,
+      "candidate_miss_rate": 0.001268713524486171,
+      "log_loss": 0.37354977963997976,
+      "sequence_arc_similarity": 0.7336993822923816,
+      "scored_match_fraction_original": 0.8625568468923699,
+      "route_continuity": 0.9312610563558251,
+      "scorable_observations": 3941.0,
+      "unscorable_observations": 17.0,
+      "original_observations": 3958.0,
+      "candidate_covered": 3936.0,
+      "candidate_misses": 5.0
+    },
+    "counts": {
+      "top1_accuracy": {
+        "numerator": 3414,
+        "denominator": 3941,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "macro_f1": {
+        "numerator": null,
+        "denominator": 1057,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "precision_macro": {
+        "numerator": null,
+        "denominator": 1057,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "recall_macro": {
+        "numerator": null,
+        "denominator": 1057,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "candidate_miss_rate": {
+        "numerator": 5,
+        "denominator": 3941,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "log_loss": {
+        "numerator": null,
+        "denominator": 3936,
+        "policy": "Scorable observations whose label arc occurs in the candidate set; normalized classifier relevance, not calibrated probability"
+      },
+      "sequence_arc_similarity": {
+        "numerator": null,
+        "denominator": 1457,
+        "policy": "One minus normalized Levenshtein distance of compressed scorable observed-arc sequences; not full route accuracy"
+      },
+      "scored_match_fraction_original": {
+        "numerator": 3414,
+        "denominator": 3958,
+        "policy": "All original observation rows, including unscorable rows"
+      },
+      "route_continuity": {
+        "numerator": 3685,
+        "denominator": 3957,
+        "policy": "All consecutive valid observation pairs with 0 < time delta <=30s; unmatched or physically unreachable pairs fail"
+      },
+      "scorable_observations": {
+        "numerator": 3941,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "unscorable_observations": {
+        "numerator": 17,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "original_observations": {
+        "numerator": 3958,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_covered": {
+        "numerator": 3936,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_misses": {
+        "numerator": 5,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      }
+    },
+    "timings_ms": {
+      "load_input": 27.625250000710366,
+      "clean": 36.41009499915526,
+      "candidates": 527.2666450000543,
+      "features": 131.43762900108413,
+      "model": 201.2949670006492,
+      "decode": 69.50666999910027,
+      "geometry": 123.46185699971102,
+      "predict_total": 1089.3946520009195
+    },
+    "scoring_ms": 3077.1727949995693,
+    "wall_s": 4.171954460000052,
+    "route_pieces": 273,
+    "warnings": [
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      }
+    ]
+  },
+  {
+    "trip_id": "00000056",
+    "decoder": "hmm_viterbi",
+    "metrics": {
+      "top1_accuracy": 0.9172798782035017,
+      "macro_f1": 0.8391780572467441,
+      "precision_macro": 0.8581533197734719,
+      "recall_macro": 0.8473233654795308,
+      "candidate_miss_rate": 0.001268713524486171,
+      "log_loss": 0.37354977963997976,
+      "sequence_arc_similarity": 0.9124579124579124,
+      "scored_match_fraction_original": 0.9133400707427994,
+      "route_continuity": 0.9987364164771292,
+      "scorable_observations": 3941.0,
+      "unscorable_observations": 17.0,
+      "original_observations": 3958.0,
+      "candidate_covered": 3936.0,
+      "candidate_misses": 5.0
+    },
+    "counts": {
+      "top1_accuracy": {
+        "numerator": 3615,
+        "denominator": 3941,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "macro_f1": {
+        "numerator": null,
+        "denominator": 998,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "precision_macro": {
+        "numerator": null,
+        "denominator": 998,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "recall_macro": {
+        "numerator": null,
+        "denominator": 998,
+        "policy": "Trip-local road classes in truth union matched predictions; unmatched predictions contribute false negatives"
+      },
+      "candidate_miss_rate": {
+        "numerator": 5,
+        "denominator": 3941,
+        "policy": "All provisional scorable observations, including candidate misses and unmatched predictions"
+      },
+      "log_loss": {
+        "numerator": null,
+        "denominator": 3936,
+        "policy": "Scorable observations whose label arc occurs in the candidate set; normalized classifier relevance, not calibrated probability"
+      },
+      "sequence_arc_similarity": {
+        "numerator": null,
+        "denominator": 1188,
+        "policy": "One minus normalized Levenshtein distance of compressed scorable observed-arc sequences; not full route accuracy"
+      },
+      "scored_match_fraction_original": {
+        "numerator": 3615,
+        "denominator": 3958,
+        "policy": "All original observation rows, including unscorable rows"
+      },
+      "route_continuity": {
+        "numerator": 3952,
+        "denominator": 3957,
+        "policy": "All consecutive valid observation pairs with 0 < time delta <=30s; unmatched or physically unreachable pairs fail"
+      },
+      "scorable_observations": {
+        "numerator": 3941,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "unscorable_observations": {
+        "numerator": 17,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "original_observations": {
+        "numerator": 3958,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_covered": {
+        "numerator": 3936,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      },
+      "candidate_misses": {
+        "numerator": 5,
+        "denominator": null,
+        "policy": "Count under provisional alignment; original row indices preserved"
+      }
+    },
+    "timings_ms": {
+      "load_input": 27.625250000710366,
+      "clean": 35.203191999244154,
+      "candidates": 501.6778789995442,
+      "features": 133.94511899969075,
+      "model": 224.63758699996106,
+      "decode": 1906.8200219990104,
+      "geometry": 109.665453001071,
+      "predict_total": 2911.967444999391
+    },
+    "scoring_ms": 3457.1746359997633,
+    "wall_s": 6.375718957999197,
+    "route_pieces": 6,
+    "warnings": [
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "unreachable"
+      },
+      {
+        "code": "decoder_break",
+        "message": "decoder_restart"
+      },
+      {
+        "code": "decoder_break",
+        "message": "decoder_restart"
+      },
+      {
+        "code": "decoder_break",
+        "message": "decoder_restart"
+      },
+      {
+        "code": "decoder_break",
+        "message": "decoder_restart"
+      },
+      {
+        "code": "decoder_break",
+        "message": "decoder_restart"
+      }
+    ]
+  }
+]

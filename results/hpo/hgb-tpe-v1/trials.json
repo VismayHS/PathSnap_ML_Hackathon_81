@@ -1,0 +1,257 @@
+[
+  {
+    "number": 0,
+    "state": "COMPLETE",
+    "value": 0.7263081380531341,
+    "params": {
+      "max_iter": 103,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 76,
+      "learning_rate": 0.16983409033768979,
+      "l2_regularization": 3.2538249512829434
+    },
+    "user_attrs": {
+      "elapsed_s": 12.088192871999127,
+      "fold_macro_f1": [
+        0.7404113315472225,
+        0.7353383802655733,
+        0.7271731520452932,
+        0.6901638328181217,
+        0.7384539935894595
+      ]
+    }
+  },
+  {
+    "number": 1,
+    "state": "COMPLETE",
+    "value": 0.7098980117219311,
+    "params": {
+      "max_iter": 67,
+      "max_leaf_nodes": 13,
+      "min_samples_leaf": 48,
+      "learning_rate": 0.03555474114653261,
+      "l2_regularization": 2.2670059586358584
+    },
+    "user_attrs": {
+      "elapsed_s": 7.752256189000036,
+      "fold_macro_f1": [
+        0.728196950217803,
+        0.7114697765595415,
+        0.7127277364454001,
+        0.6756677019331976,
+        0.7214278934537135
+      ]
+    }
+  },
+  {
+    "number": 2,
+    "state": "COMPLETE",
+    "value": 0.7257961723885308,
+    "params": {
+      "max_iter": 108,
+      "max_leaf_nodes": 18,
+      "min_samples_leaf": 65,
+      "learning_rate": 0.08780806321432176,
+      "l2_regularization": 0.05446361734423557
+    },
+    "user_attrs": {
+      "elapsed_s": 11.039647912999499,
+      "fold_macro_f1": [
+        0.7402987014825023,
+        0.7332712979977952,
+        0.7284243034219138,
+        0.6895664051111128,
+        0.7374201539293297
+      ]
+    }
+  },
+  {
+    "number": 3,
+    "state": "COMPLETE",
+    "value": 0.7203526836419709,
+    "params": {
+      "max_iter": 125,
+      "max_leaf_nodes": 10,
+      "min_samples_leaf": 44,
+      "learning_rate": 0.07253911578946609,
+      "l2_regularization": 1.4206022474096942
+    },
+    "user_attrs": {
+      "elapsed_s": 12.39704084999903,
+      "fold_macro_f1": [
+        0.7352701518624742,
+        0.724181369849358,
+        0.7236525487855242,
+        0.6863429782571578,
+        0.7323163694553406
+      ]
+    }
+  },
+  {
+    "number": 4,
+    "state": "COMPLETE",
+    "value": 0.7284952839386735,
+    "params": {
+      "max_iter": 179,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 76,
+      "learning_rate": 0.19901821530990005,
+      "l2_regularization": 8.97483823067189
+    },
+    "user_attrs": {
+      "elapsed_s": 19.99145343100099,
+      "fold_macro_f1": [
+        0.7399728000966684,
+        0.7362992977366996,
+        0.7268869917259169,
+        0.6966786235766759,
+        0.7426387065574064
+      ]
+    }
+  },
+  {
+    "number": 5,
+    "state": "COMPLETE",
+    "value": 0.7194435193333855,
+    "params": {
+      "max_iter": 177,
+      "max_leaf_nodes": 30,
+      "min_samples_leaf": 15,
+      "learning_rate": 0.1849740969336778,
+      "l2_regularization": 0.011301814903568163
+    },
+    "user_attrs": {
+      "elapsed_s": 16.336817780000274,
+      "fold_macro_f1": [
+        0.728623358483664,
+        0.7251241397208146,
+        0.7232959736216316,
+        0.6857688437232855,
+        0.7344052811175317
+      ]
+    }
+  },
+  {
+    "number": 6,
+    "state": "COMPLETE",
+    "value": 0.7288885061858176,
+    "params": {
+      "max_iter": 172,
+      "max_leaf_nodes": 30,
+      "min_samples_leaf": 57,
+      "learning_rate": 0.10869791952902001,
+      "l2_regularization": 9.8833231437686
+    },
+    "user_attrs": {
+      "elapsed_s": 17.833833287000743,
+      "fold_macro_f1": [
+        0.7426653385334955,
+        0.7380356081223823,
+        0.7278262321560167,
+        0.6938525493166859,
+        0.7420628028005072
+      ]
+    }
+  },
+  {
+    "number": 7,
+    "state": "COMPLETE",
+    "value": 0.7275453309635838,
+    "params": {
+      "max_iter": 146,
+      "max_leaf_nodes": 24,
+      "min_samples_leaf": 45,
+      "learning_rate": 0.0919976121173629,
+      "l2_regularization": 0.28812299432545685
+    },
+    "user_attrs": {
+      "elapsed_s": 16.067771538999295,
+      "fold_macro_f1": [
+        0.7408111650704825,
+        0.7361340753824517,
+        0.7272873373562658,
+        0.6933283218699726,
+        0.7401657551387458
+      ]
+    }
+  },
+  {
+    "number": 8,
+    "state": "COMPLETE",
+    "value": 0.7253199851568334,
+    "params": {
+      "max_iter": 151,
+      "max_leaf_nodes": 24,
+      "min_samples_leaf": 25,
+      "learning_rate": 0.04789900383851594,
+      "l2_regularization": 0.47971579083451454
+    },
+    "user_attrs": {
+      "elapsed_s": 14.37198474700017,
+      "fold_macro_f1": [
+        0.7396807292402344,
+        0.7333468860461807,
+        0.7262076845811384,
+        0.6897208744865387,
+        0.7376437514300745
+      ]
+    }
+  },
+  {
+    "number": 9,
+    "state": "COMPLETE",
+    "value": 0.7264471970839697,
+    "params": {
+      "max_iter": 75,
+      "max_leaf_nodes": 24,
+      "min_samples_leaf": 58,
+      "learning_rate": 0.1201536122897455,
+      "l2_regularization": 8.930982488683572
+    },
+    "user_attrs": {
+      "elapsed_s": 8.099157658998593,
+      "fold_macro_f1": [
+        0.7411955733383531,
+        0.734550741713335,
+        0.7258605894690848,
+        0.6902772712776547,
+        0.7403518096214209
+      ]
+    }
+  },
+  {
+    "number": 10,
+    "state": "COMPLETE",
+    "value": 0.715359361522928,
+    "params": {
+      "max_iter": 158,
+      "max_leaf_nodes": 7,
+      "min_samples_leaf": 32,
+      "learning_rate": 0.055106738307256216,
+      "l2_regularization": 0.16844614586888032
+    },
+    "user_attrs": {
+      "elapsed_s": 10.699965339999835,
+      "fold_macro_f1": [
+        0.7291548616342445,
+        0.7195381302002032,
+        0.7198414296241726,
+        0.6842062029992761,
+        0.7240561831567431
+      ]
+    }
+  },
+  {
+    "number": 11,
+    "state": "COMPLETE",
+    "value": 0.729680187168286,
+    "params": {
+      "max_iter": 179,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 80,
+      "learning_rate": 0.12261991419637631,
+      "l2_regularization": 8.75151377351353
+    },
+    "user_attrs": {}
+  }
+]

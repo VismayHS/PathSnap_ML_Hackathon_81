@@ -236,7 +236,7 @@ The exact run IDs behind every committed result are in [`docs/ml/reproduce.md`](
 | `report/` | The technical report PDF and its sources |
 | `configs/`, `contracts/` | Data and experiment settings; interfaces between pipeline, API and UI |
 | `tests/` | Science, API (contract and leakage) and integration tests |
-| `docs/` | Method notes, deployment guide, team guide |
+| `docs/` | Method notes and the deployment guide |
 
 ---
 
@@ -249,9 +249,6 @@ The exact run IDs behind every committed result are in [`docs/ml/reproduce.md`](
 | Model choice | [`docs/ml/model-selection.md`](docs/ml/model-selection.md) |
 | HMM and Viterbi | [`docs/ml/hmm-method.md`](docs/ml/hmm-method.md) |
 | Two-laptop deployment | [`docs/deployment/two-laptops.md`](docs/deployment/two-laptops.md) |
-| Each requirement and where it is met | [`docs/requirements-traceability.md`](docs/requirements-traceability.md) |
-| Plain-language presentation guide (PDF) | [`docs/team/PathSnap_Presentation_Guide.pdf`](docs/team/PathSnap_Presentation_Guide.pdf) |
-| Plain-language guide and viva prep | [`docs/team/`](docs/team/) |
 
 ---
 
@@ -260,4 +257,4 @@ The exact run IDs behind every committed result are in [`docs/ml/reproduce.md`](
 - **Independent work.** No code, weights or results were shared with or taken from other teams.
 - **Evidence.** Every number here and in the report comes from code and run records in this repository.
 - **Evaluator data.** The reserved trips were never used for training, tuning or model selection. Their reference routes never leave the server's scoring step. The development Folium maps in `maps/` show reference routes for student-test trips only, and are not used by the API or UI.
-- **AI assistance.** AI coding assistants were used substantially, under the team's direction. The disclosure statement is in the report, and the instructions given and the coordination record are in [`docs/team/context/`](docs/team/context/).
+- **AI assistance.** AI coding assistants were used substantially, under the team's direction. The disclosure statement is in the report.

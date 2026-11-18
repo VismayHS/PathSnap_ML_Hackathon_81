@@ -19,7 +19,7 @@ type Run =
 const LAYERS: { key: LayerKey; label: string; swatch: string }[] = [
   { key: 'route', label: 'Predicted route', swatch: 'sw-route' },
   { key: 'gps', label: 'Raw GPS points', swatch: 'sw-gps' },
-  { key: 'unmatched', label: 'Unmatched points', swatch: 'sw-unmatched' },
+  { key: 'unmatched', label: 'Unmatched or invalid points', swatch: 'sw-unmatched' },
   { key: 'network', label: 'Road network (nearby)', swatch: 'sw-network' },
 ];
 
@@ -71,13 +71,17 @@ export default function App() {
     }
   }, [apiBase, tripId]);
 
-  const chooseTrip = (id: string) => {
-    if (id === tripId) return;
+  // Abort any in-flight request, invalidate late responses, and clear the screen's result.
+  const resetRun = (nextTrip: string | null) => {
     inflight.current?.abort();
     seq.current++;
-    setTripId(id);
+    setTripId(nextTrip);
     setSelected(null);
     setRun({ state: 'idle' });
+  };
+
+  const chooseTrip = (id: string) => {
+    if (id !== tripId) resetRun(id);
   };
 
   const onSelect = useCallback((i: number | null) => setSelected(i), []);
@@ -118,6 +122,7 @@ export default function App() {
               e.preventDefault();
               const b = draftBase.trim().replace(/\/$/, '');
               rememberApiBase(b);
+              resetRun(null); // a new server means a new trip allowlist: drop all prior context
               setApiBase(b);
               recheck();
             }}
@@ -218,7 +223,7 @@ export default function App() {
                 <dt>Distance to road</dt><dd>{obs.distance_m === null ? '—' : `${obs.distance_m.toFixed(1)} m`}</dd>
                 <dt>Candidates</dt><dd>{obs.candidate_count}</dd>
                 <dt>Score</dt><dd>{obs.score === null ? '—' : obs.score.toFixed(3)} <span className="hint">({SCORE_KIND_LABEL[prediction.score_kind]})</span></dd>
-                <dt>GPS</dt><dd className="mono">{obs.lat?.toFixed(6)}, {obs.lon?.toFixed(6)}</dd>
+                <dt>GPS</dt><dd className="mono">{obs.lat === null || obs.lon === null ? 'not available' : `${obs.lat.toFixed(6)}, ${obs.lon.toFixed(6)}`}</dd>
               </dl>
             </section>
           )}
@@ -255,7 +260,9 @@ function ConnectionLine({ conn, apiBase }: { conn: Conn; apiBase: string }) {
 }
 
 function Results({ p }: { p: Prediction }) {
-  const matched = p.observations.filter((o) => o.status === 'matched').length;
+  const counts = { matched: 0, no_candidate: 0, unmatched: 0, invalid: 0 };
+  for (const o of p.observations) counts[o.status] += 1;
+  const matched = counts.matched;
   const warnings = summariseWarnings(p.warnings);
   return (
     <>
@@ -266,7 +273,19 @@ function Results({ p }: { p: Prediction }) {
       <dl className="kv">
         <dt>Model</dt><dd>{p.model.family} <span className="hint mono">{p.model.version}</span></dd>
         <dt>Decoder</dt><dd>{DECODER_LABEL[p.model.decoder]}</dd>
-        <dt>Observations</dt><dd>{matched.toLocaleString()} matched of {p.observation_count.toLocaleString()}</dd>
+        <dt>Observations</dt>
+        <dd>
+          {matched.toLocaleString()} matched of {p.observation_count.toLocaleString()}
+          {counts.no_candidate + counts.unmatched + counts.invalid > 0 && (
+            <span className="hint">
+              {' '}({[
+                counts.no_candidate && `${counts.no_candidate} no nearby road`,
+                counts.unmatched && `${counts.unmatched} unmatched`,
+                counts.invalid && `${counts.invalid} invalid`,
+              ].filter(Boolean).join(', ')})
+            </span>
+          )}
+        </dd>
         <dt>Route pieces</dt><dd>{p.route.features.length.toLocaleString()}</dd>
         <dt>Server time</dt><dd>{ms(p.timings.request_ms)}</dd>
       </dl>

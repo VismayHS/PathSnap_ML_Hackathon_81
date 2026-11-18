@@ -136,8 +136,15 @@ export function rememberApiBase(base: string): void {
   }
 }
 
-function newRequestId(): string {
-  return crypto.randomUUID().replace(/-/g, '');
+/** 32 hex chars. crypto.randomUUID only exists in secure contexts, and Laptop 2 opens the UI
+ * over plain http://<LAN-IP>, so fall back to getRandomValues (available everywhere). */
+export function newRequestId(): string {
+  const c = globalThis.crypto;
+  if (c && typeof c.randomUUID === 'function') return c.randomUUID().replace(/-/g, '');
+  const bytes = new Uint8Array(16);
+  if (c && typeof c.getRandomValues === 'function') c.getRandomValues(bytes);
+  else for (let i = 0; i < bytes.length; i++) bytes[i] = Math.floor(Math.random() * 256);
+  return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
 }
 
 async function request<T>(
@@ -149,34 +156,46 @@ async function request<T>(
   const controller = new AbortController();
   const timer = window.setTimeout(() => controller.abort('timeout'), init.timeoutMs);
   init.signal?.addEventListener('abort', () => controller.abort('superseded'), { once: true });
-  let response: Response;
-  try {
-    response = await fetch(`${base}${path}`, {
-      ...init,
-      signal: controller.signal,
-      headers: { 'Content-Type': 'application/json', 'X-Request-ID': requestId, ...(init.headers ?? {}) },
-    });
-  } catch {
+  const fail = (status: number | null, rid: string): ApiError => {
     const reason = controller.signal.reason;
-    if (reason === 'superseded') throw new ApiError('Superseded by a newer request.', 'superseded', null, requestId, false);
+    if (reason === 'superseded') return new ApiError('Superseded by a newer request.', 'superseded', status, rid, false);
     if (reason === 'timeout')
-      throw new ApiError(`No response from the server within ${Math.round(init.timeoutMs / 1000)} s.`, 'timeout', null, requestId, true);
-    throw new ApiError(`Can't reach the PathSnap server at ${base}.`, 'unreachable', null, requestId, true);
+      return new ApiError(`No complete response from the server within ${Math.round(init.timeoutMs / 1000)} s.`, 'timeout', status, rid, true);
+    return status === null
+      ? new ApiError(`Can't reach the PathSnap server at ${base}.`, 'unreachable', null, rid, true)
+      : new ApiError(`The server sent an unreadable response (HTTP ${status}).`, 'bad_response', status, rid, false);
+  };
+  // The timer stays armed until the body is fully read and parsed.
+  try {
+    let response: Response;
+    try {
+      response = await fetch(`${base}${path}`, {
+        ...init,
+        signal: controller.signal,
+        headers: { 'Content-Type': 'application/json', 'X-Request-ID': requestId, ...(init.headers ?? {}) },
+      });
+    } catch {
+      throw fail(null, requestId);
+    }
+    const rid = response.headers.get('X-Request-ID') ?? requestId;
+    let body: unknown;
+    try {
+      body = await response.json();
+    } catch {
+      throw fail(response.status, rid);
+    }
+    if (!response.ok) {
+      const env = body as { request_id?: string; error?: { code: string; message: string; retryable: boolean } };
+      const err = env.error;
+      throw new ApiError(
+        err?.message ?? `HTTP ${response.status}`, err?.code ?? 'http_error', response.status,
+        env.request_id ?? rid, err?.retryable ?? false,
+      );
+    }
+    return body as T;
   } finally {
     window.clearTimeout(timer);
   }
-  const rid = response.headers.get('X-Request-ID') ?? requestId;
-  let body: unknown = null;
-  try {
-    body = await response.json();
-  } catch {
-    throw new ApiError(`The server sent an unreadable response (HTTP ${response.status}).`, 'bad_response', response.status, rid, false);
-  }
-  if (!response.ok) {
-    const err = (body as { error?: { code: string; message: string; retryable: boolean } }).error;
-    throw new ApiError(err?.message ?? `HTTP ${response.status}`, err?.code ?? 'http_error', response.status, rid, err?.retryable ?? false);
-  }
-  return body as T;
 }
 
 export const api = {

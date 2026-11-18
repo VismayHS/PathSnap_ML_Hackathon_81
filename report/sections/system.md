@@ -94,6 +94,27 @@ Server-side time per request, trained model, development mode, one machine:
 
 The slowest trip (00000056, 3,958 points) takes 5.8 s. The UI allows up to 180 s and shows no fake progress while waiting.
 
+### Final evaluation on the reserved trips
+
+After freezing the system (`main` `603b42f`, bundle `hgb-hmm-v1`), the 10 reserved evaluator trips were run once through the API in evaluator mode. Scoring happened only on the server, after prediction. Nothing was explored, trained, tuned or selected using these trips. Source: `results/system/evaluator-run-01-aggregate.json`. Provisional scoring policy `pathsnap-scoring-v0`.
+
+| Trip | Points | Top-1 accuracy | Macro F1 | Route continuity | Route pieces | Server time |
+|---|---|---|---|---|---|---|
+| 00000015 | 6,854 | 79.0% | 0.426 | 99.94% | 5 | 2.8 s |
+| 00000017 | 1,346 | 87.5% | 0.764 | 99.93% | 2 | 2.3 s |
+| 00000023 | 458 | 91.3% | 0.669 | 100.00% | 1 | 0.4 s |
+| 00000030 | 654 | 81.8% | 0.759 | 100.00% | 1 | 0.8 s |
+| 00000049 | 2,642 | 98.1% | 0.952 | 99.96% | 2 | 2.0 s |
+| 00000059 | 1,031 | 91.0% | 0.763 | 100.00% | 1 | 1.3 s |
+| 00000067 | 916 | 95.5% | 0.879 | 100.00% | 1 | 0.6 s |
+| 00000073 | 1,144 | 95.8% | 0.896 | 100.00% | 6 | 1.1 s |
+| 00000087 | 1,399 | 98.1% | 0.960 | 100.00% | 1 | 2.7 s |
+| 00000094 | 3,230 | 88.5% | 0.794 | 99.94% | 3 | 3.6 s |
+| **All 10** | **19,674** | **87.8%** (pooled) | **0.786** (mean) | **99.98%** | **23** | |
+
+![Evaluator mode](report/figures/system/ui-evaluator-result.png)
+<p class="caption">Figure S5. The UI in evaluator mode: exactly the ten reserved trips, with trip 00000049 reconstructed and scored on the server. Only the prediction and raw GPS are drawn; no evaluator reference geometry reaches the browser.</p>
+
 ### Two-laptop deployment
 
 The step-by-step guide is `docs/deployment/two-laptops.md`. In short:

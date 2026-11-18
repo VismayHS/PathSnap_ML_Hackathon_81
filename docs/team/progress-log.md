@@ -2,6 +2,14 @@
 
 Newest first. Each entry: what happened, why, what's next. Times are local (IST).
 
+## 2026-11-18, about 13:00: final evaluation on the reserved trips; M4 complete
+
+- **Evaluator data arrived** (`evaluator_test.zip`). It was extracted outside the repo, its 10 trip IDs were checked for overlap with the development trips (none), and **nobody explored it**.
+- **The frozen system ran it once in evaluator mode** (`main` `603b42f`): **87.8% Top-1 accuracy** (17,280 of 19,674 points), mean trip Macro F1 0.786, continuity 99.98%, 23 route pieces. All 10 trips were scored on the server, and only aggregates are stored (`results/system/evaluator-run-01-aggregate.json`). Nothing was tuned afterwards.
+- **M4:** feature ablation (distance only 0.345 → plus heading 0.652 → all features 0.730 CV Macro F1), the corrected science section, the combined report PDF, and the README with screenshots and every guide.
+- **UI fix:** an evaluation-panel layout bug (numbers wrapping one character per line), found in the evaluator screenshots, is fixed and covered by a new browser test.
+- **Team still needs to:** add names and SRNs, write the AI-assistance statement, run the two-laptop rehearsal with real terminal screenshots, and prepare for the viva with `docs/ml/viva-notes.md`.
+
 ## 2026-11-18, about 12:50: M2 and M3 accepted; the trained model is live in the demo
 
 - **M2 (`fbd0df0`):** all five models were trained with 5-fold grouped cross-validation on the 80 training trips (about 9 min) and tested on the 10 student-test trips. HistGradientBoosting was selected for the best CV Macro F1 (0.725) and log loss. See `docs/ml/model-selection.md`.

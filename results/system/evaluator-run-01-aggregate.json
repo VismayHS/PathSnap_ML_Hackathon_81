@@ -1,0 +1,99 @@
+{
+ "run": "evaluator-run-01",
+ "system": "main 603b42f (frozen M3), bundle artifacts/hgb-hmm-v1 manifest sha256 a3a8028d...",
+ "mode": "evaluator",
+ "scoring_policy": "pathsnap-scoring-v0 (provisional)",
+ "pooled_top1_accuracy": 0.8783165599268069,
+ "top1_correct": 17280,
+ "scorable_observations": 19674,
+ "mean_trip_macro_f1": 0.7861083289571573,
+ "mean_route_continuity": 0.9997674788339344,
+ "route_pieces_total": 23,
+ "candidate_misses_total": 128,
+ "unscorable_total": 0,
+ "observations_total": 19674,
+ "per_trip": [
+  {
+   "trip": "00000015",
+   "top1": 0.7904873066822293,
+   "macro_f1": 0.42576037687337276,
+   "continuity": 0.9994163140230556,
+   "pieces": 5,
+   "req_ms": 2790
+  },
+  {
+   "trip": "00000017",
+   "top1": 0.87518573551263,
+   "macro_f1": 0.7643536944482213,
+   "continuity": 0.9992565055762082,
+   "pieces": 2,
+   "req_ms": 2321
+  },
+  {
+   "trip": "00000023",
+   "top1": 0.9126637554585153,
+   "macro_f1": 0.668613672961499,
+   "continuity": 1.0,
+   "pieces": 1,
+   "req_ms": 408
+  },
+  {
+   "trip": "00000030",
+   "top1": 0.8180428134556575,
+   "macro_f1": 0.7591985412327542,
+   "continuity": 1.0,
+   "pieces": 1,
+   "req_ms": 793
+  },
+  {
+   "trip": "00000049",
+   "top1": 0.9814534443603331,
+   "macro_f1": 0.9517295750694248,
+   "continuity": 0.9996213555471413,
+   "pieces": 2,
+   "req_ms": 2008
+  },
+  {
+   "trip": "00000059",
+   "top1": 0.9097963142580019,
+   "macro_f1": 0.7632334214162444,
+   "continuity": 1.0,
+   "pieces": 1,
+   "req_ms": 1309
+  },
+  {
+   "trip": "00000067",
+   "top1": 0.9552401746724891,
+   "macro_f1": 0.8787312798451143,
+   "continuity": 1.0,
+   "pieces": 1,
+   "req_ms": 602
+  },
+  {
+   "trip": "00000073",
+   "top1": 0.958041958041958,
+   "macro_f1": 0.895677470177812,
+   "continuity": 1.0,
+   "pieces": 6,
+   "req_ms": 1096
+  },
+  {
+   "trip": "00000087",
+   "top1": 0.9807005003573981,
+   "macro_f1": 0.9599787440098445,
+   "continuity": 1.0,
+   "pieces": 1,
+   "req_ms": 2667
+  },
+  {
+   "trip": "00000094",
+   "top1": 0.8845201238390092,
+   "macro_f1": 0.7938065135372859,
+   "continuity": 0.999380613192939,
+   "pieces": 3,
+   "req_ms": 3558
+  }
+ ],
+ "checks": "all 10: HTTP 200, schema-valid, scored, no reference/label/private keys, X-Request-ID == body request_id",
+ "note": "Aggregate metrics only. No evaluator reference geometry, per-observation labels, raw payloads or evaluator data are stored in this repository. Nothing was tuned or selected using these results."
+}

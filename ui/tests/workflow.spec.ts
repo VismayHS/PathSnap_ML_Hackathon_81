@@ -196,3 +196,18 @@ test('observations can be inspected without a pointer', async ({ page }) => {
   await page.keyboard.press('Escape');
   await expect(page.getByRole('heading', { name: /Observation #/ })).toHaveCount(0);
 });
+
+test('metric values are laid out readably (no per-character wrapping)', async ({ page }) => {
+  await openApp(page);
+  await page.getByRole('radio', { name: '00000052' }).check();
+  await page.getByRole('button', { name: 'Reconstruct route' }).click();
+  await expect(page.getByRole('heading', { name: /Trip 00000052/ })).toBeVisible();
+  const values = page.locator('.kv.metrics dd');
+  const n = await values.count();
+  test.skip(n === 0, 'metrics unavailable for this bundle');
+  for (let i = 0; i < n; i++) {
+    const box = await values.nth(i).boundingBox();
+    expect(box!.width).toBeGreaterThan(40);
+    expect(box!.height).toBeLessThan(100); // per-character wrapping produced hundreds of px
+  }
+});

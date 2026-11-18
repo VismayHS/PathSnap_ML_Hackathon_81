@@ -39,6 +39,7 @@ h3 { font-size: 11.5pt; margin-top: 12pt; }
 h2 { page-break-after: avoid; } h3 { page-break-after: avoid; }
 table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 8pt 0; font-variant-numeric: tabular-nums; }
 th, td { border: 1px solid #d3d9dd; padding: 3pt 5pt; vertical-align: top; } th { background: #eef1f2; text-align: left; }
+tr, img, pre, figure { break-inside: avoid; page-break-inside: avoid; } thead { display: table-header-group; }
 img { max-width: 100%; display: block; margin: 6pt auto; border: 1px solid #d3d9dd; }
 code { font-family: 'IBM Plex Mono', 'DejaVu Sans Mono', monospace; font-size: 9pt; }
 pre { background: #f4f6f7; padding: 6pt; font-size: 8pt; white-space: pre; overflow: hidden; }

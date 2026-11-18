@@ -13,7 +13,7 @@ The status column below separates what has been checked on one machine from what
 | API and UI on one machine (localhost), all 10 student-test trips, browser tests | Verified (M1 integration record) |
 | UI over a plain `http://<LAN-IP>` origin | Code path tested with `crypto.randomUUID` disabled. The physical LAN run is **pending**. |
 | Two physical laptops on a LAN | **Pending**: run the checklist at the end |
-| Reserved evaluator trips | **Pending**: the organisers provide these |
+| Reserved evaluator trips | Received. Run once on one machine in evaluator mode (results in `results/system/evaluator-run-01-aggregate.json`) |
 
 ## Laptop 1: model and API
 

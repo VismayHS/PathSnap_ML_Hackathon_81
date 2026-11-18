@@ -21,7 +21,7 @@ Last updated: 2026-11-18, after M3 (M4 in progress).
 | S4 | API computes accuracy with internal reference data | MG §6.8 | `src/evaluation/service.py`, called after prediction | `tests/api` call order | A/B | Done: isolated aggregate scorer, all 10 student-test trips scored via HTTP (M3) |
 | S5 | Ground truth stays server-side, never in the model or UI | MG §6, AP §7 | explicit serializer `api/serialize.py`, schema `additionalProperties:false` | leakage tests and live scan of 10 trips | B | Done (re-check at M3) |
 | S6 | No hardcoded predictions or API bypass; API logs shown on the receiving laptop | MG §6, AP §7 | structured request/stage logs in `api/main.py`, `api/service.py` | `api.log` in the M1 evidence | B | Done; the physical demo is pending |
-| S7 | Works for all ten reserved trips | MG §6 | evaluator mode via `PATHSNAP_EVALUATOR_ROOT` | — | B/A | External/pending (data not provided) |
+| S7 | Works for all ten reserved trips | MG §6 | evaluator mode via `PATHSNAP_EVALUATOR_ROOT` | `results/system/evaluator-run-01-aggregate.json`, report Figure S5 | B/A | Done on one machine (physical LAN pending) |
 
 ## Mandatory: data
 
@@ -71,6 +71,6 @@ Last updated: 2026-11-18, after M3 (M4 in progress).
 ## External and pending items
 
 - Organisers to clarify the official pointwise scoring and alignment semantics (metrics are labelled provisional until then).
-- Reserved evaluator trips.
+- Reserved evaluator trips: received and run once on the frozen system (aggregate results recorded).
 - Two-physical-laptop demonstration and real terminal screenshots.
 - Team AI-assistance disclosure wording in the report.

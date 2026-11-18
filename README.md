@@ -6,13 +6,13 @@ PathSnap takes a vehicle's noisy GPS trace and works out which road segments it 
 
 ![PathSnap evaluator UI showing a reconstructed route](report/figures/system/ui-result-1440.png)
 
-> All numbers below come from the **development** data: 80 training trips and 10 student-test trips. The pointwise scoring definition is **provisional** until the organisers confirm the official one. The 10 reserved evaluator trips have not been provided yet.
+> Development numbers come from 80 training trips and 10 student-test trips. The **final evaluation** on the 10 reserved evaluator trips is reported separately below. The pointwise scoring definition is **provisional** until the organisers confirm the official one.
 
 ---
 
 ## Contents
 
-1. [Results at a glance](#results-at-a-glance)
+1. [Results at a glance](#results-at-a-glance), including the [final evaluation](#final-evaluation-the-10-reserved-evaluator-trips)
 2. [How it works](#how-it-works)
 3. [Screenshots](#screenshots)
 4. [Quick start: run the demo](#quick-start-run-the-demo)
@@ -46,7 +46,32 @@ HistGradientBoosting was **selected on training cross-validation Macro F1** (the
 
 There were 12 trials, each a full 5-fold grouped cross-validation. The CV Macro F1 went from **0.7252 (untuned) to 0.7297 (tuned)**. The tuning process ended unexpectedly with exit code 143 after 11 trials; the cause was not verified. The 12th trial was then completed from its recorded parameters. This is documented, not hidden. Source: [`results/hpo/hgb-tpe-v1/`](results/hpo/hgb-tpe-v1/).
 
-### Final system: tuned classifier with and without HMM/Viterbi
+### Final evaluation: the 10 reserved evaluator trips
+
+After the system was frozen (`main` at `603b42f`, model `hgb-hmm-v1`), the organisers' reserved evaluator trips were run **once**, through the API in evaluator mode, with server-side scoring only. Nothing was explored, trained, tuned or re-selected using them. Only aggregate metrics are kept: [`results/system/evaluator-run-01-aggregate.json`](results/system/evaluator-run-01-aggregate.json).
+
+| Trip | Points | Top-1 accuracy | Macro F1 | Route continuity | Route pieces | Server time |
+|---|---|---|---|---|---|---|
+| 00000015 | 6,854 | 79.0% | 0.426 | 99.94% | 5 | 2.8 s |
+| 00000017 | 1,346 | 87.5% | 0.764 | 99.93% | 2 | 2.3 s |
+| 00000023 | 458 | 91.3% | 0.669 | 100.00% | 1 | 0.4 s |
+| 00000030 | 654 | 81.8% | 0.759 | 100.00% | 1 | 0.8 s |
+| 00000049 | 2,642 | 98.1% | 0.952 | 99.96% | 2 | 2.0 s |
+| 00000059 | 1,031 | 91.0% | 0.763 | 100.00% | 1 | 1.3 s |
+| 00000067 | 916 | 95.5% | 0.879 | 100.00% | 1 | 0.6 s |
+| 00000073 | 1,144 | 95.8% | 0.896 | 100.00% | 6 | 1.1 s |
+| 00000087 | 1,399 | 98.1% | 0.960 | 100.00% | 1 | 2.7 s |
+| 00000094 | 3,230 | 88.5% | 0.794 | 99.94% | 3 | 3.6 s |
+| **All 10** | **19,674** | **87.8%** (pooled) | **0.786** (mean) | **99.98%** | **23** | |
+
+- **Overall:** 87.8% Top-1 accuracy on unseen trips, close to the 88.5% on the student-test trips.
+- **Macro F1 is lower** (0.786 against 0.851), mostly because of trip `00000015`: a long trip where common roads are right but many rarely visited segments are missed.
+- **Candidate misses:** 128 points (0.65%) had no correct road among their candidates. They count as errors.
+- **Scoring policy:** the same provisional `pathsnap-scoring-v0`.
+
+![Evaluator mode in the UI](report/figures/system/ui-evaluator-result.png)
+
+### Final system on the student-test trips: tuned classifier with and without HMM/Viterbi
 
 Source: [`results/hmm/hgb-hmm-v1/summary.json`](results/hmm/hgb-hmm-v1/summary.json).
 
@@ -253,11 +278,12 @@ The full command list with the exact run IDs used is in [`docs/ml/reproduce.md`]
 | M1: end-to-end slice (diagnostic model) | ✅ on `main` |
 | M2: five models, grouped CV, model selection | ✅ on `main` |
 | M3: Bayesian tuning, HMM, trained model in the API and UI, Folium maps | ✅ on `main` |
-| M4: technical report PDF, feature ablation, final audit | 🔄 in progress |
+| M4: technical report PDF, feature ablation, final audit | ✅ on `main` |
+| Final evaluation on the 10 reserved trips (evaluator mode, frozen model) | ✅ run, aggregate results above |
 
 **Pending outside the code (team or organisers):**
 - [ ] Official pointwise scoring definition from the organisers (our metrics are provisional until then).
-- [ ] The 10 reserved evaluator trips (then set `PATHSNAP_MODE=evaluator` and `PATHSNAP_EVALUATOR_ROOT`).
+- [x] The 10 reserved evaluator trips: received and run. For the demo, set `PATHSNAP_MODE=evaluator` and `PATHSNAP_EVALUATOR_ROOT=/path/to/evaluator_test`; the data stays outside the repository.
 - [ ] A rehearsal on two physical laptops, and real terminal screenshots for the report.
 - [ ] Team names and SRNs, plus the team's AI-assistance statement in the report.
 

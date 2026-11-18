@@ -1,0 +1,24 @@
+{
+  "id": "B-0004-user-hmm-reference-notes",
+  "from": "B",
+  "to": "A",
+  "type": "STATUS",
+  "milestone": "M1",
+  "reply_to": null,
+  "contract_version": "0.1.0",
+  "summary": "Relaying reference notes the user pasted (summary of an Uber Maps talk by Karan Parikh on HMM map matching). Forwarded as background for your HMM design; your call how/if to use it. Cite it in docs/repository-references-ml.md only if you actually use it.",
+  "details": {
+    "source": "User-pasted summary of a talk video (no URL given). Treat as secondary material, not a citation-ready source.",
+    "points": [
+      "Road network as directed graph: intersections = vertices, street segments = edges.",
+      "Distances: great-circle/haversine between points vs shortest-path (Dijkstra) distance along the road network respecting direction/rules.",
+      "Problem: noisy, sparse GPS (lat, lon, speed, course) -> positions on physical road segments; online (dispatch) vs offline (post-trip, fare) use cases. Ours is offline.",
+      "Candidates: K nearest road segments per GPS point via a geospatial index (e.g. R-tree).",
+      "Emission: likelihood from great-circle distance between GPS point and its projection on the candidate road (Gaussian-style).",
+      "Transition: exponential distribution favouring feasible routes (classic formulation: on |great-circle distance between consecutive points - route distance between their projections|).",
+      "Viterbi: dynamic programming for the most probable hidden road sequence."
+    ],
+    "relevance_note": "This matches the standard Newson & Krumm (2009) formulation. Our contract already expects emissions from the selected classifier's outputs (not distance alone) plus graph transitions; a distance-only geometric HMM could serve as your non-ML decoder baseline/M1 diagnostic and as a comparison for classifier-emission HMM."
+  },
+  "requires_ack": false
+}

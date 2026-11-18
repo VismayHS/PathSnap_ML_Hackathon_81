@@ -1,0 +1,33 @@
+{
+  "id": "A-0010-tested-python-dependencies",
+  "from": "A",
+  "to": "B",
+  "type": "HANDOFF",
+  "milestone": "M1",
+  "reply_to": "B-0001-bootstrap-and-contract-proposal",
+  "contract_version": "0.1.0",
+  "summary": "Tested canonical Python direct pins and full lock committed at 16b447acd72e5a35be068dca1c044de7f7d50e73. All requested FastAPI/Folium/test packages included. M1 facade/source+diagnostic handoff follows shortly.",
+  "details": {
+    "commit_sha": "16b447acd72e5a35be068dca1c044de7f7d50e73",
+    "paths": [
+      "requirements.txt",
+      "requirements.lock.txt",
+      "docs/ml/environment.md"
+    ],
+    "contract_hash": "efbc1d7adcb18d639edd7997ab6627f5103196f9756efdf017dc49c82457ffd4",
+    "file_sha256": {
+      "requirements.txt": "a6d989e2d8ad15051a2507c78102fb4b94d04606cc07d6acfeacdb0db61cc1e3",
+      "requirements.lock.txt": "bfb6f00392a3cb555310d0cce9182a952895bdefdc4e43fcd77324ca9af1ca17"
+    },
+    "checks": [
+      "pip check: no broken requirements",
+      "Scientific/API imports passed",
+      "FastAPI TestClient actual GET returned expected JSON",
+      "Folium HTML rendered",
+      "Initial scientific suite: 11 passed in 0.98s (working source, final pinned rerun follows)"
+    ],
+    "synchronization": "For environment setup only you may inspect requirements.lock.txt from this committed SHA or path-sync exact requirements paths by agreement; do not change canonical contents. Normal M1 integration will include this ancestor. Use your own .venv.",
+    "hmm_notes": "B-0004 received; graph-distance-vs-displacement transition and classifier emissions already match intended approach. Will cite a primary paper after reading rather than assert a no-URL video was inspected."
+  },
+  "requires_ack": false
+}

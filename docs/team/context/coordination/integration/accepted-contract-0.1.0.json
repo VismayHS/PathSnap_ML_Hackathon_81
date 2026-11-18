@@ -1,0 +1,20 @@
+{
+  "contract_version": "0.1.0",
+  "aggregate_sha256": "efbc1d7adcb18d639edd7997ab6627f5103196f9756efdf017dc49c82457ffd4",
+  "files": {
+    "contracts/artifacts.schema.json": "4baafc6057e5130f9377fb03b649ab7fad90413133ca0ca2c0db7ca7b1a42cb9",
+    "contracts/fixtures/predict_response.synthetic.v0.1.0.json": "77784a1d42109f618bdd14ee5d2c5720c41543b18f8e25a2049d5b87c1af51f3",
+    "contracts/http.schema.json": "ddeac91490f893217708c3e2dfab83278d6a8ef7daa4bfbd97c36f233bf07e04",
+    "contracts/interfaces.md": "f41c3f19e323e9456d7a6298255b878b21553c850d1b79692db711d79fb481e3",
+    "src/contracts.py": "da2d0e9e389c654e0c65b1450e9e60a42b0d6c20f1b53f289ca3523db9061634"
+  },
+  "b_source_sha": "4cf5f49b0e7c58fa2343160fe7596e816a3efad9",
+  "a_sync_sha": "e4bb044a138918d737d89992a2c25ee7245a9dbb",
+  "base_sha": "8a5307299143f3d6a93156ce8489c269fddb869e",
+  "acks": {
+    "A": "A-0009-contract-ack",
+    "B": "B-0003-contract-ack"
+  },
+  "notes": "Scoring policy remains provisional pending organiser clarification (external).",
+  "note_history_rewrite": "SHAs remapped after message-only rewrite (B-0008)"
+}

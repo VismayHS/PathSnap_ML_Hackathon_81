@@ -1,0 +1,230 @@
+{
+  "id": "A-M1-0002",
+  "state": "READY_FOR_INTEGRATION",
+  "milestone": "M1",
+  "commit_sha": "b1c76c300ad9d1c14dbd5216670c9dfbfea61517",
+  "base_sha": "8a5307299143f3d6a93156ce8489c269fddb869e",
+  "contract_version": "0.1.0",
+  "contract_hash": "efbc1d7adcb18d639edd7997ab6627f5103196f9756efdf017dc49c82457ffd4",
+  "source_revisions": {
+    "pipeline_eda_artifact_source": "e40733568bc39c41f771940469420d50b58e2929",
+    "diagnostic_check_source": "9540ae6004a91d402bf24f35bbc3564cf2d0be7a",
+    "dependency_source": "16b447a"
+  },
+  "changed_files": [
+    "artifacts/diagnostic-v1/decoder-config.json",
+    "artifacts/diagnostic-v1/feature-schema.json",
+    "artifacts/diagnostic-v1/manifest.json",
+    "configs/ml/data.json",
+    "contracts/current-manifest.json",
+    "contracts/interfaces.md",
+    "data/README.md",
+    "docs/ml/ecc-review.md",
+    "docs/ml/ecc-sources.json",
+    "docs/ml/environment.md",
+    "docs/ml/hmm-method.md",
+    "docs/ml/reproduce.md",
+    "docs/ml/scoring-policy.md",
+    "docs/ml/team-understanding.md",
+    "docs/repository-references-ml.md",
+    "docs/team/science-notes.md",
+    "requirements.lock.txt",
+    "requirements.txt",
+    "results/eda/initial-validation-v1/file-hashes.json",
+    "results/eda/initial-validation-v1/metadata.json",
+    "results/eda/initial-validation-v1/trips.csv",
+    "results/experiments/m1-diagnostic-v1/checks.json",
+    "results/experiments/m1-diagnostic-v1/ecc-verification.json",
+    "results/experiments/m1-diagnostic-v1/summary.json",
+    "results/experiments/source-revision-map.json",
+    "src/__init__.py",
+    "src/data_processing/candidates.py",
+    "src/data_processing/geometry.py",
+    "src/data_processing/inspect.py",
+    "src/data_processing/raw.py",
+    "src/evaluation/alignment.py",
+    "src/evaluation/diagnostic_check.py",
+    "src/evaluation/reference.py",
+    "src/evaluation/service.py",
+    "src/features/candidate.py",
+    "src/hmm/graph.py",
+    "src/hmm/viterbi.py",
+    "src/models/export.py",
+    "src/pipeline.py",
+    "tests/ml/test_alignment.py",
+    "tests/ml/test_candidates.py",
+    "tests/ml/test_graph_viterbi.py",
+    "tests/ml/test_pipeline.py",
+    "tests/ml/test_raw_geometry.py"
+  ],
+  "synced_b_owned_contract_paths": [
+    "contracts/interfaces.md",
+    "contracts/current-manifest.json"
+  ],
+  "artifacts": {
+    "artifacts/diagnostic-v1/decoder-config.json": {
+      "sha256": "c32ffe5e9aa5d47192e6288e1a1435e3f56e768dd542e1eb54221d590754dc04",
+      "bytes": 139
+    },
+    "artifacts/diagnostic-v1/feature-schema.json": {
+      "sha256": "ac184b3d95e059495ad5ba8722ef33a281e32ef9b8b3282e6ddd7445e92a3a5f",
+      "bytes": 278
+    },
+    "artifacts/diagnostic-v1/manifest.json": {
+      "sha256": "138bf5ac32ac5f18eaa90a4d55225d4ccbfea9424eed02656ca4ddd93ea38502",
+      "bytes": 2541
+    },
+    "results/eda/initial-validation-v1/file-hashes.json": {
+      "sha256": "fdb5d1db83c564161ca7b35108391dedebbd6c9984f1fc3947931ddd0e369ac9",
+      "bytes": 37273
+    },
+    "results/eda/initial-validation-v1/metadata.json": {
+      "sha256": "a2df90b634a00703a035f348acf43d85dd9bf6d33545da03d3bbea547d5d2fee",
+      "bytes": 4290
+    },
+    "results/eda/initial-validation-v1/trips.csv": {
+      "sha256": "ef61ed403137a0fa20de0d0b5234584989a3f607680947e271bc6faf67381497",
+      "bytes": 14812
+    },
+    "results/experiments/m1-diagnostic-v1/checks.json": {
+      "sha256": "09eb5c0c2c50f60f00a237266a99a38d3d454910b323a11c8c0b757ebc25c47c",
+      "bytes": 1596
+    },
+    "results/experiments/m1-diagnostic-v1/summary.json": {
+      "sha256": "0d0de196e31016560ecf07821825e8bb6d3e78706a0a37ff3b22b107fd6cd6fb",
+      "bytes": 8442
+    },
+    "results/experiments/source-revision-map.json": {
+      "sha256": "3036a3d321ce7da9bcbd56b2b14ca6df1c1797de65ff22003c58e197d08ada89",
+      "bytes": 2024
+    },
+    "results/experiments/m1-diagnostic-v1/ecc-verification.json": {
+      "sha256": "538a192b4ecb12fd9e1f4f899e8e11abef9a0c1069c11185ad3d86c952cb227f",
+      "bytes": 1677
+    },
+    "docs/ml/ecc-review.md": {
+      "sha256": "4c4abc0b408cbcdc5fe168f6a28c9de399255dc76ddfdff74099597a0442d0d8",
+      "bytes": 3447
+    },
+    "docs/ml/ecc-sources.json": {
+      "sha256": "7ed49c4d95a6dae4641c96468671a6246139f6f7694266713963dc019072f26c",
+      "bytes": 763
+    },
+    "docs/ml/hmm-method.md": {
+      "sha256": "c520c3adb356f0560b80fe4a2b1438dbc2393421c792bbd769dc792ee2843f1a",
+      "bytes": 2308
+    }
+  },
+  "checks": [
+    {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/ml",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "...........                                                              [100%]\n11 passed in 0.46s\n",
+      "stderr": "",
+      "elapsed_s": 0.6891590419991189
+    },
+    {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "No broken requirements found.\n",
+      "stderr": "",
+      "elapsed_s": 0.5953344750005272
+    },
+    {
+      "command": [
+        ".venv/bin/python",
+        "scripts/contract_hash.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"aggregate_sha256\": \"efbc1d7adcb18d639edd7997ab6627f5103196f9756efdf017dc49c82457ffd4\",\n  \"files\": {\n    \"contracts/artifacts.schema.json\": \"4baafc6057e5130f9377fb03b649ab7fad90413133ca0ca2c0db7ca7b1a42cb9\",\n    \"contracts/fixtures/predict_response.synthetic.v0.1.0.json\": \"77784a1d42109f618bdd14ee5d2c5720c41543b18f8e25a2049d5b87c1af51f3\",\n    \"contracts/http.schema.json\": \"ddeac91490f893217708c3e2dfab83278d6a8ef7daa4bfbd97c36f233bf07e04\",\n    \"contracts/interfaces.md\": \"f41c3f19e323e9456d7a6298255b878b21553c850d1b79692db711d79fb481e3\",\n    \"src/contracts.py\": \"da2d0e9e389c654e0c65b1450e9e60a42b0d6c20f1b53f289ca3523db9061634\"\n  },\n  \"version\": \"0.1.0\"\n}\n",
+      "stderr": "",
+      "elapsed_s": 0.026637244000085047
+    },
+    {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "src.data_processing.inspect",
+        "--data-root",
+        "/home/vismay-hs/Downloads/ML_Hackathon/Student_folder",
+        "--output",
+        "results/eda/initial-validation-v1"
+      ],
+      "outcome": "Passed all 90 trips; metadata source_dirty=false; fingerprint matches initial inspection"
+    },
+    {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "src.evaluation.diagnostic_check",
+        "--data-root",
+        "/home/vismay-hs/Downloads/ML_Hackathon/Student_folder",
+        "--bundle-root",
+        "artifacts/diagnostic-v1",
+        "--output",
+        "results/experiments/m1-diagnostic-v1"
+      ],
+      "outcome": "All 10 student-test trips, 19160 observations; invariants passed, reference guard passed, actual first-trip CLI/core selected arc/status/segment signature parity passed"
+    },
+    {
+      "command": "git diff --cached --check (evidence publication)",
+      "outcome": "Flagged standard CSV CRLF as trailing whitespace; no data/schema failure"
+    },
+    {
+      "command": "git -c core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol diff cea374cbdedb1ac1028c7ab85d41a1f55a4e51e6..HEAD --check",
+      "outcome": "Passed with explicit standard-CSV CRLF handling"
+    },
+    {
+      "command": "git -c core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol diff 8a5307299143f3d6a93156ce8489c269fddb869e..HEAD --check",
+      "outcome": "Passed after new docs/provenance publication; no scientific source changes or evidence overwrites"
+    }
+  ],
+  "known_limits": [
+    "Diagnostic nearest-geometry only, zero trained classifiers; not final/evaluator mode",
+    "Scoring facade intentionally unavailable pending validated scorer",
+    "Nearest-geometric route fragmented: 4311 pieces across ten trips, including 1022 on 00000000; gaps preserved, not bridged",
+    "HMM and alignment have tiny-graph/mechanics tests but no real-data trained-model comparison yet",
+    "No API/UI/Folium/HTTP/LAN checks by A in this handoff; B integration still required",
+    "All five-model experiments, Bayesian trials, final assets, scientific plots/report remain M2-M4 work",
+    "Official scoring clarification and reserved evaluator provisioning external/pending"
+  ],
+  "integration_instructions": {
+    "bundle_root": "artifacts/diagnostic-v1",
+    "data_root": "/home/vismay-hs/Downloads/ML_Hackathon/Student_folder",
+    "mode": "development",
+    "required_core": "src.pipeline.load_model_bundle, list_trip_ids, load_prediction_input, predict_trip; src.evaluation.service.evaluate_completed_prediction",
+    "private_evidence": "Never serialize/log PredictionResult.scorer_evidence; use explicit HTTP field mapping",
+    "tests": ".venv/bin/python -m pytest tests/ml -q",
+    "install": ".venv/bin/python -m pip install -r requirements.lock.txt"
+  },
+  "review_requests": [
+    "Verify exact hashes before integration",
+    "Review HTTP coordinate/order conversions, route fragmentation and diagnostic/unavailable metric labels",
+    "Send B handoff and combined pending-merge state for scientific review; do not import live mutable A source"
+  ],
+  "freeze": "A source/artifacts frozen at new SHA pending M1 integration review/result",
+  "supersedes": "A-M1-0001",
+  "source_revisions_original": {
+    "pipeline_eda_artifact_source": "e40733568bc39c41f771940469420d50b58e2929",
+    "diagnostic_check_source": "9540ae6004a91d402bf24f35bbc3564cf2d0be7a",
+    "dependency_source": "16b447a"
+  },
+  "source_revisions_public": {
+    "pipeline_eda_artifact_source": "c470ce804805c6f9ab4e197a6a4bb38b4585e2e3",
+    "diagnostic_check_source": "0f9e760af40667d1faabe796dd4bfec3dd8d8887",
+    "dependency_source": "c8ad49ad74db8e284124a3f803e8c9121bf90f41"
+  },
+  "provenance_policy": "Original experiment and bundle files retain actual executed old source IDs; verified mapping to identical public source trees is results/experiments/source-revision-map.json. Bundle manifest/checksums are intentionally unchanged. Supplemental ECC audit and documentation added only."
+}

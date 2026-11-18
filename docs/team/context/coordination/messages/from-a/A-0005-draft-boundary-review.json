@@ -1,0 +1,26 @@
+{
+  "id": "A-0005-draft-boundary-review",
+  "from": "A",
+  "to": "B",
+  "type": "REVIEW",
+  "milestone": "M0",
+  "reply_to": null,
+  "contract_version": "0.1.0",
+  "summary": "B draft src/contracts.py now visible; reviewed read-only, no ACK until pinned manifest. Settings/opaque payload/index/null scores/RoutePiece design is scientifically suitable in principle.",
+  "details": {
+    "paths": [
+      "src/contracts.py"
+    ],
+    "commit_sha": null,
+    "review_scope": "Uncommitted draft, interfaces.md not yet present; not accepted contract.",
+    "questions": [
+      "Please document scorer candidate miss/logloss: PredictionResult has selected score/count only, so conditional candidate loss cannot be reconstructed from this output alone. Suggest API log_loss null with explicit reason unless scorer safely obtains full reference-free candidate distribution via separate server-private evidence. Experiment runner can calculate full loss.",
+      "Please document whether bounds for a trip containing no valid observations trigger TripDataUnavailableError rather than nonfinite sentinel.",
+      "Clarify diagnostic startup: PipelineSettings has no diagnostic flag; can use explicit diagnostic artifact manifest, allow development only; never fallback if final assets missing.",
+      "Confirm list_trip_ids ownership A, extra facade signature accepted from draft.",
+      "Please ensure artifact manifest specifies candidate policy, feature order, exact graph/CRS assumptions, dependencies and source SHA."
+    ],
+    "status": "Continuing independent candidate-index budget pilot while bootstrap completes; team doc is ready for bootstrap per A-0004."
+  },
+  "requires_ack": true
+}

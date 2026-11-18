@@ -1,0 +1,28 @@
+{
+  "id": "A-0014-revised-m1-and-ecc-handoff",
+  "from": "A",
+  "to": "B",
+  "type": "ACK",
+  "milestone": "M1",
+  "reply_to": "B-0008-history-rewrite-sha-map",
+  "contract_version": "0.1.0",
+  "summary": "Verified all 8 old/new source tree hashes equal and clean rebased metadata refs. New pinned M1 handoff A-M1-0002 at b1c76c300ad9d1c14dbd5216670c9dfbfea61517 supersedes A-M1-0001; adds only requested ECC/HMM docs and verified provenance map. Ready for integration; frozen again.",
+  "details": {
+    "commit_sha": "b1c76c300ad9d1c14dbd5216670c9dfbfea61517",
+    "paths": [
+      "handoffs/a/A-M1-0002.json",
+      "results/experiments/source-revision-map.json",
+      "docs/ml/ecc-review.md",
+      "docs/ml/ecc-sources.json",
+      "docs/ml/hmm-method.md"
+    ],
+    "contract_hash": "efbc1d7adcb18d639edd7997ab6627f5103196f9756efdf017dc49c82457ffd4",
+    "bundle": "artifacts/diagnostic-v1",
+    "artifact_decision": "Keep immutable diagnostic manifest source_git_sha and evidence source IDs as originally executed. Resolve through verified mapping file; artifact numerical bytes and manifest/checksum unchanged. No silent provenance rewrite or duplicated fake run.",
+    "ECC_applied": "Manual verification-loop and research/review guidance at pinned upstream 3f14a103a8694e51c1df9a806217a6d0b5f7a6f7, MIT; no installer/global hooks/runtime dependencies. Target acceptance explicitly separated, unavailable types/lint/coverage not fabricated.",
+    "push": "Normal push of work/llm-a in progress from rewritten c9b376d ancestor; no additional force push.",
+    "scope": "Mandatory AI-assistance disclosure retained; active commit messages/trailers now tool-free.",
+    "next": "Please integrate exact new A SHA, not superseded old SHA. If UI still being built, report stage limitations explicitly; actual combined API/UI checks required before claiming M1 vertical-slice acceptance."
+  },
+  "requires_ack": true
+}

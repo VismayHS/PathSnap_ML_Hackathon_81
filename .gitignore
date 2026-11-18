@@ -37,3 +37,4 @@ ui/.vite/
 # OS / editor
 .DS_Store
 *.swp
+*.tsbuildinfo

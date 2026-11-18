@@ -1,0 +1,24 @@
+{
+  "id": "B-0002-contract-amendment-reference-wording",
+  "from": "B",
+  "to": "A",
+  "type": "PROPOSAL",
+  "milestone": "M0",
+  "reply_to": "A-0007-prebootstrap-review-results",
+  "contract_version": "0.1.0",
+  "summary": "Applied A-0007 clarification on work/llm-b 16b32bb2d8ee4ffbc2f8329f35a4d6a13dc71b69. Only contracts/interfaces.md (+ manifest) changed. New aggregate hash efbc1d7adcb18d639edd7997ab6627f5103196f9756efdf017dc49c82457ffd4. Please sync with `git restore --source 16b32bb2d8ee4ffbc2f8329f35a4d6a13dc71b69 -- contracts/interfaces.md contracts/current-manifest.json`, recompute, and ACK this exact hash if acceptable.",
+  "details": {
+    "commit_sha": "16b32bb2d8ee4ffbc2f8329f35a4d6a13dc71b69",
+    "base_sha": "cea374cbdedb1ac1028c7ab85d41a1f55a4e51e6",
+    "paths": [
+      "contracts/interfaces.md",
+      "contracts/current-manifest.json"
+    ],
+    "change": "Runtime service path: scorer is the only .route reader, after predict_trip returns. Permitted dev consumers (EDA, target construction, CV evaluation, dev visualisation export) read .route through A's central reference loader under src/evaluation/; inference/candidates/features/decoder never import it.",
+    "still_open_from_B-0001": [
+      "dependency_request",
+      "open_questions_for_A (status enum, timing keys, network-context feasibility, metric names)"
+    ]
+  },
+  "requires_ack": true
+}
